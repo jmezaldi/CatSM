@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yanbal.catalogo.dao.SolucionDAO">
+	<sql id="sqlSchema">CATALOGO.</sql>
+	<resultMap id="result" type="solucionBean">
+        <result property="id" column="ID"/>
+        <result property="codigo" column="CODIGO"/>
+        <result property="nombre" column="NOMBRE"/>
+        <result property="descripcion" column="DESCRIPCION"/>
+        <result property="codTablaVertical" column="CODIGO_TABLA_VERTICAL"/>
+        <result property="codDatoVertical" column="CODIGO_TABLA_VERTICAL"/>
+		<result property="codTablaAmbito" column="CODIGO_TABLA_AMBITO"/>
+        <result property="codDatoAmbito" column="CODIGO_DATO_AMBITO"/>
+        <result property="codTablaTipo" column="CODIGO_TABLA_TIPO"/>
+        <result property="codDatoTipo" column="CODIGO_DATO_TIPO"/>
+        <result property="codTablaArea" column="CODIGO_TABLA_AREA"/>
+		<result property="codDatoArea" column="CODIGO_DATO_AREA"/>
+        <result property="estado" column="ESTADO"/>
+        <result property="desVertical" column="DES_VER"/>
+        <result property="desAmbito" column="DES_AMB"/>
+        <result property="desTipo" column="DES_TIPO"/>
+        <result property="desArea" column="DES_AREA"/>
+
+    </resultMap>
+
+	
+	<select id="getAllSoluciones" resultMap="result">  
+		SELECT ID, CODIGO, NOMBRE, DESCRIPCION, CODIGO_TABLA_VERTICAL,
+		  		CODIGO_DATO_VERTICAL, CODIGO_TABLA_AMBITO, CODIGO_DATO_AMBITO,
+		  		CODIGO_TABLA_TIPO, CODIGO_DATO_TIPO, CODIGO_TABLA_AREA, CODIGO_DATO_AREA,
+		  		SOL.ESTADO AS ESTADO,  VER.DESCRIPCION_ABREVIADA AS DES_VER,
+		  		AMB.DESCRIPCION_ABREVIADA AS DES_AMB,TIPO.DESCRIPCION_ABREVIADA AS DES_TIPO,
+		  		AREA.DESCRIPCION_ABREVIADA AS DES_AREA
+		FROM <include refid="sqlSchema"/>SOLUCION SOL
+		LEFT OUTER JOIN <include refid="sqlSchema"/>TABLAS_CODIGOS VER
+		ON (SOL.CODIGO_TABLA_VERTICAL= VER.CODIGO_TABLA AND SOL.CODIGO_DATO_VERTICAL=VER.CODIGO_DATO)
+		LEFT OUTER JOIN <include refid="sqlSchema"/>TABLAS_CODIGOS AMB
+		ON (SOL.CODIGO_TABLA_AMBITO= AMB.CODIGO_TABLA AND SOL.CODIGO_DATO_AMBITO=AMB.CODIGO_DATO)
+		LEFT OUTER JOIN <include refid="sqlSchema"/>TABLAS_CODIGOS TIPO
+		ON (SOL.CODIGO_TABLA_TIPO= TIPO.CODIGO_TABLA AND SOL.CODIGO_DATO_TIPO=TIPO.CODIGO_DATO)
+		LEFT OUTER JOIN <include refid="sqlSchema"/>TABLAS_CODIGOS AREA
+		ON (SOL.CODIGO_TABLA_AREA= AREA.CODIGO_TABLA AND SOL.CODIGO_DATO_AREA=AREA.CODIGO_DATO)
+	</select>
+	
+	<insert id="saveSolucion" parameterType="solucionBean">
+		INSERT INTO <include refid="sqlSchema"/>SOLUCION (CODIGO, NOMBRE, DESCRIPCION, 
+		CODIGO_TABLA_VERTICAL,CODIGO_DATO_VERTICAL, CODIGO_TABLA_AMBITO, CODIGO_DATO_AMBITO,
+  		CODIGO_TABLA_TIPO, CODIGO_DATO_TIPO, CODIGO_TABLA_AREA, CODIGO_DATO_AREA,
+  		ESTADO,  USUARIO_CREACION, USUARIO_ACTUALIZACION,FECHA_CREACION,FECHA_ACTUALIZACION) 
+    	VALUES (#{codigo},#{nombre},#{descripcion},#{codTablaVertical},#{codDatoVertical},
+    	#{codTablaAmbito},#{codDatoAmbito},#{codTablaTipo},#{codDatoTipo},
+    	#{codTablaArea},#{codDatoArea},#{estado},#{usuarioCreacion},#{usuarioActualizacion},
+    	CURRENT TIMESTAMP,CURRENT TIMESTAMP)    	
+	</insert>
+	
+	<update id="updateSolucion" parameterType="solucionBean"> 
+  		UPDATE <include refid="sqlSchema"/>SOLUCION
+  		SET
+  			CODIGO = #{codigo},  
+			NOMBRE = #{nombre},  
+			DESCRIPCION = #{descripcion},  
+			CODIGO_TABLA_VERTICAL = #{codTablaVertical} ,
+			CODIGO_TABLA_AMBITO = #{codTablaAmbito},
+			CODIGO_TABLA_TIPO = #{codTablaTipo},
+			CODIGO_TABLA_AREA = #{codTablaArea},
+			CODIGO_DATO_VERTICAL = #{codDatoVertical} ,
+			CODIGO_DATO_AMBITO = #{codDatoAmbito},
+			CODIGO_DATO_TIPO = #{codDatoTipo},
+			CODIGO_DATO_AREA = #{codDatoArea},
+			USUARIO_ACTUALIZACION = #{usuarioActualizacion},
+			FECHA_ACTUALIZACION = CURRENT TIMESTAMP		
+ 		where id = #{id} 
+	</update>
+	
+	<delete id="deleteSolucion" parameterType="int">
+    	DELETE FROM <include refid="sqlSchema"/>SOLUCION
+    	WHERE id = #{id}
+    </delete>
+</mapper>

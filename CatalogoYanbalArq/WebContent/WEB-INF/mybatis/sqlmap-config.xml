@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<!-- changes from the defaults -->
+		<setting name="lazyLoadingEnabled" value="false" />
+	</settings>
+	<typeAliases>
+		<typeAlias type="com.raistudies.domain.User" alias="user"/>
+		<typeAlias type="com.yanbal.catalogo.bean.SolucionBean" alias="solucionBean"/>
+		<typeAlias type="com.yanbal.catalogo.bean.ServidorBean" alias="servidorBean"/>
+		<typeAlias type="com.yanbal.catalogo.bean.AplicacionVersionBean" alias="aplicacionVersionBean"/>
+		<typeAlias type="com.yanbal.catalogo.bean.TablasCodigosBean" alias="tablasCodigosBean"/>
+		<typeAlias type="com.yanbal.catalogo.bean.BaseDatosVersionBean" alias="baseDatosVersionBean"/>
+		<typeAlias type="com.yanbal.catalogo.bean.SoftwareBaseVersionBean" alias="softwareBaseVersionBean"/>
+		<typeAlias type="com.yanbal.catalogo.bean.TablasCodigosUtilBean" alias="tablasCodigosUtilBean"/>
+		<typeAlias type="com.yanbal.catalogo.bean.ClusterServidorBean" alias="clusterServidorBean"/>
+	</typeAliases>
+</configuration>

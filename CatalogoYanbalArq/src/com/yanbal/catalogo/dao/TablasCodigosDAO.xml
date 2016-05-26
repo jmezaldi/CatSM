@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yanbal.catalogo.dao.TablasCodigosDAO">
+	<sql id="sqlSchema">CATALOGO.</sql>
+	<resultMap id="result" type="tablasCodigosBean">
+	
+        <result property="codTabla" column="CODIGO_TABLA"/>
+        <result property="codDato" column="CODIGO_DATO"/>
+        <result property="desAbreviada" column="DESCRIPCION_ABREVIADA"/>
+         <result property="desCompleta" column="DESCRIPCION_COMPLETA"/>
+    </resultMap>
+
+	
+	<select id="getAllDatosXCodigoTabla" parameterType="int" resultMap="result">  
+		SELECT
+		   CODIGO_TABLA,
+		   CODIGO_DATO,
+		   DESCRIPCION_ABREVIADA,
+		   DESCRIPCION_COMPLETA
+		FROM CATALOGO.TABLAS_CODIGOS T	
+		WHERE T.CODIGO_TABLA = #{id} AND ESTADO = 1 AND CODIGO_DATO>0
+	</select>
+
+</mapper>
