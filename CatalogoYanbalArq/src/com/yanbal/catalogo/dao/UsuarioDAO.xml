@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.yanbal.catalogo.dao.SolucionDAO">
+<mapper namespace="com.yanbal.catalogo.dao.UsuarioBeanDAO">
 	<sql id="sqlSchema">CATALOGO.</sql>
 	<resultMap id="result" type="solucionBean">
         <result property="id" column="ID"/>
@@ -10,38 +10,22 @@
         <result property="nombre" column="NOMBRE"/>
         <result property="descripcion" column="DESCRIPCION"/>
         <result property="codTablaVertical" column="CODIGO_TABLA_VERTICAL"/>
-        <result property="codDatoVertical" column="CODIGO_DATO_VERTICAL"/>
-		<result property="codTablaAmbito" column="CODIGO_TABLA_AMBITO"/>
-        <result property="codDatoAmbito" column="CODIGO_DATO_AMBITO"/>
-        <result property="codTablaTipo" column="CODIGO_TABLA_TIPO"/>
-        <result property="codDatoTipo" column="CODIGO_DATO_TIPO"/>
-        <result property="codTablaArea" column="CODIGO_TABLA_AREA"/>
-		<result property="codDatoArea" column="CODIGO_DATO_AREA"/>
-        <result property="estado" column="ESTADO"/>
-        <result property="desVertical" column="DES_VER"/>
-        <result property="desAmbito" column="DES_AMB"/>
-        <result property="desTipo" column="DES_TIPO"/>
+        <result property="codDatoVertical" column="CODIGO_TABLA_VERTICAL"/>
         <result property="desArea" column="DES_AREA"/>
 
     </resultMap>
 
 	
-	<select id="getAllSoluciones" resultMap="result">  
-		SELECT ID, CODIGO, NOMBRE, DESCRIPCION, CODIGO_TABLA_VERTICAL,
-		  		CODIGO_DATO_VERTICAL, CODIGO_TABLA_AMBITO, CODIGO_DATO_AMBITO,
-		  		CODIGO_TABLA_TIPO, CODIGO_DATO_TIPO, CODIGO_TABLA_AREA, CODIGO_DATO_AREA,
-		  		SOL.ESTADO AS ESTADO,  VER.DESCRIPCION_ABREVIADA AS DES_VER,
-		  		AMB.DESCRIPCION_ABREVIADA AS DES_AMB,TIPO.DESCRIPCION_ABREVIADA AS DES_TIPO,
-		  		AREA.DESCRIPCION_ABREVIADA AS DES_AREA
-		FROM <include refid="sqlSchema"/>SOLUCION SOL
-		LEFT OUTER JOIN <include refid="sqlSchema"/>TABLAS_CODIGOS VER
-		ON (SOL.CODIGO_TABLA_VERTICAL= VER.CODIGO_TABLA AND SOL.CODIGO_DATO_VERTICAL=VER.CODIGO_DATO)
-		LEFT OUTER JOIN <include refid="sqlSchema"/>TABLAS_CODIGOS AMB
-		ON (SOL.CODIGO_TABLA_AMBITO= AMB.CODIGO_TABLA AND SOL.CODIGO_DATO_AMBITO=AMB.CODIGO_DATO)
-		LEFT OUTER JOIN <include refid="sqlSchema"/>TABLAS_CODIGOS TIPO
-		ON (SOL.CODIGO_TABLA_TIPO= TIPO.CODIGO_TABLA AND SOL.CODIGO_DATO_TIPO=TIPO.CODIGO_DATO)
-		LEFT OUTER JOIN <include refid="sqlSchema"/>TABLAS_CODIGOS AREA
-		ON (SOL.CODIGO_TABLA_AREA= AREA.CODIGO_TABLA AND SOL.CODIGO_DATO_AREA=AREA.CODIGO_DATO)
+	<select id="getRolUsuario" parameterType="string" resultMap="usuarioBean">  
+		SELECT USUARIO as "usuario", 
+		CODIGO_TABLA_ROL as "codTablaRol",
+		CODIGO_DATO_ROL as "codTablaRol",
+		USR.ESTADO as "estado",
+		T.DESCRIPCION_ABREVIADA as "desRol"
+		FROM <include refid="sqlSchema"/>USUARIO_ROL USR
+		LEFT OUTER JOIN <include refid="sqlSchema"/>TABLAS_CODIGOS T
+		ON (USR.CODIGO_TABLA_ROL= T.CODIGO_TABLA AND USR.CODIGO_DATO_ROL=T.CODIGO_DATO)
+		WHERE USR.USUARIO = #{usuario}
 	</select>
 	
 	<insert id="saveSolucion" parameterType="solucionBean">

@@ -45,13 +45,13 @@ $(document).ready(function() {
 	</head>
 	<body>
 		<fieldset>
-		<legend>Aplicaciones</legend>
+		<legend>Base de Datos</legend>
 		<center>
 		<c:url var="post_ctx"  value="/" />
 
 		</center>
 		</fieldset>
-		<c:if test="${!empty appVersiones}">
+		<c:if test="${!empty basedatosl}">
 		
 			<br />
 			<center>
@@ -61,11 +61,9 @@ $(document).ready(function() {
 						<th>Id</th>
 						<th>Nombre</th>
 						<th>Versi&oacute;n</th>		
-						<th>Criticidad</th>				
-						<th>Exposici&oacute;n</th>
-						<th>&Aacute;rea</th>
-						<th>Custodio</th>
-						<th>Tipo</th>						
+						<th>Datos Sensibles</th>				
+						<th>Datos Personales</th>
+						<th>Software Base</th>					
 						<th></th>
 					</tr>
 					</thead>
@@ -73,35 +71,29 @@ $(document).ready(function() {
 					<tr style="background-color: gray;">
 						<th>Id</th>
 						<th>Nombre</th>
-						<th>Versi&oacute;n</th>
-						<th>Criticidad</th>				
-						<th>Exposici&oacute;n</th>
-						<th>&Aacute;rea</th>
-						<th>Custodio</th>
-						<th>Tipo</th>							
+						<th>Versi&oacute;n</th>		
+						<th>Datos Sensibles</th>				
+						<th>Datos Personales</th>
+						<th>Software Base</th>							
 						<th></th>
 					</tr>
 					</tfoot>
 					<tbody>
-					<c:forEach items="${appVersiones}" var="appVersion">
-						<tr style="background-color: silver;" id="${appVersion.id}" onclick="setUpdateForm('${appVersion.id}');">
-							<td ><c:out value="${appVersion.id}"/></td>
-							<td><c:out value="${appVersion.nombre}"/></td>
-							<td><c:out value="${appVersion.corVersion}"/></td>
-							<td><c:out value="${appVersion.desCriticidad}"/></td>
-							<td><c:out value="${appVersion.desExposicion}"/></td>
-							<td><c:out value="${appVersion.desArea}"/></td>
-							<td><c:out value="${appVersion.desCustodio}"/></td>	
-							<td><c:out value="${appVersion.desTipoApp}"/></td>	
-							<td><a href="consulta?idApp=${appVersion.id}&corVer=${appVersion.corVersion}">Ir</a></td>
+					<c:forEach items="${basedatosl}" var="bd">
+						<tr style="background-color: silver;" id="${bd.id}" onclick="setUpdateForm('${bd.id}');">
+							<td ><c:out value="${bd.id}"/></td>
+							<td><c:out value="${bd.nombre}"/></td>
+							<td><c:out value="${bd.corVersion}"/></td>
+							<td><c:out value="${bd.datSensibles}"/></td>
+							<td><c:out value="${bd.datPersonales}"/></td>
+							<td><c:out value="${bd.desSoftwareBaseVersion}"/></td>
+							<td><a href="consulta?idApp=${bd.id}&corVer=${bd.corVersion}">Ir</a></td>
 						</tr>
 					</c:forEach>
 					</tbody>
 				</table>
 				</center>
 			<br />
-
 		</c:if>
-
 	</body>
 </html>

@@ -1,5 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" pageEncoding="UTF-8" session="true" isELIgnored="false"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+<title>Menú</title>
+</head>
+<body>
 
 <H1>Listas Maestras</H1>
 <br/>
@@ -9,6 +16,8 @@
 <br/>
 <a href="app/servidor">Servidores</a>
 <br/>
-<a href="app/basedatos">Bases de Datos</a>
+<a href="app/basedatosversion">Bases de Datos</a>
 <br/>
 <a href="app/swBaseVersion">Software Base</a>
+</body>
+</html>

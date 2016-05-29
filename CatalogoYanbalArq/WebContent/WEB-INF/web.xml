@@ -43,22 +43,21 @@
     	<param-name>forceEncoding</param-name>
         <param-value>true</param-value>
     </init-param>
-  </filter>
-  
+  </filter> 
 
   <error-page>
     <error-code>404</error-code>
-    <location>/WEB-INF/jsp/error.jsp</location>
+    <location>/WEB-INF/error.jsp</location>
   </error-page>
 
   <error-page>
     <error-code>405</error-code>
-    <location>/WEB-INF/jsp/error.jsp</location>
+    <location>/WEB-INF/error.jsp</location>
   </error-page>
   
   <error-page>
     <error-code>500</error-code>
-    <location>/WEB-INF/jsp/error.jsp</location>
+    <location>/WEB-INF/error.jsp</location>
   </error-page>
   
 

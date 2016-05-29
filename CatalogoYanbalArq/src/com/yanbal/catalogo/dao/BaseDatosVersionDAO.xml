@@ -4,7 +4,7 @@
 
 <mapper namespace="com.yanbal.catalogo.dao.BaseDatosVersionDAO">
 	<sql id="sqlSchema">CATALOGO.</sql>
-	<resultMap id="result" type="servidorBean">
+	<resultMap id="result" type="baseDatosVersionBean">
         <result property="id" column="ID"/>
         <result property="nombre" column="NOMBRE"/>
         <result property="corVersion" column="CORRELATIVO_VERSION"/>
@@ -29,23 +29,6 @@
 		ON ( SB.ID=SBV.ID_SOFTWARE_BASE)
 	</select>
 	
-	<select id="getAllBaseDatosXIdAppVer" resultMap="result" parameterType="aplicacionVersionBean">  
-		SELECT BD.ID, BD.NOMBRE, BDV.CORRELATIVO_VERSION, DATOS_SENSIBLES, DATOS_PERSONALES,
-		  BDV.ESTADO, SBV.ID_SOFTWARE_BASE, CORRELATIVO_SOFTWARE_BASE_VERSION,
-		  SB.NOMBRE||' '||COALESCE(SBV.VERSION,'')||' '||COALESCE(SBV.FIX,'')  
-		FROM CATALOGO.APLICACION_BASE_DATOS_VERSION APP
-		INNER JOIN CATALOGO.BASE_DATOS BD
-		ON (APP.ID_BASE_DATOS=BD.ID)
-		INNER JOIN CATALOGO.BASE_DATOS_VERSION BDV
-		ON (BD.ID= BDV.ID_BASE_DATOS AND APP.CORRELATIVO_VERSION_BD=BDV.CORRELATIVO_VERSION)
-		LEFT JOIN CATALOGO.SOFTWARE_BASE_VERSION SBV
-		ON ( BDV.ID_SOFTWARE_BASE=SBV.ID_SOFTWARE_BASE AND 
-		SBV.CORRELATIVO_VERSION=BDV.CORRELATIVO_SOFTWARE_BASE_VERSION)
-		LEFT JOIN CATALOGO.SOFTWARE_BASE SB
-		ON ( SB.ID=SBV.ID_SOFTWARE_BASE)
-		WHERE ID_APLICACION = #{id} AND
-		CORRELATIVO_VERSION_APP = #{corVersion}
-	</select>
 	
 	<insert id="saveSolucion" parameterType="solucionBean">
 		INSERT INTO <include refid="sqlSchema"/>SOLUCION (CODIGO, NOMBRE, DESCRIPCION, 

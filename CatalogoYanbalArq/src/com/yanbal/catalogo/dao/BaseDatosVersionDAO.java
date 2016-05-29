@@ -2,12 +2,12 @@ package com.yanbal.catalogo.dao;
 
 import java.util.List;
 
-import com.yanbal.catalogo.bean.ServidorBean;
+import com.yanbal.catalogo.bean.BaseDatosVersionBean;
 
 public interface BaseDatosVersionDAO {
 	
-	public void saveServidor(ServidorBean servidor);
-	public void updateServidor(ServidorBean servidor);
-	public void deleteServidor(Integer id);
-	public List<ServidorBean> getAllServidores();
+	public void saveBaseDatosVersion(BaseDatosVersionBean servidor);
+	public void updateBaseDatosVersion(BaseDatosVersionBean servidor);
+	public void deleteBaseDatosVersion(Integer id);
+	public List<BaseDatosVersionBean> getAllBaseDatos();
 }
