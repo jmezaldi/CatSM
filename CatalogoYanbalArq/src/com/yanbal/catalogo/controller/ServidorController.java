@@ -18,7 +18,7 @@ import com.yanbal.catalogo.validator.SolucionValidator;
 import com.yanbal.catalogo.bean.ServidorBean;
 
 @Controller
-@RequestMapping(value = "/servidor")
+@RequestMapping(value = "/app/servidor")
 public class ServidorController extends BaseController {
 	private static final Logger LOG = Logger.getLogger(ServidorController.class);
 

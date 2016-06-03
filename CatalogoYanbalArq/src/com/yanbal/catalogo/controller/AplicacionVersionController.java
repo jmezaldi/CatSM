@@ -24,7 +24,7 @@ import com.yanbal.catalogo.validator.SolucionValidator;
 import com.yanbal.catalogo.bean.AplicacionVersionBean;
 
 @Controller
-@RequestMapping(value = "/appVersion")
+@RequestMapping(value = "/app/appVersion")
 public class AplicacionVersionController extends BaseController {
 	private static final Logger LOG = Logger.getLogger(AplicacionVersionController.class);
 

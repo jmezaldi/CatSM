@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yanbal.catalogo.dao.ServidorDAO">
+	<sql id="sqlSchema">CATALOGO.</sql>
+	<resultMap id="result" type="servidorBean">
+        <result property="id" column="ID"/>
+        <result property="nombre" column="NOMBRE"/>
+        <result property="codTablaAmbiente" column="CODIGO_TABLA_AMBIENTE"/>
+        <result property="codDatoAmbiente" column="CODIGO_DATO_AMBIENTE"/>
+		<result property="procesador" column="PROCESADOR"/>
+        <result property="numeroProcesador" column="NUMERO_PROCESADORES"/>
+        <result property="memoria" column="MEMORIA"/>
+        <result property="idServidorFisico" column="SERVIDOR_FISICO_ID"/>
+        <result property="codTablaTipoServidor" column="CODIGO_TABLA_TIPO_SERVIDOR"/>
+        <result property="codDatoUbicacionServidor" column="CODIGO_DATO_TIPO_SERVIDOR"/>
+		<result property="codTablaUbicacionServidor" column="CODIGO_TABLA_UBICACION_SERVIDOR"/>
+        <result property="estado" column="CODIGO_DATO_UBICACION_SERVIDOR"/>
+        <result property="comentarioInterno" column="COMENTARIO_INTERNO"/>
+        <result property="serial" column="SERIAL"/>
+        <result property="responsable" column="RESPONSABLE"/>
+        <result property="codTablaTipoContrato" column="CODIGO_TABLA_TIPO_CONTRATO"/>
+        <result property="codDatoTipoContrato" column="CODIGO_DATO_TIPO_CONTRATO"/>
+        <result property="codTablaTecnologia" column="CODIGO_TABLA_TECNOLOGIA"/>
+        <result property="codDatoTecnologia" column="CODIGO_DATO_TECNOLOGIA"/>
+        <result property="estado" column="ESTADO"/>
+        <result property="usuarioCreacion" column="USUARIO_CREACION"/>
+        <result property="usuarioActualizacion" column="USUARIO_ACTUALIZACION"/>
+        <result property="desAmbiente" column="DES_AMB"/>
+        <result property="desTipoServidor" column="DES_TIPS"/>
+		<result property="desUbicacionServidor" column="DES_UBI"/>
+		<result property="desTipoContrato" column="DES_CON"/>
+		<result property="desTecnologia" column="DES_TEC"/>                        
+     </resultMap>
+	
+	<select id="getAllServidores" resultMap="result">  
+		SELECT ID, NOMBRE, CODIGO_TABLA_AMBIENTE, CODIGO_DATO_AMBIENTE,
+		  PROCESADOR, NUMERO_PROCESADORES, MEMORIA, SERVIDOR_FISICO_ID,
+		  CODIGO_TABLA_TIPO_SERVIDOR, CODIGO_DATO_TIPO_SERVIDOR, CODIGO_TABLA_UBICACION_SERVIDOR,
+		  CODIGO_DATO_UBICACION_SERVIDOR, COMENTARIO_INTERNO, SERIAL,
+		  RESPONSABLE, CODIGO_TABLA_TIPO_CONTRATO, CODIGO_DATO_TIPO_CONTRATO,
+		  CODIGO_TABLA_TECNOLOGIA, CODIGO_DATO_TECNOLOGIA, SER.ESTADO AS ESTADO, 
+		  SER.USUARIO_CREACION, SER.USUARIO_ACTUALIZACION,
+		  AMB.DESCRIPCION_ABREVIADA DES_AMB,
+		  TIPS.DESCRIPCION_ABREVIADA DES_TIPS,
+		  UBI.DESCRIPCION_ABREVIADA DES_UBI,
+		  CON.DESCRIPCION_ABREVIADA DES_CON,
+		  TEC.DESCRIPCION_ABREVIADA DES_TEC		  
+		FROM CATALOGO.SERVIDOR SER
+		LEFT OUTER JOIN CATALOGO.TABLAS_CODIGOS AMB
+				ON (SER.CODIGO_TABLA_AMBIENTE= AMB.CODIGO_TABLA AND SER.CODIGO_DATO_AMBIENTE=AMB.CODIGO_DATO)
+		LEFT OUTER JOIN CATALOGO.TABLAS_CODIGOS TIPS
+				ON (SER.CODIGO_TABLA_TIPO_SERVIDOR= TIPS.CODIGO_TABLA AND SER.CODIGO_DATO_TIPO_SERVIDOR=TIPS.CODIGO_DATO)
+		LEFT OUTER JOIN CATALOGO.TABLAS_CODIGOS UBI
+				ON (SER.CODIGO_TABLA_UBICACION_SERVIDOR= UBI.CODIGO_TABLA AND SER.CODIGO_DATO_UBICACION_SERVIDOR=UBI.CODIGO_DATO)
+		LEFT OUTER JOIN CATALOGO.TABLAS_CODIGOS CON
+				ON (SER.CODIGO_TABLA_TIPO_CONTRATO= CON.CODIGO_TABLA AND SER.CODIGO_DATO_TIPO_CONTRATO=CON.CODIGO_DATO)
+		LEFT OUTER JOIN CATALOGO.TABLAS_CODIGOS TEC
+				ON (SER.CODIGO_TABLA_TECNOLOGIA= TEC.CODIGO_TABLA AND SER.CODIGO_DATO_TECNOLOGIA=TEC.CODIGO_DATO)
+	</select>
+	
+	<insert id="saveSolucion" parameterType="solucionBean">
+		INSERT INTO <include refid="sqlSchema"/>SOLUCION (CODIGO, NOMBRE, DESCRIPCION, 
+		CODIGO_TABLA_VERTICAL,CODIGO_DATO_VERTICAL, CODIGO_TABLA_AMBITO, CODIGO_DATO_AMBITO,
+  		CODIGO_TABLA_TIPO, CODIGO_DATO_TIPO, CODIGO_TABLA_AREA, CODIGO_DATO_AREA,
+  		ESTADO,  USUARIO_CREACION, USUARIO_ACTUALIZACION,FECHA_CREACION,FECHA_ACTUALIZACION) 
+    	VALUES (#{codigo},#{nombre},#{descripcion},#{codTablaVertical},#{codDatoVertical},
+    	#{codTablaAmbito},#{codDatoAmbito},#{codTablaTipo},#{codDatoTipo},
+    	#{codTablaArea},#{codDatoArea},#{estado},#{usuarioCreacion},#{usuarioActualizacion},
+    	CURRENT TIMESTAMP,CURRENT TIMESTAMP)    	
+	</insert>
+	
+	<update id="updateSolucion" parameterType="solucionBean"> 
+  		UPDATE <include refid="sqlSchema"/>SOLUCION
+  		SET
+  			CODIGO = #{codigo},  
+			NOMBRE = #{nombre},  
+			DESCRIPCION = #{descripcion},  
+			CODIGO_TABLA_VERTICAL = #{codTablaVertical} ,
+			CODIGO_TABLA_AMBITO = #{codTablaAmbito},
+			CODIGO_TABLA_TIPO = #{codTablaTipo},
+			CODIGO_TABLA_AREA = #{codTablaArea},
+			CODIGO_DATO_VERTICAL = #{codDatoVertical} ,
+			CODIGO_DATO_AMBITO = #{codDatoAmbito},
+			CODIGO_DATO_TIPO = #{codDatoTipo},
+			CODIGO_DATO_AREA = #{codDatoArea},
+			USUARIO_ACTUALIZACION = #{usuarioActualizacion},
+			FECHA_ACTUALIZACION = CURRENT TIMESTAMP		
+ 		where id = #{id} 
+	</update>
+	
+	<delete id="deleteSolucion" parameterType="int">
+    	DELETE FROM <include refid="sqlSchema"/>SOLUCION
+    	WHERE id = #{id}
+    </delete>
+</mapper>

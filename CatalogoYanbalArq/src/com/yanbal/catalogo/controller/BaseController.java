@@ -2,14 +2,19 @@ package com.yanbal.catalogo.controller;
 
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yanbal.catalogo.bean.SolucionBean;
 import com.yanbal.catalogo.util.constantes.ConstantesComunes;
 
 
@@ -53,29 +58,6 @@ public class BaseController {
 		}
 	}
 	
-	/**
-	 * Redirecciona a la página de error.
-	 * 
-	 * @author JM
-	 * @param request
-	 *            Objeto del tipo HttpServletRequest.
-	 * @return Objeto de tipo ModelAndView.
-	 * @since 1.0
-	 */
-	@RequestMapping(value = "/errorCAT", method = RequestMethod.GET)
-    public ModelAndView errorCAT(HttpServletRequest request)
-    {
-    	HttpSession session = request.getSession(false);
-    	ModelAndView mav = new ModelAndView(RUTA_JSP_ERROR);
-    	
-        if (session == null) {
-			//mav.addObject(ConstantesComunes.ERROR_OBJECT,
-					//MensajeComun.ERROR_SESSION.getProperty());
-			return mav;
-		}
-    	
-        mav.addObject(ConstantesComunes.ERROR_OBJECT, session
-        		.getAttribute(ConstantesComunes.KEY_MESSAGE_ERROR));
-        return mav;
-    }
+
+
 }

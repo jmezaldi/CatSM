@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yanbal.catalogo.dao.AplicacionVersionDAO">
+	<sql id="sqlSchema">CATALOGO.</sql>
+	<resultMap id="result1" type="aplicacionVersionBean">	
+        <result property="id" column="ID_APLICACION"/>
+        <result property="corVersion" column="CORRELATIVO_VERSION"/>
+        <result property="nombre" column="NOMBRE"/>
+         <result property="codigo" column="CODIGO"/>
+        <result property="desCriticidad" column="DES_CRI"/>
+        <result property="desExposicion" column="DES_EXP"/>
+        <result property="desArea" column="DES_AREA"/>
+        <result property="desCustodio" column="DES_CUS"/>
+        <result property="desTipoApp" column="DES_TIPO"/>        
+        <result property="documentacion" column="DOCUMENTACION"/>
+        <result property="solucion.id" column="ID_SOLUCION"/>
+    </resultMap>
+	
+	<select id="getAllAplicacionVersionXSolucion" parameterType="int" resultMap="result1">  
+		SELECT
+		   APPVER.ID_APLICACION AS ID_APLICACION,
+		   APPVER.CORRELATIVO_VERSION AS CORRELATIVO_VERSION,
+		   ID_SOLUCION,
+		   CODIGO,
+		   NOMBRE,
+		   AREA.DESCRIPCION_ABREVIADA AS DES_AREA,
+		   CRI.DESCRIPCION_ABREVIADA AS DES_CRI,
+		   EXP.DESCRIPCION_ABREVIADA AS DES_EXP,
+		   CUS.DESCRIPCION_ABREVIADA AS DES_CUS,
+		   TIPO.DESCRIPCION_ABREVIADA AS DES_TIPO,
+		   DOCUMENTACION
+		FROM CATALOGO.APLICACION_VERSION_SOLUCION APPVSOL
+		INNER JOIN CATALOGO.APLICACION_VERSION APPVER
+		ON (APPVER.ID_APLICACION = APPVSOL.ID_APLICACION AND
+		    APPVER.CORRELATIVO_VERSION=APPVSOL.CORRELATIVO_VERSION)
+		INNER JOIN CATALOGO.APLICACION APP
+		ON (APP.ID = APPVER.ID_APLICACION)    
+		LEFT OUTER JOIN CATALOGO.TABLAS_CODIGOS AREA
+		ON (APP.CODIGO_TABLA_AREA= AREA.CODIGO_TABLA AND APP.CODIGO_DATO_AREA=AREA.CODIGO_DATO)
+		LEFT OUTER JOIN CATALOGO.TABLAS_CODIGOS CRI
+		ON (APP.CODIGO_TABLA_CRITICIDAD= CRI.CODIGO_TABLA AND APP.CODIGO_DATO_CRITICIDAD=CRI.CODIGO_DATO)
+		LEFT OUTER JOIN CATALOGO.TABLAS_CODIGOS EXP
+		ON (APP.CODIGO_TABLA_EXPOSICION= EXP.CODIGO_TABLA AND APP.CODIGO_DATO_EXPOSICION=EXP.CODIGO_DATO)
+		LEFT OUTER JOIN CATALOGO.TABLAS_CODIGOS CUS
+		ON (APP.CODIGO_TABLA_CUSTODIO= CUS.CODIGO_TABLA AND APP.CODIGO_DATO_CUSTODIO=CUS.CODIGO_DATO)	
+		LEFT OUTER JOIN CATALOGO.TABLAS_CODIGOS TIPO
+		ON (APP.CODIGO_TABLA_TIPO_APP= TIPO.CODIGO_TABLA AND APP.CODIGO_DATO_TIPO_APP=TIPO.CODIGO_DATO)			
+		WHERE APPVSOL.ID_SOLUCION = #{id} 
+	</select>
+	
+	<select id="getAllAplicacionVersion" resultMap="result1">  
+	SELECT
+		   APPVER.ID_APLICACION AS ID_APLICACION,
+		   APPVER.CORRELATIVO_VERSION AS CORRELATIVO_VERSION,
+		   ID_SOLUCION,
+		   CODIGO,
+		   NOMBRE,
+		   AREA.DESCRIPCION_ABREVIADA AS DES_AREA,
+		   CRI.DESCRIPCION_ABREVIADA AS DES_CRI,
+		   EXP.DESCRIPCION_ABREVIADA AS DES_EXP,
+		   CUS.DESCRIPCION_ABREVIADA AS DES_CUS,
+		   TIPO.DESCRIPCION_ABREVIADA AS DES_TIPO,		   
+		   DOCUMENTACION
+		FROM CATALOGO.APLICACION_VERSION APPVER
+		INNER JOIN CATALOGO.APLICACION APP
+		ON (APP.ID = APPVER.ID_APLICACION)    
+		LEFT OUTER JOIN CATALOGO.TABLAS_CODIGOS AREA
+		ON (APP.CODIGO_TABLA_AREA= AREA.CODIGO_TABLA AND APP.CODIGO_DATO_AREA=AREA.CODIGO_DATO)
+		LEFT OUTER JOIN CATALOGO.TABLAS_CODIGOS CRI
+		ON (APP.CODIGO_TABLA_CRITICIDAD= CRI.CODIGO_TABLA AND APP.CODIGO_DATO_CRITICIDAD=CRI.CODIGO_DATO)
+		LEFT OUTER JOIN CATALOGO.TABLAS_CODIGOS EXP
+		ON (APP.CODIGO_TABLA_EXPOSICION= EXP.CODIGO_TABLA AND APP.CODIGO_DATO_EXPOSICION=EXP.CODIGO_DATO)
+		LEFT OUTER JOIN CATALOGO.TABLAS_CODIGOS CUS
+		ON (APP.CODIGO_TABLA_CUSTODIO= CUS.CODIGO_TABLA AND APP.CODIGO_DATO_CUSTODIO=CUS.CODIGO_DATO)
+		LEFT OUTER JOIN CATALOGO.TABLAS_CODIGOS TIPO
+		ON (APP.CODIGO_TABLA_TIPO_APP= TIPO.CODIGO_TABLA AND APP.CODIGO_DATO_TIPO_APP=TIPO.CODIGO_DATO)
+		LEFT OUTER JOIN CATALOGO.APLICACION_VERSION_SOLUCION APPVSOL
+		ON (APPVER.ID_APLICACION = APPVSOL.ID_APLICACION AND APPVER.CORRELATIVO_VERSION=APPVSOL.CORRELATIVO_VERSION)
+				
+	</select>
+
+	<select id="getAplicacionVersionXPK" parameterType="aplicacionVersionBean" resultType="aplicacionVersionBean">  
+		SELECT
+		   APPVER.ID_APLICACION AS "id",
+		   APPVER.CORRELATIVO_VERSION AS "corVersion",
+		   CODIGO as "codigo",
+		   NOMBRE as "nombre",
+		   DOCUMENTACION as "documentacion",
+		   FUENTE  as "fuente",
+		   CODIGO_TABLA_AREA  as "codTablaArea", CODIGO_DATO_AREA as "codDatoArea",
+  		   CODIGO_TABLA_CRITICIDAD as "codTablaCriticidad", CODIGO_DATO_CRITICIDAD as "codDatoCriticidad",
+  		   CODIGO_TABLA_EXPOSICION as "codTablaExposicion",CODIGO_DATO_EXPOSICION as "codDatoExposicion",
+  		   CODIGO_TABLA_CUSTODIO as "codTablaCustodio", CODIGO_DATO_CUSTODIO as "codDatoCustodio",
+  		   CODIGO_TABLA_TIPO_APP as "codTablaTipoApp", CODIGO_DATO_TIPO_APP as "codDatoTipoApp",
+  		   USUARIO_LIDER as "usuarioLider"
+		FROM CATALOGO.APLICACION_VERSION APPVER
+		INNER JOIN CATALOGO.APLICACION APP
+		ON (APP.ID = APPVER.ID_APLICACION)    
+			WHERE APPVER.ID_APLICACION = #{id} AND APPVER.CORRELATIVO_VERSION=#{corVersion}
+	</select>
+	
+	<insert id="saveSolucion" parameterType="solucionBean">
+		INSERT INTO <include refid="sqlSchema"/>SOLUCION (CODIGO, NOMBRE, DESCRIPCION, 
+		CODIGO_TABLA_VERTICAL,CODIGO_DATO_VERTICAL, CODIGO_TABLA_AMBITO, CODIGO_DATO_AMBITO,
+  		CODIGO_TABLA_TIPO, CODIGO_DATO_TIPO, CODIGO_TABLA_AREA, CODIGO_DATO_AREA,
+  		ESTADO,  USUARIO_CREACION, USUARIO_ACTUALIZACION,FECHA_CREACION,FECHA_ACTUALIZACION) 
+    	VALUES (#{codigo},#{nombre},#{descripcion},#{codTablaVertical},#{codDatoVertical},
+    	#{codTablaAmbito},#{codDatoAmbito},#{codTablaTipo},#{codDatoTipo},
+    	#{codTablaArea},#{codDatoArea},#{estado},#{usuarioCreacion},#{usuarioActualizacion},
+    	CURRENT TIMESTAMP,CURRENT TIMESTAMP)    	
+	</insert>
+	
+	<update id="updateSolucion" parameterType="solucionBean"> 
+  		UPDATE <include refid="sqlSchema"/>SOLUCION
+  		SET
+  			CODIGO = #{codigo},  
+			NOMBRE = #{nombre},  
+			DESCRIPCION = #{descripcion},  
+			CODIGO_TABLA_VERTICAL = #{codTablaVertical} ,
+			CODIGO_TABLA_AMBITO = #{codTablaAmbito},
+			CODIGO_TABLA_TIPO = #{codTablaTipo},
+			CODIGO_TABLA_AREA = #{codTablaArea},
+			CODIGO_DATO_VERTICAL = #{codDatoVertical} ,
+			CODIGO_DATO_AMBITO = #{codDatoAmbito},
+			CODIGO_DATO_TIPO = #{codDatoTipo},
+			CODIGO_DATO_AREA = #{codDatoArea},
+			USUARIO_ACTUALIZACION = #{usuarioActualizacion},
+			FECHA_ACTUALIZACION = CURRENT TIMESTAMP		
+ 		where id = #{id} 
+	</update>
+	
+	<delete id="deleteSolucion" parameterType="int">
+    	DELETE FROM <include refid="sqlSchema"/>SOLUCION
+    	WHERE id = #{id}
+    </delete>
+	<resultMap id="resultTB" type="tablasCodigosUtilBean">	
+        <result property="codTabla" column="CODIGO_TABLA"/>
+        <result property="codDato" column="CODIGO_DATO"/>
+        <result property="desAbreviada" column="DESCRIPCION_ABREVIADA"/>
+        <result property="desCompleta" column="DESCRIPCION_COMPLETA"/>
+        <result property="seleccion" column="SELECCION"/>
+        <result property="estado" column="ESTADO"/>
+    </resultMap>	
+	<select id="getAllAppCaracteristicaXCodigoTabla" parameterType="map" resultMap="resultTB">  
+		SELECT
+		   CODIGO_TABLA,
+		   CODIGO_DATO,
+		   DESCRIPCION_ABREVIADA,
+		   DESCRIPCION_COMPLETA,
+		   T.ESTADO,
+		   CASE WHEN CODIGO_DATO_CARACTERISTICA >0  THEN 1 ELSE 0 END AS SELECCION
+		FROM  CATALOGO.TABLAS_CODIGOS T
+		LEFT OUTER JOIN CATALOGO.APLICACION_VERSION_CARACTERISTICA APP
+		ON 	(T.CODIGO_TABLA=APP.CODIGO_TABLA_CARACTERISTICA	AND
+			 T.CODIGO_DATO=APP.CODIGO_DATO_CARACTERISTICA AND
+			 APP.ID_APLICACION=#{idApp} AND APP.CORRELATIVO_VERSION=#{corVer} )
+		WHERE T.GRUPO_TABLA = 1 ORDER BY CODIGO_TABLA, CODIGO_DATO 
+	</select>
+	
+	<resultMap id="resultBDV" type="BaseDatosVersionBean">	
+        <result property="id" column="ID"/>
+        <result property="corVersion" column="CORVER"/>
+        <result property="nombre" column="NOMBRE"/>
+        <result property="datSensibles" column="DAT_S"/>
+        <result property="datPersonales" column="DAT_P"/>
+        <result property="idSoftwareBase" column="ID_SB"/>
+        <result property="idCorSoftwareBaseVersion" column="CORSB"/>
+        <result property="swBaseVersion.nombre" column="NOM_SB"/>
+        <result property="swBaseVersion.version" column="VER_SB"/>
+        <result property="swBaseVersion.fix" column="FIX_SB"/>
+    </resultMap>	
+    
+
+	<select id="getAllBaseDatosXIdAppVersion" parameterType="map" resultMap="resultBDV">  
+		SELECT 
+			BD.NOMBRE AS NOMBRE,
+			APP.ID_BASE_DATOS AS ID,
+			APP.CORRELATIVO_VERSION_BD AS CORVER,
+			DATOS_SENSIBLES AS DAT_S, 
+			DATOS_PERSONALES AS DAT_P,
+			BDV.ID_SOFTWARE_BASE AS ID_SB, 
+			BDV.CORRELATIVO_SOFTWARE_BASE_VERSION AS CORSB,
+			SB.NOMBRE AS NOM_SB,
+			VERSION AS VER_SB,
+			FIX AS FIX_SB
+		FROM CATALOGO.APLICACION_BASE_DATOS_VERSION APP
+		INNER JOIN CATALOGO.BASE_DATOS BD
+			ON (APP.ID_BASE_DATOS = BD.ID)
+		INNER JOIN CATALOGO.BASE_DATOS_VERSION BDV
+			ON (APP.ID_BASE_DATOS = BDV.ID_BASE_DATOS AND APP.CORRELATIVO_VERSION_BD=BDV.CORRELATIVO_VERSION)
+		LEFT OUTER JOIN CATALOGO.SOFTWARE_BASE_VERSION SBV
+			ON (BDV.ID_SOFTWARE_BASE = SBV.ID_SOFTWARE_BASE AND 
+		BDV.CORRELATIVO_SOFTWARE_BASE_VERSION= SBV.CORRELATIVO_VERSION)
+		LEFT OUTER JOIN CATALOGO.SOFTWARE_BASE SB
+			ON (SB.ID = SBV.ID_SOFTWARE_BASE)
+		WHERE APP.ID_APLICACION = #{idApp} AND APP.CORRELATIVO_VERSION_APP = #{corVer}
+	</select>
+	
+	<resultMap id="resultCluster" type="ClusterServidorBean">	
+        <result property="id" column="ID"/>
+        <result property="nombre" column="NOM_C"/>
+        <result property="servidor.id" column="ID_S"/>
+        <result property="servidor.nombre" column="NOMBRE"/>
+        <result property="servidor.desAmbiente" column="AMB"/>
+        <result property="servidor.comentarioInterno" column="COMENTARIO_INTERNO"/>
+    </resultMap>	
+    
+
+	<select id="getAllClusterServidorXIdAppVersion" parameterType="map" resultMap="resultCluster">  
+		SELECT 
+			C.ID AS ID_C,			
+			CASE WHEN C.ID IS NOT NULL THEN 'Cluster '||C.NOMBRE ELSE 'Servidor' END AS NOM_C,
+			S.ID AS ID_S,
+			S.NOMBRE,
+			TC.DESCRIPCION_ABREVIADA AS AMB,
+			COMENTARIO_INTERNO
+		FROM CATALOGO.APLICACION_VERSION_INSTALACION APPI
+		LEFT OUTER JOIN CATALOGO.CLUSTER C
+			ON (C.ID=APPI.ID_CLUSTER)
+		LEFT OUTER JOIN CATALOGO.CLUSTER_SERVIDOR CS
+			ON (C.ID=CS.ID_CLUSTER)
+		LEFT OUTER JOIN CATALOGO.SERVIDOR S
+			ON (S.ID =COALESCE(CS.ID_SERVIDOR,APPI.ID_SERVIDOR))
+		LEFT OUTER JOIN CATALOGO.TABLAS_CODIGOS TC
+			ON (S.CODIGO_TABLA_AMBIENTE=TC.CODIGO_TABLA AND S.CODIGO_DATO_AMBIENTE=TC.CODIGO_DATO )
+		WHERE APPI.ID_APLICACION = #{idApp} AND APPI.CORRELATIVO_VERSION = #{corVer}
+	</select>
+
+</mapper>

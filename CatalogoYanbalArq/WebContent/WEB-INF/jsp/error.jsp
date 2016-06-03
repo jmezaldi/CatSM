@@ -5,11 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
-<title>Solicitud de Actualización</title>
-
-<!-- Bootstrap core CSS -->
-<link href="./resources-yel/js/bootstrap/css/bootstrap-add.css" rel="stylesheet">
-<script type="text/javascript" src="./resources-yel/js/jquery-1.9.1.js"></script>
+<title>Catálogo de Arquitectura</title>
 
 <style type="text/css">
 .message {
@@ -48,7 +44,7 @@
 					<p>Unique - Yanbal</p>
 			 	</c:when>
 			 	<c:otherwise>
-			 		<p>No hemos podido recibir tu solicitud de Actualización de Datos, por favor vuelve a intentarlo ¡Gracias!.</p>
+			 		<p>Ha ocurrido un error, por favor vuelve a intentarlo ¡Gracias!.</p>
 					<p>Atentamente,</p>
 					<p>Unique - Yanbal</p>
 				</c:otherwise>
@@ -57,11 +53,6 @@
 		<div style='width:80px;height:1px;background-color:#ED6C23;'></div>
 		<div style="height:100px">&nbsp;</div>
 	</div>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			window.parent.postMessage('height_'+$('.message').height(), '*');
-		});
-	</script>
 </body>
 </html>
  
