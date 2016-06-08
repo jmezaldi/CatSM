@@ -18,10 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import com.yanbal.catalogo.controller.BaseController;
 import com.yanbal.catalogo.dao.AplicacionVersionDAO;
+import com.yanbal.catalogo.dao.SolucionDAO;
 import com.yanbal.catalogo.dao.TablasCodigosDAO;
 import com.yanbal.catalogo.util.constantes.ConstantesComunes;
 import com.yanbal.catalogo.validator.SolucionValidator;
 import com.yanbal.catalogo.bean.AplicacionVersionBean;
+import com.yanbal.catalogo.bean.SolucionBean;
 
 @Controller
 @RequestMapping(value = "/app/appVersion")
@@ -33,6 +35,8 @@ public class AplicacionVersionController extends BaseController {
 	private AplicacionVersionDAO aplicacionVersionDAO = null;
 	
 	private TablasCodigosDAO tablasCodigosDao=null;
+	
+	private SolucionDAO solucionDAO=null;
 
 	@Autowired
 	public void setSolucionDAO(AplicacionVersionDAO aplicacionVersionDAO) {
@@ -42,6 +46,11 @@ public class AplicacionVersionController extends BaseController {
 	@Autowired
 	public void setTablasCodigosDAO(TablasCodigosDAO tablasCodigosDAO) {
 		this.tablasCodigosDao = tablasCodigosDAO;
+	}
+	
+	@Autowired
+	public void setSolucionDAO(SolucionDAO solucionDAO) {
+		this.solucionDAO = solucionDAO;
 	}
 	
 	public SolucionValidator getValidator() {
@@ -66,14 +75,17 @@ public class AplicacionVersionController extends BaseController {
 			LOG.error(e.getMessage(), e);
 
 		}
-		return "appVersionS";
+		return "appVersion";
 	}
 
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
 	public String showApp(@RequestParam("idSolucion") Integer idSolucion, ModelMap model) {
 		try {
 			LOG.debug("/show ");
+
 			List<AplicacionVersionBean> appVersiones = aplicacionVersionDAO.getAllAplicacionVersionXSolucion(idSolucion);
+			SolucionBean solucion = solucionDAO.getSolucionxPK(idSolucion);
+			model.addAttribute("solucion", solucion);
 			model.addAttribute("appVersiones", appVersiones);
 			AplicacionVersionBean appVersion = new AplicacionVersionBean();
 			model.addAttribute("appVersion", appVersion);
@@ -97,9 +109,6 @@ public class AplicacionVersionController extends BaseController {
 			bean.setCorVersion(corVer);
 			bean = aplicacionVersionDAO.getAplicacionVersionXPK(bean);
 			
-
-			LOG.debug("tablasCodigosDao "+tablasCodigosDao);
-			LOG.debug(tablasCodigosDao.getAllDatosXCodigoTabla(7));
 			
 			if (session.getAttribute("TabCod"+ConstantesComunes.TablasCodigosCRITICIDAD_APP) ==null)
 			{	session.setAttribute("TabCod"+ConstantesComunes.TablasCodigosCRITICIDAD_APP,tablasCodigosDao.getAllDatosXCodigoTabla(Integer.valueOf(ConstantesComunes.TablasCodigosCRITICIDAD_APP)));	}
@@ -116,6 +125,11 @@ public class AplicacionVersionController extends BaseController {
 			if (session.getAttribute("TabCod"+ConstantesComunes.TablasCodigosAREA) ==null)
 			{	session.setAttribute("TabCod"+ConstantesComunes.TablasCodigosAREA,tablasCodigosDao.getAllDatosXCodigoTabla(Integer.valueOf(ConstantesComunes.TablasCodigosAREA)));	}
 			model.addAttribute("TabCod"+ConstantesComunes.TablasCodigosAREA, session.getAttribute("TabCod"+ConstantesComunes.TablasCodigosAREA));
+
+			if (session.getAttribute("TabCod"+ConstantesComunes.TablasCodigosTIPO_APP) ==null)
+			{	session.setAttribute("TabCod"+ConstantesComunes.TablasCodigosTIPO_APP,tablasCodigosDao.getAllDatosXCodigoTabla(Integer.valueOf(ConstantesComunes.TablasCodigosTIPO_APP)));	}
+			model.addAttribute("TabCod"+ConstantesComunes.TablasCodigosTIPO_APP, session.getAttribute("TabCod"+ConstantesComunes.TablasCodigosTIPO_APP));
+
 			
 			model.addAttribute("caracteristicas", aplicacionVersionDAO.getAllAppCaracteristicaXCodigoTabla(idApp,corVer));
 			model.addAttribute("basedatos", aplicacionVersionDAO.getAllBaseDatosXIdAppVersion(idApp,corVer));

@@ -20,5 +20,6 @@ public interface AplicacionVersionDAO {
 	public List<BaseDatosVersionBean> getAllBaseDatosXIdAppVersion(@Param("idApp") Integer idApp,@Param("corVer")  Integer corVer);
 	public List<ClusterServidorBean> getAllClusterServidorXIdAppVersion(@Param("idApp") Integer idApp,@Param("corVer")  Integer corVer);
 	public List<AplicacionVersionBean> getAllAplicacionVersion();
-	
+	public List<AplicacionVersionBean> getAplicacionVersionXServidor(Integer idServidor);
+	public List<AplicacionVersionBean> getAplicacionVersionXBDVersion(@Param("id") Integer id,@Param("corVer")  Integer corVer);	
 }

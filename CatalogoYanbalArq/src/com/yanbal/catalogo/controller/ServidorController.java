@@ -9,13 +9,20 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import com.yanbal.catalogo.controller.BaseController;
+import com.yanbal.catalogo.dao.AplicacionVersionDAO;
+import com.yanbal.catalogo.dao.BaseDatosVersionDAO;
 import com.yanbal.catalogo.dao.ServidorDAO;
+import com.yanbal.catalogo.dao.SoftwareBaseVersionDAO;
 import com.yanbal.catalogo.validator.SolucionValidator;
+import com.yanbal.catalogo.bean.AplicacionVersionBean;
+import com.yanbal.catalogo.bean.BaseDatosVersionBean;
 //import com.yanbal.catalogo.util.constantes.ConstantesComunes.ConstantesComunes;
 import com.yanbal.catalogo.bean.ServidorBean;
+import com.yanbal.catalogo.bean.SoftwareBaseVersionBean;
 
 @Controller
 @RequestMapping(value = "/app/servidor")
@@ -25,12 +32,30 @@ public class ServidorController extends BaseController {
 	private SolucionValidator validator = null;
 	
 	private ServidorDAO servidorDAO = null;
+	
+	private SoftwareBaseVersionDAO softwareBaseVersionDAO =null;
+	
+	private AplicacionVersionDAO aplicacionVersionDAO =null;
+	
+	private BaseDatosVersionDAO baseDatosVersionDAO = null;
+		
 
 	@Autowired
 	public void setServidorDAO(ServidorDAO servidorDAO) {
 		this.servidorDAO = servidorDAO;
 	}
 
+	@Autowired
+	public void setAplicacionVersionDAO(AplicacionVersionDAO aplicacionVersionDAO) {
+		this.aplicacionVersionDAO = aplicacionVersionDAO;
+	}
+	
+	@Autowired
+	public void setBaseDatosVersionDAO(BaseDatosVersionDAO baseDatosVersionDAO) {
+		this.baseDatosVersionDAO = baseDatosVersionDAO;
+	}
+	
+	
 	public SolucionValidator getValidator() {
 		return validator;
 	}
@@ -38,6 +63,11 @@ public class ServidorController extends BaseController {
 	@Autowired
 	public void setValidator(SolucionValidator validator) {
 		this.validator = validator;
+	}
+	
+	@Autowired
+	public void setSoftwareBaseVersionDAO(SoftwareBaseVersionDAO softwareBaseVersionDAO) {
+		this.softwareBaseVersionDAO = softwareBaseVersionDAO;
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -54,6 +84,26 @@ public class ServidorController extends BaseController {
 
 		}
 		return "servidor";
+	}
+	
+	@RequestMapping(value = "/consulta", method = RequestMethod.GET)
+	public String consulta(@RequestParam("idServidor") Integer idServidor, ModelMap model) {
+		try {
+			LOG.debug("/show ");
+			ServidorBean servidor = servidorDAO.getServidorXPK(idServidor);
+			model.addAttribute("servidor", servidor);
+			List<SoftwareBaseVersionBean> swbase = softwareBaseVersionDAO.getAllSoftwareBaseXIdServidor(idServidor);
+			model.addAttribute("swbase", swbase);
+			List<AplicacionVersionBean> apps = aplicacionVersionDAO.getAplicacionVersionXServidor(idServidor);
+			model.addAttribute("apps", apps);
+			List<BaseDatosVersionBean> bds = baseDatosVersionDAO.getAllBaseDatosXServidor(idServidor);
+			model.addAttribute("bds", bds);
+
+		} catch (Exception e) {
+			LOG.error(e.getMessage(), e);
+
+		}
+		return "servidorXPk";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)

@@ -1,9 +1,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page session="true"%>
 <html>
+<head>
+	<link rel="stylesheet" type="text/css" href='<c:url value="/resources/estilo.css"/>'>
+</head>
 <body>
-	<h1>Title : ${title}</h1>
-	<h1>Message : ${message}</h1>
+		<% String tituloPagina="Menú Principal"; %>
+		<%@include file="cabecera.inc" %>
 
 	<c:url value="/j_spring_security_logout" var="logoutUrl" />
 	<form action="${logoutUrl}" method="post" id="logoutForm">
@@ -16,22 +19,22 @@
 		}
 	</script>
 
-	<c:if test="${pageContext.request.userPrincipal.name != null}">
-<H1>Listas Maestras</H1>
+<c:if test="${pageContext.request.userPrincipal.name != null}">
+
 <br/>
-<a href="app/solucion">Soluciones</a>
+<div id="menulistado">
+<a class="linkm" href="<c:url value="/"/>app/solucion">Soluciones</a>
 <br/>
-<a href="app/appVersion/todas">Aplicaciones</a>
+<a class="linkm" href="<c:url value="/"/>app/appVersion/todas">Aplicaciones</a>
 <br/>
-<a href="app/servidor">Servidores</a>
+<a class="linkm" href="<c:url value="/"/>app/servidor">Servidores</a>
 <br/>
-<a href="app/basedatosversion">Bases de Datos</a>
+<a class="linkm" href="<c:url value="/"/>app/basedatosversion">Bases de Datos</a>
 <br/>
-<a href="app/swBaseVersion">Software Base</a>
-<br/>
- <a	href="javascript:formSubmit()"> Logout</a>
-		</h2>
-	</c:if>
+<a class="linkm" href="<c:url value="/"/>app/swBaseVersion">Software Base</a>
+</div>
+
+</c:if>
 
 </body>
 </html>

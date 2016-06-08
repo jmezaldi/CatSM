@@ -10,4 +10,5 @@ public interface SoftwareBaseVersionDAO {
 	public void updateSoftwareBaseVersion(SoftwareBaseVersionBean servidor);
 	public void deleteSoftwareBaseVersion(Integer id);
 	public List<SoftwareBaseVersionBean> getAllSoftwareBaseVersion();
+	public List<SoftwareBaseVersionBean> getAllSoftwareBaseXIdServidor(Integer idServidor);
 }

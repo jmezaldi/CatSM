@@ -1,0 +1,103 @@
+body{
+	color:#666666;
+	font-family: 'helvetica' !important;
+	font-size:11px;
+	padding:0px; !important;
+	margin: 0px;
+}
+
+#header{
+	background-color: #ed6c23;
+	height: 80px;
+	width: 100%
+}
+
+#contenidoHeader{
+	margin: auto;
+	width: 100%;
+}
+#logo{
+	float: left;
+	margin-left: 10px;
+	margin-top: 25px;
+}
+#tit_cta{
+	float: left;
+	margin-left: 10px;
+	margin-top: 25px;
+	color:white !important;
+	text-align: left;
+    font-family: Verdana;
+    font-size:30px !important;
+}
+#menuHeader{
+	float: right;
+	margin-top: 18px;
+	margin-right: 10px;
+}
+.menutop{
+	float: right;
+	margin-right: 1px;
+}
+#menulistado{
+    width:500px; 
+    margin:10px auto 0 10px;
+    display:block;
+}
+#listado_p{
+    width: 50%;
+    margin: 0 auto; 
+	width: 98%;
+}
+#contenido_p{
+    width: 50%;
+    margin: 0 auto; 
+	width: 98%;
+}
+
+#link_b a:link {
+	color:white;
+	font-family : 'Arial';
+	font-size: 12px;
+	text-decoration:none;
+	display:block;
+}
+#link_b a:visited {
+	color:white;
+	font-family : 'Arial';
+	font-size: 12px;
+	text-decoration:none;
+	display:block;
+}
+#link_b a:hover {
+	color:white;
+	font-family : 'Arial';
+	font-size: 12px;
+	text-decoration:none;
+	display:block;
+}
+#link_b a:active {
+	color:white;
+	font-family : 'Arial';
+	font-size: 12px;
+	text-decoration:none;
+	display:block;
+}
+
+a.linkb:link,a.linkb:visited,a.linkb:hover,a.linkb:active {
+	color:white;
+	font-family : 'Arial';
+	font-size: 12px;
+	text-decoration:none;
+	display:block;
+}
+
+
+a.linkm:link,a.linkm:visited,a.linkm:hover,a.linkm:active {
+	color:#ed6c23;
+	font-family : 'Arial';
+	font-size: 14px !important;
+	text-decoration:none;
+	display:block;
+}
+

@@ -10,6 +10,9 @@ public class BaseDatosVersionBean extends BaseDatosBean {
 	private String  desSoftwareBaseVersion;
 	private Integer estado;
 	private SoftwareBaseVersionBean swBaseVersion;
+	private String  comentario;
+	private String  nomFisico;
+	private String  descripcion;
 	
 	public String getCorVersion() {
 		return corVersion;
@@ -58,6 +61,24 @@ public class BaseDatosVersionBean extends BaseDatosBean {
 	}
 	public void setSwBaseVersion(SoftwareBaseVersionBean swBaseVersion) {
 		this.swBaseVersion = swBaseVersion;
+	}
+	public String getComentario() {
+		return comentario;
+	}
+	public void setComentario(String comentario) {
+		this.comentario = comentario;
+	}
+	public String getNomFisico() {
+		return nomFisico;
+	}
+	public void setNomFisico(String nomFisico) {
+		this.nomFisico = nomFisico;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	

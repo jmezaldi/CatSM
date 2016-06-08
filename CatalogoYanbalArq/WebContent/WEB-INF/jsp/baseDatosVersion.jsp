@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>Hello World with Spring 3 MVC JM</title>
+		<title>Catбlogo de Arquitectura</title>
 		<link rel="stylesheet" type="text/css" href='<c:url value="/resources/jquery.dataTables.min.css"/>'>
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
 		<script type="text/javascript" src='<c:url value="/resources/common.js"/>'></script>
@@ -13,7 +13,7 @@
 
 	<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery-1.12.0.min.js"/>'></script>
 	<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery.dataTables.min.js"/>'></script>
-
+    <link rel="stylesheet" type="text/css" href='<c:url value="/resources/estilo.css"/>'>
 	<script type="text/javascript" class="init">
 	
 $(document).ready(function() {
@@ -45,7 +45,8 @@ $(document).ready(function() {
 	</head>
 	<body>
 		<fieldset>
-		<legend>Base de Datos</legend>
+			<% String tituloPagina="Listado de Bases de Datos"; %>
+			<%@include file="cabecera.inc" %>
 		<center>
 		<c:url var="post_ctx"  value="/" />
 
@@ -55,9 +56,10 @@ $(document).ready(function() {
 		
 			<br />
 			<center>
+				<div id="listado_p">
 				<table id="example" width="100%" class="display compact" >
 				   <thead>
-					<tr style="background-color: gray;">
+					<tr style="background-color: #ed6c23; color:white !important;">
 						<th>Id</th>
 						<th>Nombre</th>
 						<th>Versi&oacute;n</th>		
@@ -68,7 +70,7 @@ $(document).ready(function() {
 					</tr>
 					</thead>
 					<tfoot>
-					<tr style="background-color: gray;">
+					<tr style="background-color: #ed6c23; color:white !important;">
 						<th>Id</th>
 						<th>Nombre</th>
 						<th>Versi&oacute;n</th>		
@@ -80,18 +82,19 @@ $(document).ready(function() {
 					</tfoot>
 					<tbody>
 					<c:forEach items="${basedatosl}" var="bd">
-						<tr style="background-color: silver;" id="${bd.id}" onclick="setUpdateForm('${bd.id}');">
+						<tr id="${bd.id}" onclick="setUpdateForm('${bd.id}');">
 							<td ><c:out value="${bd.id}"/></td>
 							<td><c:out value="${bd.nombre}"/></td>
 							<td><c:out value="${bd.corVersion}"/></td>
 							<td><c:out value="${bd.datSensibles}"/></td>
 							<td><c:out value="${bd.datPersonales}"/></td>
 							<td><c:out value="${bd.desSoftwareBaseVersion}"/></td>
-							<td><a href="consulta?idApp=${bd.id}&corVer=${bd.corVersion}">Ir</a></td>
+							<td><a href='<c:url value="/"/>app/basedatosversion/consulta?id=${bd.id}&corVer=${bd.corVersion}'>Ir</a></td>
 						</tr>
 					</c:forEach>
 					</tbody>
 				</table>
+				</div>
 				</center>
 			<br />
 		</c:if>

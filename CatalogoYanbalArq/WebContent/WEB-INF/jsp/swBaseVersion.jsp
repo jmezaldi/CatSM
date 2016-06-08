@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>Hello World with Spring 3 MVC JM</title>
+		<title>Catбlogo de Arquitectura</title>
 		<link rel="stylesheet" type="text/css" href='<c:url value="/resources/jquery.dataTables.min.css"/>'>
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
 		<script type="text/javascript" src='<c:url value="/resources/common.js"/>'></script>
@@ -14,7 +14,7 @@
 
 	<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery-1.12.0.min.js"/>'></script>
 	<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery.dataTables.min.js"/>'></script>
-
+    <link rel="stylesheet" type="text/css" href='<c:url value="/resources/estilo.css"/>'>
 	<script type="text/javascript" class="init">
 	
 $(document).ready(function() {
@@ -45,20 +45,20 @@ $(document).ready(function() {
 	</script>
 	</head>
 	<body>
-		<fieldset>
-		<legend>Software Base </legend>
+			<% String tituloPagina="Listado de Software Base"; %>
+			<%@include file="cabecera.inc" %>
 		<center>
 		<c:url var="post_ctx"  value="/" />
 
 		</center>
-		</fieldset>
 		<c:if test="${!empty swBaseVersiones}">
 		
 			<br />
 			<center>
+				<div id="listado_p">			
 				<table id="example" width="100%" class="display compact" >
 				   <thead>
-					<tr style="background-color: gray;">
+					<tr style="background-color: #ed6c23; color:white !important;">
 						<th>Id</th>
 						<th>Nombre</th>
 						<th>Versi&oacute;n</th>		
@@ -70,7 +70,7 @@ $(document).ready(function() {
 					</tr>
 					</thead>      					
 					<tfoot>
-					<tr style="background-color: gray;">
+					<tr style="background-color: #ed6c23; color:white !important;">
 						<th>Id</th>
 						<th>Nombre</th>
 						<th>Versi&oacute;n</th>		
@@ -83,7 +83,7 @@ $(document).ready(function() {
 					</tfoot>
 					<tbody>
 					<c:forEach items="${swBaseVersiones}" var="swBaseVersion">
-						<tr style="background-color: silver;" id="${swBaseVersion.id}" onclick="setUpdateForm('${appVersion.id}');">
+						<tr id="${swBaseVersion.id}" onclick="setUpdateForm('${appVersion.id}');">
 							<td ><c:out value="${swBaseVersion.id}"/></td>
 							<td><c:out value="${swBaseVersion.nombre}"/></td>
 							<td><c:out value="${swBaseVersion.version}"/></td>
@@ -98,6 +98,7 @@ $(document).ready(function() {
       					
 					</tbody>
 				</table>
+				</div>
 				</center>
 			<br />
 

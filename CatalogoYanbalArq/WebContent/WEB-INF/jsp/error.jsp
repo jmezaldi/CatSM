@@ -25,7 +25,7 @@
     /*padding-bottom: 10px !important;*/
 }
 .contentMsg {
-	color: #747373;
+	color: #a94442;
 	text-align: center;
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px;

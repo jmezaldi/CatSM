@@ -18,5 +18,6 @@
 		<typeAlias type="com.yanbal.catalogo.bean.SoftwareBaseVersionBean" alias="softwareBaseVersionBean"/>
 		<typeAlias type="com.yanbal.catalogo.bean.TablasCodigosUtilBean" alias="tablasCodigosUtilBean"/>
 		<typeAlias type="com.yanbal.catalogo.bean.ClusterServidorBean" alias="clusterServidorBean"/>
+		<typeAlias type="com.yanbal.catalogo.bean.UsuarioBean" alias="usuarioBean"/>
 	</typeAliases>
 </configuration>

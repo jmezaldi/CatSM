@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:impl="http://beans.ws.integracionyanbalstore.yanbal.com" xmlns:intf="http://beans.ws.integracionyanbalstore.yanbal.com" xmlns:tns2="http://solicitud.vusuarios.tramas.ws.integracionyanbalstore.yanbal.com" xmlns:tns3="http://solicitud.comun.tramas.ws.integracionyanbalstore.yanbal.com" xmlns:tns4="http://comun.tramas.ws.integracionyanbalstore.yanbal.com" xmlns:tns5="http://respuesta.vusuarios.tramas.ws.integracionyanbalstore.yanbal.com" xmlns:tns6="http://respuesta.comun.tramas.ws.integracionyanbalstore.yanbal.com" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsi="http://ws-i.org/profiles/basic/1.1/xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://beans.ws.integracionyanbalstore.yanbal.com">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://solicitud.vusuarios.tramas.ws.integracionyanbalstore.yanbal.com">
+   <import namespace="http://solicitud.comun.tramas.ws.integracionyanbalstore.yanbal.com"/>
+   <complexType name="IntegracionWSReq">
+    <sequence>
+     <element name="cabecera" nillable="true" type="tns3:Cabecera"/>
+     <element name="detalle" nillable="true" type="tns2:Detalle"/>
+    </sequence>
+   </complexType>
+   <complexType name="Detalle">
+    <sequence>
+     <element name="parametros" nillable="true" type="tns2:Parametros"/>
+    </sequence>
+   </complexType>
+   <complexType name="Parametros">
+    <sequence>
+     <element name="tipoUsuario" nillable="true" type="xsd:string"/>
+     <element name="usuario" nillable="true" type="xsd:string"/>
+     <element name="password" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://solicitud.comun.tramas.ws.integracionyanbalstore.yanbal.com">
+   <import namespace="http://beans.ws.integracionyanbalstore.yanbal.com"/>
+   <complexType name="Cabecera">
+    <sequence>
+     <element name="codigoInterfaz" nillable="true" type="xsd:string"/>
+     <element name="usuarioAplicacion" nillable="true" type="xsd:string"/>
+     <element name="codigoAplicacion" nillable="true" type="xsd:string"/>
+     <element name="codigoPais" nillable="true" type="xsd:string"/>
+     <element name="codigosPaisOD" nillable="true" type="impl:ArrayOf_tns4_nillable_CodigoPaisOD"/>
+    </sequence>
+   </complexType>
+  </schema>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://comun.tramas.ws.integracionyanbalstore.yanbal.com">
+   <complexType name="CodigoPaisOD">
+    <sequence>
+     <element name="valor" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://beans.ws.integracionyanbalstore.yanbal.com">
+   <import namespace="http://respuesta.vusuarios.tramas.ws.integracionyanbalstore.yanbal.com"/>
+   <import namespace="http://solicitud.vusuarios.tramas.ws.integracionyanbalstore.yanbal.com"/>
+   <import namespace="http://comun.tramas.ws.integracionyanbalstore.yanbal.com"/>
+   <complexType name="ArrayOf_tns4_nillable_CodigoPaisOD">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="CodigoPaisOD" nillable="true" type="tns4:CodigoPaisOD"/>
+    </sequence>
+   </complexType>
+   <element name="validaUsuariosObjResponse">
+    <complexType>
+     <sequence>
+      <element name="validaUsuariosObjReturn" nillable="true" type="tns5:IntegracionWSResp"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validaUsuarios">
+    <complexType>
+     <sequence>
+      <element name="tramaEntradaXML" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validaUsuariosResponse">
+    <complexType>
+     <sequence>
+      <element name="validaUsuariosReturn" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validaUsuariosObj">
+    <complexType>
+     <sequence>
+      <element name="integracionWSReq" nillable="true" type="tns2:IntegracionWSReq"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://respuesta.vusuarios.tramas.ws.integracionyanbalstore.yanbal.com">
+   <import namespace="http://respuesta.comun.tramas.ws.integracionyanbalstore.yanbal.com"/>
+   <complexType name="IntegracionWSResp">
+    <sequence>
+     <element name="cabecera" nillable="true" type="tns6:Cabecera"/>
+     <element name="detalle" nillable="true" type="tns5:Detalle"/>
+    </sequence>
+   </complexType>
+   <complexType name="Detalle">
+    <sequence>
+     <element name="respuesta" nillable="true" type="tns5:Respuesta"/>
+    </sequence>
+   </complexType>
+   <complexType name="Respuesta">
+    <sequence>
+     <element name="codigoRespuesta" nillable="true" type="xsd:string"/>
+     <element name="mensajeRespuesta" nillable="true" type="xsd:string"/>
+     <element name="datos" nillable="true" type="tns5:Datos"/>
+    </sequence>
+   </complexType>
+   <complexType name="Datos">
+    <sequence>
+     <element name="flagValidacion" nillable="true" type="xsd:string"/>
+     <element name="tipoUsuario" nillable="true" type="xsd:string"/>
+     <element name="usuario" nillable="true" type="xsd:string"/>
+     <element name="status" nillable="true" type="xsd:string"/>
+	 <element name="perfil" nillable="true" type="xsd:string"/>
+	 <element name="nombreCompleto" nillable="true" type="xsd:string"/>
+	 <element name="email" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://respuesta.comun.tramas.ws.integracionyanbalstore.yanbal.com">
+   <import namespace="http://beans.ws.integracionyanbalstore.yanbal.com"/>
+   <complexType name="Cabecera">
+    <sequence>
+     <element name="codigoInterfaz" nillable="true" type="xsd:string"/>
+     <element name="usuarioAplicacion" nillable="true" type="xsd:string"/>
+     <element name="codigoAplicacion" nillable="true" type="xsd:string"/>
+     <element name="codigoPais" nillable="true" type="xsd:string"/>
+     <element name="codigosPaisOD" nillable="true" type="impl:ArrayOf_tns4_nillable_CodigoPaisOD"/>
+     <element name="idTransaccion" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  </wsdl:types>
+  <wsdl:message name="validaUsuariosObjResponse">
+    <wsdl:part element="impl:validaUsuariosObjResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validaUsuariosResponse">
+    <wsdl:part element="impl:validaUsuariosResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validaUsuariosRequest">
+    <wsdl:part element="impl:validaUsuarios" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validaUsuariosObjRequest">
+    <wsdl:part element="impl:validaUsuariosObj" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="WSMantenimientoUsuarios">
+    <wsdl:operation name="validaUsuariosObj">
+      <wsdl:input message="impl:validaUsuariosObjRequest" name="validaUsuariosObjRequest">
+    </wsdl:input>
+      <wsdl:output message="impl:validaUsuariosObjResponse" name="validaUsuariosObjResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validaUsuarios">
+      <wsdl:input message="impl:validaUsuariosRequest" name="validaUsuariosRequest">
+    </wsdl:input>
+      <wsdl:output message="impl:validaUsuariosResponse" name="validaUsuariosResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSMantenimientoUsuariosSoapBinding" type="impl:WSMantenimientoUsuarios">
+<wsaw:UsingAddressing wsdl:required="false"/>
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="validaUsuariosObj">
+      <wsdlsoap:operation soapAction="validaUsuariosObj"/>
+      <wsdl:input name="validaUsuariosObjRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="validaUsuariosObjResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validaUsuarios">
+      <wsdlsoap:operation soapAction="validaUsuarios"/>
+      <wsdl:input name="validaUsuariosRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="validaUsuariosResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSMantenimientoUsuariosService">
+    <wsdl:port binding="impl:WSMantenimientoUsuariosSoapBinding" name="WSMantenimientoUsuarios">
+      <wsdlsoap:address location="http://perms95.unique-yanbal.com/WSIntegracionYanbalStoreWeb/services/WSMantenimientoUsuarios"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

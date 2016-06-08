@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>Hello World with Spring 3 MVC JM</title>
+		<title>Catбlogo de Arquitectura</title>
 		<link rel="stylesheet" type="text/css" href='<c:url value="/resources/jquery.dataTables.min.css"/>'>
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
 		<script type="text/javascript" src='<c:url value="/resources/common.js"/>'></script>
@@ -13,6 +13,8 @@
 
 	<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery-1.12.0.min.js"/>'></script>
 	<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery.dataTables.min.js"/>'></script>
+
+	<link rel="stylesheet" type="text/css" href='<c:url value="/resources/estilo.css"/>'>
 
 	<script type="text/javascript" class="init">
 	
@@ -30,30 +32,30 @@ $(document).ready(function() {
 } );
 
 	</script>
-
 		<script type="text/javascript">
 			var projectUrl = '<c:url value="/"/>';
 			if(projectUrl.indexOf(";", 0) != -1){
 				projectUrl = projectUrl.substring(0, projectUrl.indexOf(";", 0));
 			}
-		</script>		
+		</script>	
+
 
 			<script type="text/javascript" class="init">
 	
-
-
 	</script>
 	</head>
 	<body>
 		<fieldset>
-		<legend>Soluciуn</legend>
+			<% String tituloPagina="Listado de Soluciones"; %>
+			<%@include file="cabecera.inc" %>
 		<center>
+
 		<c:url var="post_ctx"  value="/" />
 		<form:form commandName="solucion" action="${post_ctx}app/solucion/add" name="solucionForm">
 		
 		<form:hidden path="id"/>
 		<form:hidden path="estado"/>
-		<table>
+		<!--table>
 			<tr><td colspan="2" align="left"><form:errors path="*" cssStyle="color : red;"/></td></tr>
 			<tr><td>Nombre: </td><td><form:input path="nombre" /></td></tr>
 			<tr><td>Descripciуn: </td><td><form:input path="descripcion" /></td></tr>
@@ -78,7 +80,7 @@ $(document).ready(function() {
 					<form:option value="">--</form:option>
 			</form:select></td></tr>
 			<tr><td colspan="2"><input type="submit" value="Grabar"/>
-			&nbsp;<input type="reset" name="newSolucion" value="Nueva Solucion" onclick="setAddForm();" disabled="disabled"/>
+			&nbsp;<input type="reset" name="newSolucion" value="Nueva Solucion" onclick="setAddForm();" disabled="disabled"/>-->
 			<!--  &nbsp;<input type="submit" name="deleteSolucion" value="Eliminar Solucion" onclick="setDeleteForm();" disabled="disabled"/>--></td></tr>
 		</table>
 		</form:form>
@@ -87,10 +89,10 @@ $(document).ready(function() {
 		<c:if test="${!empty soluciones}">
 		
 			<br />
-			<center>
-				<table id="example" width="100%" class="display compact" >
+			<div id="listado_p">
+				<table id="example" width="100%" class="display " >
 				   <thead>
-					<tr style="background-color: gray;">
+					<tr style="background-color: #ed6c23;color:white !important;">
 						<th>Id</th>
 						<th>Nombre</th>
 						<th>Descripci&oacute;n</th>
@@ -103,7 +105,7 @@ $(document).ready(function() {
 					</tr>
 					</thead>
 					<tfoot>
-					<tr style="background-color: gray;">
+					<tr style="background-color: #ed6c23; color:white !important;">
 						<th>Id</th>
 						<th>Nombre</th>
 						<th>Descripci&oacute;n</th>
@@ -116,8 +118,9 @@ $(document).ready(function() {
 					</tr>
 					</tfoot>
 					<tbody>
+
 					<c:forEach items="${soluciones}" var="solucion">
-						<tr style="background-color: silver;" id="${solucion.id}" onclick="setUpdateForm('${solucion.id}','${solucion.estado}');">
+						<tr id="${solucion.id}" onclick="setUpdateForm('${solucion.id}','${solucion.estado}');">
 							<td ><c:out value="${solucion.id}"/></td>
 							<td><c:out value="${solucion.nombre}"/></td>
 							<td><c:out value="${solucion.descripcion}"/></td>
@@ -131,7 +134,7 @@ $(document).ready(function() {
 					</c:forEach>
 					</tbody>
 				</table>
-				</center>
+				</div>
 			<br />
 
 		</c:if>

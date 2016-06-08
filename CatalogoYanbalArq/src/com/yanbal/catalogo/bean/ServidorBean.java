@@ -9,7 +9,7 @@ public class ServidorBean {
 	private String  procesador;
 	private Integer numeroProcesador;
 	private String  memoria;
-	private Integer idServidorFisico;
+	private ServidorBean servidorFisico;
 	private Integer codTablaTipoServidor;
 	private Integer codDatoTipoServidor;
 	private Integer codTablaUbicacionServidor;
@@ -71,12 +71,6 @@ public class ServidorBean {
 	}
 	public void setMemoria(String memoria) {
 		this.memoria = memoria;
-	}
-	public Integer getIdServidorFisico() {
-		return idServidorFisico;
-	}
-	public void setIdServidorFisico(Integer idServidorFisico) {
-		this.idServidorFisico = idServidorFisico;
 	}
 	public Integer getCodTablaTipoServidor() {
 		return codTablaTipoServidor;
@@ -191,6 +185,12 @@ public class ServidorBean {
 	}
 	public void setUsuarioActualizacion(String usuarioActualizacion) {
 		this.usuarioActualizacion = usuarioActualizacion;
+	}
+	public ServidorBean getServidorFisico() {
+		return servidorFisico;
+	}
+	public void setServidorFisico(ServidorBean servidorFisico) {
+		this.servidorFisico = servidorFisico;
 	}
 	
 }

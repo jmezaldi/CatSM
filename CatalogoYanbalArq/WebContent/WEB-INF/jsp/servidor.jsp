@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>Hello World with Spring 3 MVC JM</title>
+		<title>Catбlogo de Arquitectura</title>
 		<link rel="stylesheet" type="text/css" href='<c:url value="/resources/jquery.dataTables.min.css"/>'>
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
 		<script type="text/javascript" src='<c:url value="/resources/common.js"/>'></script>
@@ -13,7 +13,7 @@
 
 	<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery-1.12.0.min.js"/>'></script>
 	<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery.dataTables.min.js"/>'></script>
-
+    <link rel="stylesheet" type="text/css" href='<c:url value="/resources/estilo.css"/>'>
 	<script type="text/javascript" class="init">
 	
 $(document).ready(function() {
@@ -45,7 +45,8 @@ $(document).ready(function() {
 	</head>
 	<body>
 		<fieldset>
-		<legend>Servidores</legend>
+			<% String tituloPagina="Listado de Servidores"; %>
+			<%@include file="cabecera.inc" %>
 		<center>
 		<c:url var="post_ctx"  value="/" />
 
@@ -55,9 +56,10 @@ $(document).ready(function() {
 		
 			<br />
 			<center>
+				<div id="listado_p">
 				<table id="example" width="100%" class="display compact" >
 				   <thead>
-					<tr style="background-color: gray;">
+					<tr style="background-color: #ed6c23; color:white !important;">
 						<th>Id</th>
 						<th>Nombre</th>
 						<th>Procesador</th>
@@ -71,10 +73,11 @@ $(document).ready(function() {
 						<th>Tecnolog&iacute;a</th>
 						<th>Responsable</th>
 						<th>Comentario</th>
+						<th></th>
 					</tr>
 					</thead>
 					<tfoot>
-					<tr style="background-color: gray;">
+					<tr style="background-color: #ed6c23; color:white !important;">
 						<th>Id</th>
 						<th>Nombre</th>
 						<th>Procesador</th>
@@ -87,12 +90,13 @@ $(document).ready(function() {
 						<th>Contrato</th>
 						<th>Tecnolog&iacute;a</th>
 						<th>Responsable</th>
-						<th>Comentario</th>				
+						<th>Comentario</th>		
+						<th></th>						
 					</tr>
 					</tfoot>
 					<tbody>
 					<c:forEach items="${servidores}" var="servidor">
-						<tr style="background-color: silver;" id="${servidor.id}" onclick="setUpdateForm('${servidor.id}');">
+						<tr id="${servidor.id}" onclick="setUpdateForm('${servidor.id}');">
 							<td ><c:out value="${servidor.id}"/></td>
 							<td><c:out value="${servidor.nombre}"/></td>
 							<td><c:out value="${servidor.procesador}"/></td>
@@ -106,11 +110,12 @@ $(document).ready(function() {
 							<td><c:out value="${servidor.desTecnologia}"/></td>	
 							<td><c:out value="${servidor.responsable}"/></td>
 							<td><c:out value="${servidor.comentarioInterno}"/></td>
-
+							<td><a href='<c:url value="/"/>app/servidor/consulta?idServidor=${servidor.id}'>Ir</a></td>
 						</tr>
 					</c:forEach>
 					</tbody>
 				</table>
+				</div>
 				</center>
 			<br />
 

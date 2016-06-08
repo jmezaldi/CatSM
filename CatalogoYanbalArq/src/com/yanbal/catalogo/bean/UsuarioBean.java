@@ -3,7 +3,7 @@ package com.yanbal.catalogo.bean;
 public class UsuarioBean {
 	
 	private String  usuario;
-	private String  nombre;
+	private String  dominio;
 	private Integer codTablaRol;
 	private Integer codDatoRol;
 	private String  desRol;
@@ -14,11 +14,12 @@ public class UsuarioBean {
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
-	public String getNombre() {
-		return nombre;
+
+	public String getDominio() {
+		return dominio;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setDominio(String dominio) {
+		this.dominio = dominio;
 	}
 	public Integer getCodTablaRol() {
 		return codTablaRol;

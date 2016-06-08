@@ -16,6 +16,7 @@
         <result property="desTipoApp" column="DES_TIPO"/>        
         <result property="documentacion" column="DOCUMENTACION"/>
         <result property="solucion.id" column="ID_SOLUCION"/>
+        <result property="fechaVersion" column="FECHA_VERSION"/>   
     </resultMap>
 	
 	<select id="getAllAplicacionVersionXSolucion" parameterType="int" resultMap="result1">  
@@ -30,7 +31,8 @@
 		   EXP.DESCRIPCION_ABREVIADA AS DES_EXP,
 		   CUS.DESCRIPCION_ABREVIADA AS DES_CUS,
 		   TIPO.DESCRIPCION_ABREVIADA AS DES_TIPO,
-		   DOCUMENTACION
+		   DOCUMENTACION,
+		   FECHA_VERSION
 		FROM CATALOGO.APLICACION_VERSION_SOLUCION APPVSOL
 		INNER JOIN CATALOGO.APLICACION_VERSION APPVER
 		ON (APPVER.ID_APLICACION = APPVSOL.ID_APLICACION AND
@@ -62,7 +64,8 @@
 		   EXP.DESCRIPCION_ABREVIADA AS DES_EXP,
 		   CUS.DESCRIPCION_ABREVIADA AS DES_CUS,
 		   TIPO.DESCRIPCION_ABREVIADA AS DES_TIPO,		   
-		   DOCUMENTACION
+		   DOCUMENTACION,
+		   FECHA_VERSION
 		FROM CATALOGO.APLICACION_VERSION APPVER
 		INNER JOIN CATALOGO.APLICACION APP
 		ON (APP.ID = APPVER.ID_APLICACION)    
@@ -77,8 +80,7 @@
 		LEFT OUTER JOIN CATALOGO.TABLAS_CODIGOS TIPO
 		ON (APP.CODIGO_TABLA_TIPO_APP= TIPO.CODIGO_TABLA AND APP.CODIGO_DATO_TIPO_APP=TIPO.CODIGO_DATO)
 		LEFT OUTER JOIN CATALOGO.APLICACION_VERSION_SOLUCION APPVSOL
-		ON (APPVER.ID_APLICACION = APPVSOL.ID_APLICACION AND APPVER.CORRELATIVO_VERSION=APPVSOL.CORRELATIVO_VERSION)
-				
+		ON (APPVER.ID_APLICACION = APPVSOL.ID_APLICACION AND APPVER.CORRELATIVO_VERSION=APPVSOL.CORRELATIVO_VERSION)				
 	</select>
 
 	<select id="getAplicacionVersionXPK" parameterType="aplicacionVersionBean" resultType="aplicacionVersionBean">  
@@ -86,7 +88,7 @@
 		   APPVER.ID_APLICACION AS "id",
 		   APPVER.CORRELATIVO_VERSION AS "corVersion",
 		   CODIGO as "codigo",
-		   NOMBRE as "nombre",
+		   APP.NOMBRE as "nombre",
 		   DOCUMENTACION as "documentacion",
 		   FUENTE  as "fuente",
 		   CODIGO_TABLA_AREA  as "codTablaArea", CODIGO_DATO_AREA as "codDatoArea",
@@ -94,11 +96,64 @@
   		   CODIGO_TABLA_EXPOSICION as "codTablaExposicion",CODIGO_DATO_EXPOSICION as "codDatoExposicion",
   		   CODIGO_TABLA_CUSTODIO as "codTablaCustodio", CODIGO_DATO_CUSTODIO as "codDatoCustodio",
   		   CODIGO_TABLA_TIPO_APP as "codTablaTipoApp", CODIGO_DATO_TIPO_APP as "codDatoTipoApp",
-  		   USUARIO_LIDER as "usuarioLider"
+  		   USUARIO_LIDER as "usuarioLider",
+  		   FECHA_VERSION as "fechaVersion",
+  		   APPVER.ID_SOFTWARE_BASE as "swbaseVersion.id",
+  		   APPVER.CORRELATIVO_VERSION as "swbaseVersion.corVersion",
+  		   SW.NOMBRE as "swbaseVersion.nombre",
+  		   SWV.VERSION as "swbaseVersion.version",
+  		   SWV.FIX as "swbaseVersion.fix"
 		FROM CATALOGO.APLICACION_VERSION APPVER
 		INNER JOIN CATALOGO.APLICACION APP
-		ON (APP.ID = APPVER.ID_APLICACION)    
+		ON (APP.ID = APPVER.ID_APLICACION) 		
+		LEFT OUTER JOIN CATALOGO.SOFTWARE_BASE_VERSION SWV
+		ON (APPVER.ID_SOFTWARE_BASE=SWV.ID_SOFTWARE_BASE AND 
+		    APPVER.CORRELATIVO_VERSION=SWV.CORRELATIVO_VERSION)
+		LEFT OUTER JOIN CATALOGO.SOFTWARE_BASE SW
+		ON (SW.ID=APPVER.ID_SOFTWARE_BASE)	
 			WHERE APPVER.ID_APLICACION = #{id} AND APPVER.CORRELATIVO_VERSION=#{corVersion}
+	</select>
+	
+	<resultMap id="result2" type="aplicacionVersionBean">	
+        <result property="id" column="ID"/>
+        <result property="corVersion" column="CORRELATIVO_VERSION"/>
+        <result property="nombre" column="NOMBRE"/>
+        <result property="comentario" column="COMENTARIO"/>
+    </resultMap>
+	
+	<select id="getAplicacionVersionXServidor" parameterType="int" resultMap="result2">  
+		SELECT 'CLUSTER' AS COMENTARIO,
+		    APP.ID, 
+			APP.NOMBRE, 
+			INST.CORRELATIVO_VERSION 
+		FROM 
+			CATALOGO.CLUSTER_SERVIDOR CL 
+			INNER JOIN CATALOGO.APLICACION_VERSION_INSTALACION INST
+			ON (CL.ID_CLUSTER=INST.ID_CLUSTER)
+			INNER JOIN CATALOGO.APLICACION APP
+			ON (INST.ID_APLICACION=APP.ID)
+			WHERE CL.ID_SERVIDOR = #{Id}
+		UNION ALL
+		SELECT '' AS COMENTARIO,
+		    APP.ID, 
+			APP.NOMBRE, 
+			INST.CORRELATIVO_VERSION
+		FROM 
+			CATALOGO.APLICACION_VERSION_INSTALACION INST
+			INNER JOIN CATALOGO.APLICACION APP
+			ON (INST.ID_APLICACION=APP.ID)
+			WHERE INST.ID_SERVIDOR = #{Id}
+	</select>
+	
+	<select id="getAplicacionVersionXBDVersion" parameterType="map" resultMap="result2">  
+		SELECT APP.ID, 
+			   APP.NOMBRE, 
+			   BD.CORRELATIVO_VERSION_APP as CORRELATIVO_VERSION
+		FROM 
+			CATALOGO.APLICACION_BASE_DATOS_VERSION BD
+			INNER JOIN CATALOGO.APLICACION APP
+			ON (BD.ID_APLICACION=APP.ID)
+			WHERE BD.ID_BASE_DATOS = #{id} AND BD.CORRELATIVO_VERSION_BD=#{corVer}
 	</select>
 	
 	<insert id="saveSolucion" parameterType="solucionBean">

@@ -1,15 +1,11 @@
 <%@ page language="java" pageEncoding="UTF-8" session="true" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
  
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
-<title>Error</title>
-
-<!-- Bootstrap core CSS -->
-<script type="text/javascript" src="./resources-yel/js/jquery-1.9.1.js"></script>
+<title>Catálogo de Arquitectura</title>
 
 <style type="text/css">
 .message {
@@ -29,7 +25,7 @@
     /*padding-bottom: 10px !important;*/
 }
 .contentMsg {
-	color: #747373;
+	color: #a94442;
 	text-align: center;
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px;
@@ -39,7 +35,7 @@
 <body>
 	<div class="message">
 	    <div style="height:100px">&nbsp;</div>
-		<div style='width:100%;height:1px;background-color:#ED6C23;'></div>
+		<div style='width:80px;height:1px;background-color:#ED6C23;'></div>
 		<div class="contentMsg">
 			<c:choose>
 			 	<c:when test="${not empty errorObject}">
@@ -54,11 +50,9 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
-		<div style='width:100%;height:1px;background-color:#ED6C23;'></div>
+		<div style='width:80px;height:1px;background-color:#ED6C23;'></div>
 		<div style="height:100px">&nbsp;</div>
 	</div>
 </body>
 </html>
-
  
-

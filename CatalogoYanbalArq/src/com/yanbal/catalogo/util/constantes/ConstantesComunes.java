@@ -19,9 +19,9 @@ public class ConstantesComunes {
 	public static final String TablasCodigosCUSTODIO_APP = "9";
 	public static final String TablasCodigosSEG_AUTENTICACION = "10";
 	public static final String TablasCodigosSEG_GRANULARIDAD = "11";
-	public static final String TablasCodigosTIPO_APP = "12";
+	public static final String TablasCodigosTIPO_IMPL_APP = "12";
 	public static final String TablasCodigosAPP_SOLUCION_RELACION = "13";
-	
+	public static final String TablasCodigosTIPO_APP = "18";
 	public static final String TablasCodigosAREA = "999";
 	
 

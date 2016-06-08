@@ -1,5 +1,7 @@
 package com.yanbal.catalogo.bean;
 
+import java.util.Date;
+
 public class AplicacionVersionBean extends AplicacionBean {
 	
 	private Integer corVersion;
@@ -8,7 +10,9 @@ public class AplicacionVersionBean extends AplicacionBean {
 	private String  fuente;
 	private Integer estado;
 	private SoftwareBaseVersionBean swbaseVersion;
-	
+	private Date fechaVersion;
+	private String  comentario;
+		
 	public Integer getCorVersion() {
 		return corVersion;
 	}
@@ -42,8 +46,20 @@ public class AplicacionVersionBean extends AplicacionBean {
 	public SoftwareBaseVersionBean getSwbaseVersion() {
 		return swbaseVersion;
 	}
+	public Date getFechaVersion() {
+		return fechaVersion;
+	}
+	public void setFechaVersion(Date fechaVersion) {
+		this.fechaVersion = fechaVersion;
+	}
 	public void setSwbaseVersion(SoftwareBaseVersionBean swbaseVersion) {
 		this.swbaseVersion = swbaseVersion;
+	}
+	public String getComentario() {
+		return comentario;
+	}
+	public void setComentario(String comentario) {
+		this.comentario = comentario;
 	}
 	
 	
