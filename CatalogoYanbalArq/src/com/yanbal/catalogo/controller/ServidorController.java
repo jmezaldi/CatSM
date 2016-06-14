@@ -106,6 +106,19 @@ public class ServidorController extends BaseController {
 		return "servidorXPk";
 	}
 
+	@RequestMapping(value = "/consultaIP", method = RequestMethod.GET)
+	public String consultaIP(@RequestParam("idServidor") Integer idServidor, ModelMap model) {
+		try {
+			LOG.debug("/consultaIP ");
+			model.addAttribute("servidor", servidorDAO.getAllIpXServidor(idServidor));
+
+		} catch (Exception e) {
+			LOG.error(e.getMessage(), e);
+
+		}
+		return "servidorIPXPk";
+	}
+	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ModelAndView add(@ModelAttribute(value = "servidor") ServidorBean servidor, BindingResult result) {
 		validator.validate(servidor, result);

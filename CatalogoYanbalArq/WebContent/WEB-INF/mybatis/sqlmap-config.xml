@@ -12,6 +12,7 @@
 		<typeAlias type="com.raistudies.domain.User" alias="user"/>
 		<typeAlias type="com.yanbal.catalogo.bean.SolucionBean" alias="solucionBean"/>
 		<typeAlias type="com.yanbal.catalogo.bean.ServidorBean" alias="servidorBean"/>
+		<typeAlias type="com.yanbal.catalogo.bean.ServidorIPBean" alias="servidorIPBean"/>
 		<typeAlias type="com.yanbal.catalogo.bean.AplicacionVersionBean" alias="aplicacionVersionBean"/>
 		<typeAlias type="com.yanbal.catalogo.bean.TablasCodigosBean" alias="tablasCodigosBean"/>
 		<typeAlias type="com.yanbal.catalogo.bean.BaseDatosVersionBean" alias="baseDatosVersionBean"/>
@@ -19,5 +20,9 @@
 		<typeAlias type="com.yanbal.catalogo.bean.TablasCodigosUtilBean" alias="tablasCodigosUtilBean"/>
 		<typeAlias type="com.yanbal.catalogo.bean.ClusterServidorBean" alias="clusterServidorBean"/>
 		<typeAlias type="com.yanbal.catalogo.bean.UsuarioBean" alias="usuarioBean"/>
+		<typeAlias type="com.yanbal.catalogo.bean.ClusterBean" alias="clusterBean"/>
+		<typeAlias type="com.yanbal.catalogo.bean.AppVersionRelacionBean" alias="appVersionRelacionBean"/>
+		<typeAlias type="com.yanbal.catalogo.bean.UnidadNegocioAppVersionBean" alias="unidadNegocioAppVersionBean"/>
+		<typeAlias type="com.yanbal.catalogo.bean.AppInstalacionVSBDInstalacionBean" alias="appInstalacionVSBDInstalacionBean"/>
 	</typeAliases>
 </configuration>

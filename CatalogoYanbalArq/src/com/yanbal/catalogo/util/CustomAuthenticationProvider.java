@@ -49,17 +49,17 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         }
         else
         {
-        	UsuarioBean usr =null;   
+        	List<UsuarioBean> usr =null;   
         	try
         	{
         		usr = usuarioDAO.consultaUsuario(usuario);  
         		
-        		if (usr==null)
+        		if (usr==null || usr.isEmpty())
         		{
 	        		log.error("El usuario no esta registrado en el sistema: " + usuario);
 	        		throw new BadCredentialsException("El usuario no esta registrado en el sistema: " + usuario);
 	        	}
-        		log.info("Usuario Rol: " + usr.getUsuario() + " "+usr.getDesRol());
+        		log.info("Usuario Rol: " + usuario);
         	}
         	catch(Exception e)
         	{
@@ -70,13 +70,20 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         	try
         	{
         		
-        		Respuesta respuesta = (new LoginLDAPService()).login(usuario,password,usr.getDominio());
+        		Respuesta respuesta = (new LoginLDAPService()).login(usuario,password,usr.get(0).getDominio());
         		
         	
         		
 	        	if (respuesta != null && respuesta.getDatos().getFlagValidacion().equals("1"))
 	        	{
-	        		String[] authorities = new String[]{usr.getDesRol()};
+	        		String[] authorities = new String[usr.size()];
+	        		
+	        		for(int i = 0; i < usr.size(); i++) 
+	        		{ authorities[i] = usr.get(i).getDesRol(); 
+	        		
+	        		log.info("Rol: "+usr.get(i).getDesRol());
+	        		}
+	        		
 	        		mySet = new HashSet<String>(Arrays.asList(authorities));
 	        		
 	        		

@@ -27,11 +27,13 @@
 <br/>
 <a class="linkm" href="<c:url value="/"/>app/appVersion/todas">Aplicaciones</a>
 <br/>
-<a class="linkm" href="<c:url value="/"/>app/servidor">Servidores</a>
-<br/>
 <a class="linkm" href="<c:url value="/"/>app/basedatosversion">Bases de Datos</a>
 <br/>
 <a class="linkm" href="<c:url value="/"/>app/swBaseVersion">Software Base</a>
+<br/>
+<a class="linkm" href="<c:url value="/"/>app/servidor">Servidores</a>
+<br/>
+<a class="linkm" href="<c:url value="/"/>app/cluster">Clusters</a>
 </div>
 
 </c:if>

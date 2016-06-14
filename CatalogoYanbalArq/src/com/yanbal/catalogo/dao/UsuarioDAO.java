@@ -2,9 +2,10 @@ package com.yanbal.catalogo.dao;
 
 
 import com.yanbal.catalogo.bean.UsuarioBean;
+import java.util.List;
 
 public interface UsuarioDAO {
 	
-	public UsuarioBean consultaUsuario(String usuario);
+	public List<UsuarioBean> consultaUsuario(String usuario);
 
 }

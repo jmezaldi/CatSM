@@ -37,14 +37,15 @@
 			<table class="display">
 				<tr><td class="rosa">Nombre:</td><td><c:out value="${bd.nombre}"/>&nbsp;&nbsp;&nbsp;</td><td class="rosa">Versión:</td><td><c:out value="${bd.corVersion}"/></td></tr>
 				<tr><td class="rosa" >Software:</td><td colspan="3"><c:out value="${bd.desSoftwareBaseVersion}"/></td></tr>
+				<tr><td class="rosa" >Estado:</td><td ><c:choose><c:when test="${bd.estado==1}">Activo</c:when><c:otherwise>Inactivo</c:otherwise></c:choose></td></tr>
 				<tr><td>&nbsp;</td></tr>
 				<tr><td class="rosa" >Datos Sensibles:</td><td><c:if test="${bd.datSensibles==1}">Si</c:if><c:if test="${bd.datSensibles!=1}">No</c:if></td><td class="rosa" >Datos Personales:</td><td><c:if test="${bd.datPersonales==1}">Si</c:if><c:if test="${bd.datPersonales!=1}">No</c:if></td></tr>
 			</table>
 			<br />
 			<h2>Instalaciones</h2>				
-				<table id="example" class="display" >
+				<table id="example" class="ybl" >
 				   <thead>
-					<tr style="background-color: #ed6c23; color:white !important;">
+					<tr>
 						<th>Tipo</th>
 						<th>Nombre</th>	
 						<th>Ambiente</th>
@@ -64,7 +65,7 @@
 							<td><c:out value="${cluster.servidor.comentarioInterno}"/></td>
 							<td><c:out value="${cluster.bdVersion.nomFisico}"/></td>
 							<td><c:out value="${cluster.bdVersion.descripcion}"/></td>
-							<td><a href='<c:url value="/"/>app/servidor/consulta?id=${cluster.id}'>Ir</a></td>				
+							<td><a href='<c:url value="/"/>app/cluster/consulta?idCluster=${cluster.id}'>Ir</a></td>				
 						</tr>
 					</c:forEach>      					
 					</tbody>
@@ -72,7 +73,7 @@
 			<br />
 			<br />
 			<h2>Aplicaciones Relacionadas</h2>				
-				<table id="example" class="display" >
+				<table id="example" class="ybl" >
 				   <thead>
 					<tr style="background-color: #ed6c23; color:white !important;">
 						<th>Nombre</th>

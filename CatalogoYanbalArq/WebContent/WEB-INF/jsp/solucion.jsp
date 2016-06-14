@@ -5,89 +5,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>Catálogo de Arquitectura</title>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery-1.12.0.min.js"/>'></script>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery.dataTables.min.js"/>'></script>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/dataTables.buttons.min.js"/>'></script>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/jszip.min.js"/>'></script>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/buttons.html5.min.js"/>'></script>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/buttons.print.min.js"/>'></script>
+		<!--estilos -->
 		<link rel="stylesheet" type="text/css" href='<c:url value="/resources/jquery.dataTables.min.css"/>'>
-		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
-		<script type="text/javascript" src='<c:url value="/resources/common.js"/>'></script>
-		<script type="text/javascript" src='<c:url value="/resources/solucion.js"/>'></script>
+		<link rel="stylesheet" type="text/css" href='<c:url value="/resources/buttons.dataTables.min.css"/>'>
+		<link rel="stylesheet" type="text/css" href='<c:url value="/resources/estilo.css"/>'>
 
-
-	<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery-1.12.0.min.js"/>'></script>
-	<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery.dataTables.min.js"/>'></script>
-
-	<link rel="stylesheet" type="text/css" href='<c:url value="/resources/estilo.css"/>'>
-
-	<script type="text/javascript" class="init">
-	
-$(document).ready(function() {
-	$('#example').DataTable( {
-		"pagingType": "full_numbers",
-		"columnDefs": [
-            {
-                "targets": [ 7 ],
-                "visible": false
-            }
-        ]
-	} );
-	
-} );
-
-	</script>
 		<script type="text/javascript">
-			var projectUrl = '<c:url value="/"/>';
-			if(projectUrl.indexOf(";", 0) != -1){
-				projectUrl = projectUrl.substring(0, projectUrl.indexOf(";", 0));
-			}
-		</script>	
-
-
-			<script type="text/javascript" class="init">
-	
-	</script>
-	</head>
+		$(document).ready(function() {
+			$('#example').DataTable( {
+				"pagingType": "full_numbers",
+				"bPaginate": true,
+				"bLengthChange": true,
+				"columnDefs": [ ],
+				 "dom": 'lBfrtip',
+				 "buttons": [
+					'excel'
+				]
+			} );
+			
+		} );
+		</script>
+</head>
 	<body>
-		<fieldset>
 			<% String tituloPagina="Listado de Soluciones"; %>
 			<%@include file="cabecera.inc" %>
-		<center>
-
-		<c:url var="post_ctx"  value="/" />
-		<form:form commandName="solucion" action="${post_ctx}app/solucion/add" name="solucionForm">
-		
-		<form:hidden path="id"/>
-		<form:hidden path="estado"/>
-		<!--table>
-			<tr><td colspan="2" align="left"><form:errors path="*" cssStyle="color : red;"/></td></tr>
-			<tr><td>Nombre: </td><td><form:input path="nombre" /></td></tr>
-			<tr><td>Descripción: </td><td><form:input path="descripcion" /></td></tr>
-			<tr><td>Vertical : </td><td><form:select path="codDatoVertical">
-					<form:option value="">--</form:option>
-					<form:option value="1">Comercial</form:option>
-					<form:option value="2">Soporte</form:option>
-					<form:option value="3">Industrial</form:option>
-			</form:select></td></tr>
-			<tr><td>&Aacute;mbito : </td><td><form:select path="codDatoAmbito">
-					<form:option value="">--</form:option>
-					<form:option value="1">Local</form:option>
-					<form:option value="2">Corporativa</form:option>
-			</form:select></td></tr>
-			<tr><td>Tipo : </td><td><form:select path="codDatoTipo">
-					<form:option value="">--</form:option>
-					<form:option value="1">Desarrollo</form:option>
-					<form:option value="2">Enlatado</form:option>
-					<form:option value="3">Mixto</form:option>
-			</form:select></td></tr>
-			<tr><td>&Aacute;rea : </td><td><form:select path="codDatoArea">
-					<form:option value="">--</form:option>
-			</form:select></td></tr>
-			<tr><td colspan="2"><input type="submit" value="Grabar"/>
-			&nbsp;<input type="reset" name="newSolucion" value="Nueva Solucion" onclick="setAddForm();" disabled="disabled"/>-->
-			<!--  &nbsp;<input type="submit" name="deleteSolucion" value="Eliminar Solucion" onclick="setDeleteForm();" disabled="disabled"/>--></td></tr>
-		</table>
-		</form:form>
-		</center>
-		</fieldset>
-		<c:if test="${!empty soluciones}">
-		
+		<c:if test="${!empty soluciones}">		
 			<br />
 			<div id="listado_p">
 				<table id="example" width="100%" class="display " >
@@ -128,7 +76,7 @@ $(document).ready(function() {
 							<td><c:out value="${solucion.desAmbito}"/></td>
 							<td><c:out value="${solucion.desTipo}"/></td>
 							<td><c:out value="${solucion.desArea}"/></td>
-							<td><c:out value="${solucion.estado}"/></td>
+							<td><c:choose><c:when test="${solucion.estado==1}">Activo</c:when><c:otherwise>Inactivo</c:otherwise></c:choose></td>
 							<td><a href="appVersion/show?idSolucion=${solucion.id}">Ir</a></td>
 						</tr>
 					</c:forEach>
@@ -136,8 +84,6 @@ $(document).ready(function() {
 				</table>
 				</div>
 			<br />
-
 		</c:if>
-
 	</body>
 </html>

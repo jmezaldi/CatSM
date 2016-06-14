@@ -74,6 +74,23 @@
 			WHERE INST.ID_SERVIDOR = #{id}
 	</select>	
 	
+	<select id="getAllBaseDatosXCluster" parameterType="int" resultMap="result2">  
+		SELECT BD.ID, 
+			BD.NOMBRE, 
+			BDV.CORRELATIVO_VERSION, 
+			DATOS_SENSIBLES, 
+			DATOS_PERSONALES,
+			NOMBRE_FISICO,
+			DESCRIPCION
+		FROM 
+			CATALOGO.BASE_DATOS_VERSION_INSTALACION INST
+			INNER JOIN CATALOGO.BASE_DATOS BD
+			ON (INST.ID_BASE_DATOS=BD.ID)
+			LEFT JOIN CATALOGO.BASE_DATOS_VERSION BDV
+			ON (BD.ID= BDV.ID_BASE_DATOS)
+			WHERE INST.ID_CLUSTER =#{id}
+	</select>	
+	
 	<select id="getBaseDatosVersionXPk" parameterType="map" resultType="baseDatosVersionBean">  
 		SELECT BD.ID, BD.NOMBRE, BDV.CORRELATIVO_VERSION as corVersion, 
 		DATOS_SENSIBLES as datPersonales, DATOS_PERSONALES as datSensibles,
@@ -105,7 +122,7 @@
 
 	<select id="getAllClusterServidorXBDVersion" parameterType="map" resultMap="resultCluster">  
 		SELECT 
-			C.ID AS ID_C,			
+			C.ID AS ID,			
 			CASE WHEN C.ID IS NOT NULL THEN 'Cluster '||C.NOMBRE ELSE 'Servidor' END AS NOM_C,
 			S.ID AS ID_S,
 			S.NOMBRE,
@@ -125,7 +142,19 @@
 		WHERE BDI.ID_BASE_DATOS = #{id} AND BDI.CORRELATIVO_VERSION =#{corVer}
 	</select>
 		
-		
+	<select id="getAllBaseDatosXSwBaseVersion" parameterType="int" resultMap="result2">  		
+		SELECT 
+		    BD.ID,
+			BD.NOMBRE, 
+			BDV.CORRELATIVO_VERSION, 
+			DATOS_SENSIBLES, 
+			DATOS_PERSONALES,  ID_SOFTWARE_BASE,CORRELATIVO_SOFTWARE_BASE_VERSION
+		FROM 
+			CATALOGO.BASE_DATOS BD
+			LEFT JOIN CATALOGO.BASE_DATOS_VERSION BDV
+			ON (BD.ID= BDV.ID_BASE_DATOS)
+		WHERE BDV.ID_SOFTWARE_BASE = #{id} AND BDV.CORRELATIVO_SOFTWARE_BASE_VERSION = #{corVer}
+	</select>			
 	<insert id="saveSolucion" parameterType="solucionBean">
 		INSERT INTO <include refid="sqlSchema"/>SOLUCION (CODIGO, NOMBRE, DESCRIPCION, 
 		CODIGO_TABLA_VERTICAL,CODIGO_DATO_VERTICAL, CODIGO_TABLA_AMBITO, CODIGO_DATO_AMBITO,

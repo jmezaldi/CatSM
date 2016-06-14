@@ -5,53 +5,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>Catálogo de Arquitectura</title>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery-1.12.0.min.js"/>'></script>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery.dataTables.min.js"/>'></script>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/dataTables.buttons.min.js"/>'></script>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/jszip.min.js"/>'></script>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/buttons.html5.min.js"/>'></script>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/buttons.print.min.js"/>'></script>
+		<!--estilos -->
 		<link rel="stylesheet" type="text/css" href='<c:url value="/resources/jquery.dataTables.min.css"/>'>
-		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
-		<script type="text/javascript" src='<c:url value="/resources/common.js"/>'></script>
-		<script type="text/javascript" src='<c:url value="/resources/solucion.js"/>'></script>
-
-
-	<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery-1.12.0.min.js"/>'></script>
-	<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery.dataTables.min.js"/>'></script>
-    <link rel="stylesheet" type="text/css" href='<c:url value="/resources/estilo.css"/>'>
-	<script type="text/javascript" class="init">
-	
-$(document).ready(function() {
-	$('#example').DataTable( {
-		"pagingType": "full_numbers",
-		"columnDefs": [
-            {
-                
-            }
-        ]
-	} );
-	
-} );
-
-	</script>
+		<link rel="stylesheet" type="text/css" href='<c:url value="/resources/buttons.dataTables.min.css"/>'>
+		<link rel="stylesheet" type="text/css" href='<c:url value="/resources/estilo.css"/>'>
 
 		<script type="text/javascript">
-			var projectUrl = '<c:url value="/"/>';
-			if(projectUrl.indexOf(";", 0) != -1){
-				projectUrl = projectUrl.substring(0, projectUrl.indexOf(";", 0));
-			}
-		</script>		
-
-			<script type="text/javascript" class="init">
-	
-
-
-	</script>
+		$(document).ready(function() {
+			$('#example').DataTable( {
+				"pagingType": "full_numbers",
+				"bPaginate": true,
+				"bLengthChange": true,
+				"columnDefs": [ ],
+				 "dom": 'lBfrtip',
+				 "buttons": [
+					'excel'
+				]
+			} );
+			
+		} );
+		</script>
 	</head>
 	<body>
-		<fieldset>
 			<% String tituloPagina="Listado de Servidores"; %>
 			<%@include file="cabecera.inc" %>
-		<center>
-		<c:url var="post_ctx"  value="/" />
-
-		</center>
-		</fieldset>
 		<c:if test="${!empty servidores}">
 		
 			<br />
@@ -73,6 +56,7 @@ $(document).ready(function() {
 						<th>Tecnolog&iacute;a</th>
 						<th>Responsable</th>
 						<th>Comentario</th>
+						<th>Estado</th>
 						<th></th>
 					</tr>
 					</thead>
@@ -90,13 +74,14 @@ $(document).ready(function() {
 						<th>Contrato</th>
 						<th>Tecnolog&iacute;a</th>
 						<th>Responsable</th>
-						<th>Comentario</th>		
+						<th>Comentario</th>	
+						<th>Estado</th>						
 						<th></th>						
 					</tr>
 					</tfoot>
 					<tbody>
 					<c:forEach items="${servidores}" var="servidor">
-						<tr id="${servidor.id}" onclick="setUpdateForm('${servidor.id}');">
+						<tr>
 							<td ><c:out value="${servidor.id}"/></td>
 							<td><c:out value="${servidor.nombre}"/></td>
 							<td><c:out value="${servidor.procesador}"/></td>
@@ -110,6 +95,7 @@ $(document).ready(function() {
 							<td><c:out value="${servidor.desTecnologia}"/></td>	
 							<td><c:out value="${servidor.responsable}"/></td>
 							<td><c:out value="${servidor.comentarioInterno}"/></td>
+						    <td><c:choose><c:when test="${servidor.estado==1}">Activo</c:when><c:otherwise>Inactivo</c:otherwise></c:choose></td>
 							<td><a href='<c:url value="/"/>app/servidor/consulta?idServidor=${servidor.id}'>Ir</a></td>
 						</tr>
 					</c:forEach>

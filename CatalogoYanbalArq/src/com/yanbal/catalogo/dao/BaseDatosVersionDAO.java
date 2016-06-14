@@ -12,6 +12,8 @@ public interface BaseDatosVersionDAO {
 	public void deleteBaseDatosVersion(Integer id);
 	public List<BaseDatosVersionBean> getAllBaseDatos();
 	public List<BaseDatosVersionBean> getAllBaseDatosXServidor(Integer IdServidor);
+	public List<BaseDatosVersionBean> getAllBaseDatosXCluster(Integer IdCluster);
 	public BaseDatosVersionBean getBaseDatosVersionXPk(@Param("id") Integer id,@Param("corVer")  Integer corVer);
 	public List<ClusterServidorBean> getAllClusterServidorXBDVersion(@Param("id") Integer id,@Param("corVer")  Integer corVer);
+	public List<BaseDatosVersionBean> getAllBaseDatosXSwBaseVersion(@Param("id") Integer id,@Param("corVer")  Integer corVer);
 }

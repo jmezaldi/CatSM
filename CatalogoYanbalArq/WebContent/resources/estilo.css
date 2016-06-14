@@ -39,18 +39,12 @@ body{
 	float: right;
 	margin-right: 1px;
 }
-#menulistado{
-    width:500px; 
-    margin:10px auto 0 10px;
-    display:block;
-}
+
 #listado_p{
-    width: 50%;
     margin: 0 auto; 
 	width: 98%;
 }
 #contenido_p{
-    width: 50%;
     margin: 0 auto; 
 	width: 98%;
 }
@@ -67,16 +61,10 @@ body{
 	font-family : 'Arial';
 	font-size: 12px;
 	text-decoration:none;
+
 	display:block;
 }
 #link_b a:hover {
-	color:white;
-	font-family : 'Arial';
-	font-size: 12px;
-	text-decoration:none;
-	display:block;
-}
-#link_b a:active {
 	color:white;
 	font-family : 'Arial';
 	font-size: 12px;
@@ -92,7 +80,6 @@ a.linkb:link,a.linkb:visited,a.linkb:hover,a.linkb:active {
 	display:block;
 }
 
-
 a.linkm:link,a.linkm:visited,a.linkm:hover,a.linkm:active {
 	color:#ed6c23;
 	font-family : 'Arial';
@@ -101,3 +88,34 @@ a.linkm:link,a.linkm:visited,a.linkm:hover,a.linkm:active {
 	display:block;
 }
 
+#menulistado{
+    width:500px; 
+    margin:10px auto 0 10px;
+    display:block;
+}
+
+select {
+ 
+    color: #555;
+    font-size: inherit;
+    margin: 0;
+    overflow: hidden;
+    padding-top: 2px;
+    padding-bottom: 2px;
+
+}
+
+td.rosa
+{background-color: #FBE0D0; color:#ed6c23;padding-right:10px;padding-left:5px}
+
+table.ybl thead th,table.ybl thead td{padding:2px 4px 2px 4px;text-align:left;}
+table.ybl thead tr {background-color: #ed6c23; color:white !important;}
+table.ybl tfoot th,table.ybl tfoot td{padding:4px;text-align:left;}
+table.ybl tbody th,table.ybl tbody td{padding:4px}
+
+a:link,a:visited,a:hover,a:active {
+	color:#ed6c23;
+	font-family : 'Arial';
+	font-size: 11px;
+	text-decoration:none;
+}

@@ -5,17 +5,27 @@
 <mapper namespace="com.yanbal.catalogo.dao.UsuarioDAO">
 	<sql id="sqlSchema">CATALOGO.</sql>
 	
-	<select id="consultaUsuario" parameterType="string" resultType="usuarioBean">  
+	<resultMap id="result" type="usuarioBean">
+        <result property="usuario" column="usuario"/>
+        <result property="codDato" column="codDato"/>
+        <result property="codTablaRol" column="codTablaRol"/>
+        <result property="codDatoRol" column="codDatoRol"/>
+        <result property="estado" column="estado"/>
+        <result property="desRol" column="desRol"/>
+        <result property="dominio" column="dominio"/>
+    </resultMap>	
+	
+	<select id="consultaUsuario" parameterType="string"  resultMap="result">
 		SELECT USUARIO as "usuario", 
 		CODIGO_TABLA_ROL as "codTablaRol",
-		CODIGO_DATO_ROL as "codTablaRol",
+		CODIGO_DATO_ROL as "codDatoRol",
 		USR.ESTADO as "estado",
 		T.DESCRIPCION_ABREVIADA as "desRol",
 		DOMINIO as "dominio"
 		FROM <include refid="sqlSchema"/>USUARIO_ROL USR
 		LEFT OUTER JOIN <include refid="sqlSchema"/>TABLAS_CODIGOS T
 		ON (USR.CODIGO_TABLA_ROL= T.CODIGO_TABLA AND USR.CODIGO_DATO_ROL=T.CODIGO_DATO)
-		WHERE USR.USUARIO = #{usuario}
+		WHERE UPPER(USR.USUARIO) = UPPER(#{usuario}) AND USR.ESTADO=1
 	</select>
 
 </mapper>

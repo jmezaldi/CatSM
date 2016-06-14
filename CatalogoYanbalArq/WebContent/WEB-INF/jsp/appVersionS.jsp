@@ -37,18 +37,15 @@ $(document).ready(function() {
 			if(projectUrl.indexOf(";", 0) != -1){
 				projectUrl = projectUrl.substring(0, projectUrl.indexOf(";", 0));
 			}
-		</script>		
-
+		</script>
 			<script type="text/javascript" class="init">
-
-
 	</script>
 	</head>
 	<body>
 
 			<% String tituloPagina="Detalle de la Soluci&oacute;n"; %>
 			<%@include file="cabecera.inc" %>
-		<c:url var="post_ctx"  value="/" />
+
 			<div id="contenido_p">
 			<br>
 			<table class="display">
@@ -58,6 +55,7 @@ $(document).ready(function() {
 				<tr><td class="rosa">Ámbito:</td><td><c:out value="${solucion.desAmbito}"/></td></tr>
 				<tr><td class="rosa">Tipo:</td><td><c:out value="${solucion.desTipo}"/></td></tr>
 				<tr><td class="rosa">Área:</td><td><c:out value="${solucion.desArea}"/></td></tr>
+				<tr><td class="rosa">Estado:</td><td><c:choose><c:when test="${solucion.estado==1}">Activo</c:when><c:otherwise>Inactivo</c:otherwise></c:choose></td>
 			</table>
 		
 		
@@ -72,10 +70,12 @@ $(document).ready(function() {
 						<th>Versi&oacute;n</th>		
 						<th>Criticidad</th>				
 						<th>Exposici&oacute;n</th>
+						<th>Público</th>
 						<th>&Aacute;rea</th>
 						<th>Custodio</th>
 						<th>Tipo</th>		
-						<th>Fecha</th>						
+						<th>Fecha Pase</th>
+						<th align="left">Estado</th>		
 						<th></th>
 					</tr>
 					</thead>
@@ -83,13 +83,15 @@ $(document).ready(function() {
 					<tr style="background-color: #ed6c23;color:white !important;">
 						<th>Id</th>
 						<th>Nombre</th>
-						<th>Versi&oacute;n</th>
+						<th>Versi&oacute;n</th>		
 						<th>Criticidad</th>				
 						<th>Exposici&oacute;n</th>
+						<th>Público</th>
 						<th>&Aacute;rea</th>
 						<th>Custodio</th>
 						<th>Tipo</th>		
-						<th>Fecha</th>											
+						<th>Fecha Pase</th>
+						<th align="left">Estado</th>							
 						<th></th>
 					</tr>
 					</tfoot>
@@ -101,11 +103,13 @@ $(document).ready(function() {
 							<td><c:out value="${appVersion.corVersion}"/></td>
 							<td><c:out value="${appVersion.desCriticidad}"/></td>
 							<td><c:out value="${appVersion.desExposicion}"/></td>
+							<td><c:out value="${appVersion.desPublico}"/></td>
 							<td><c:out value="${appVersion.desArea}"/></td>
 							<td><c:out value="${appVersion.desCustodio}"/></td>	
 							<td><c:out value="${appVersion.desTipoApp}"/></td>	
 							<fmt:formatDate value="${appVersion.fechaVersion}" pattern="dd/MM/yyyy" var="newdatevar" />
 							<td><c:out value="${newdatevar}"/></td>
+							<td><c:choose><c:when test="${appVersion.estado==1}">Activo</c:when><c:otherwise>Inactivo</c:otherwise></c:choose></td>
 							<td><a href="consulta?idApp=${appVersion.id}&corVer=${appVersion.corVersion}">Ir</a></td>
 						</tr>
 					</c:forEach>

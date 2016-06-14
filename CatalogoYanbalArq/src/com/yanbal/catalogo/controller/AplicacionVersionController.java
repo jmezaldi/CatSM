@@ -79,9 +79,9 @@ public class AplicacionVersionController extends BaseController {
 	}
 
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
-	public String showApp(@RequestParam("idSolucion") Integer idSolucion, ModelMap model) {
+	public String consulta(@RequestParam("idSolucion") Integer idSolucion, ModelMap model) {
 		try {
-			LOG.debug("/show ");
+			LOG.debug("/app/appVersion/show ");
 
 			List<AplicacionVersionBean> appVersiones = aplicacionVersionDAO.getAllAplicacionVersionXSolucion(idSolucion);
 			SolucionBean solucion = solucionDAO.getSolucionxPK(idSolucion);
@@ -130,10 +130,16 @@ public class AplicacionVersionController extends BaseController {
 			{	session.setAttribute("TabCod"+ConstantesComunes.TablasCodigosTIPO_APP,tablasCodigosDao.getAllDatosXCodigoTabla(Integer.valueOf(ConstantesComunes.TablasCodigosTIPO_APP)));	}
 			model.addAttribute("TabCod"+ConstantesComunes.TablasCodigosTIPO_APP, session.getAttribute("TabCod"+ConstantesComunes.TablasCodigosTIPO_APP));
 
+			if (session.getAttribute("TabCod"+ConstantesComunes.TablasCodigos_APP_PUBLICO) ==null)
+			{	session.setAttribute("TabCod"+ConstantesComunes.TablasCodigos_APP_PUBLICO,tablasCodigosDao.getAllDatosXCodigoTabla(Integer.valueOf(ConstantesComunes.TablasCodigos_APP_PUBLICO)));	}
+			model.addAttribute("TabCod"+ConstantesComunes.TablasCodigos_APP_PUBLICO, session.getAttribute("TabCod"+ConstantesComunes.TablasCodigos_APP_PUBLICO));
+
 			
 			model.addAttribute("caracteristicas", aplicacionVersionDAO.getAllAppCaracteristicaXCodigoTabla(idApp,corVer));
 			model.addAttribute("basedatos", aplicacionVersionDAO.getAllBaseDatosXIdAppVersion(idApp,corVer));
 			model.addAttribute("clusters", aplicacionVersionDAO.getAllClusterServidorXIdAppVersion(idApp,corVer));
+			model.addAttribute("soluciones", solucionDAO.getAllSolucionesXAppVersion(idApp, corVer));
+			model.addAttribute("unidades", aplicacionVersionDAO.getAllUnidadNegocioXAppVersion(idApp, corVer));
 			
 			model.addAttribute("appVersion", bean);
 
@@ -143,6 +149,37 @@ public class AplicacionVersionController extends BaseController {
 
 		}
 		return "appVersionXPk";
+	}
+	
+	
+	@RequestMapping(value = "/consultaRel", method = RequestMethod.GET)
+	public String consultaRelacion(HttpServletRequest request,@RequestParam("idApp") Integer idApp, @RequestParam("corVer") Integer corVer, ModelMap model) {
+		try {
+		
+			LOG.debug("/consultaRel ");
+			model.addAttribute("appHijo", aplicacionVersionDAO.getAllAppVersionHijo(idApp, corVer));
+			model.addAttribute("appPadre", aplicacionVersionDAO.getAllAppVersionPadre(idApp, corVer));
+
+		} catch (Exception e) {
+			LOG.error(e.getMessage(), e);
+
+		}
+		return "appVersionRel";
+	}
+	
+	@RequestMapping(value = "/consultaInstVs", method = RequestMethod.GET)
+	public String consultaInstVs(HttpServletRequest request,@RequestParam("idApp") Integer idApp, @RequestParam("corVer") Integer corVer, ModelMap model) {
+		try {
+		
+			LOG.debug("/consultaRel ");
+			model.addAttribute("instalaciones", aplicacionVersionDAO.getAllBDInstalacionvsAppInstalcionXAppVersion(idApp, corVer));
+
+
+		} catch (Exception e) {
+			LOG.error(e.getMessage(), e);
+
+		}
+		return "appVersionInstVs";
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)

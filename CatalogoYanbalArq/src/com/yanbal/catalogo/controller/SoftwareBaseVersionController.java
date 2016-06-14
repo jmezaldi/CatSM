@@ -9,9 +9,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import com.yanbal.catalogo.controller.BaseController;
+import com.yanbal.catalogo.dao.AplicacionVersionDAO;
+import com.yanbal.catalogo.dao.BaseDatosVersionDAO;
+import com.yanbal.catalogo.dao.ServidorDAO;
 import com.yanbal.catalogo.dao.SoftwareBaseVersionDAO;
 import com.yanbal.catalogo.validator.SolucionValidator;
 //import com.yanbal.catalogo.util.constantes.ConstantesComunes.ConstantesComunes;
@@ -25,12 +29,35 @@ public class SoftwareBaseVersionController extends BaseController {
 	private SolucionValidator validator = null;
 	
 	private SoftwareBaseVersionDAO softwareBaseVersionDAO = null;
+	
+	private ServidorDAO servidorDAO = null;
+		
+	private AplicacionVersionDAO aplicacionVersionDAO =null;
+	
+	private BaseDatosVersionDAO baseDatosVersionDAO = null;
 
 	@Autowired
 	public void setSoftwareBaseVersionDAO(SoftwareBaseVersionDAO softwareBaseVersionDAO) {
 		this.softwareBaseVersionDAO = softwareBaseVersionDAO;
 	}
+	
+	@Autowired
+	public void setServidorDAO(ServidorDAO servidorDAO) {
+		this.servidorDAO = servidorDAO;
+	}
 
+	@Autowired
+	public void setAplicacionVersionDAO(AplicacionVersionDAO aplicacionVersionDAO) {
+		this.aplicacionVersionDAO = aplicacionVersionDAO;
+	}
+	
+	@Autowired
+	public void setBaseDatosVersionDAO(BaseDatosVersionDAO baseDatosVersionDAO) {
+		this.baseDatosVersionDAO = baseDatosVersionDAO;
+	}
+	
+	
+	
 	public SolucionValidator getValidator() {
 		return validator;
 	}
@@ -56,6 +83,24 @@ public class SoftwareBaseVersionController extends BaseController {
 		return "swBaseVersion";
 	}
 
+	@RequestMapping(value = "/consulta", method = RequestMethod.GET)
+	public String consulta(@RequestParam("id") Integer id,@RequestParam("corVer") Integer corVer, ModelMap model) {
+		try {
+			LOG.debug("/app/swBaseVersion/consulta ");
+
+			model.addAttribute("swBases", softwareBaseVersionDAO.getSoftwareBaseVersionXPk(id, corVer));
+			model.addAttribute("apps", aplicacionVersionDAO.getAplicacionVersionXSwBaseVersion(id, corVer));
+			model.addAttribute("bds", baseDatosVersionDAO.getAllBaseDatosXSwBaseVersion(id, corVer));
+			model.addAttribute("servidores", servidorDAO.getAllServidoresXSwBaseVersion(id, corVer));
+
+		} catch (Exception e) {
+			LOG.error(e.getMessage(), e);
+
+		}
+		return "swBaseVersionXPk";
+	}
+	
+	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ModelAndView add(@ModelAttribute(value = "solucion") SoftwareBaseVersionBean solucion, BindingResult result) {
 		validator.validate(solucion, result);

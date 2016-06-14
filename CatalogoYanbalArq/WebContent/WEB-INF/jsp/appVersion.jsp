@@ -6,53 +6,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>Catálogo de Arquitectura</title>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery-1.12.0.min.js"/>'></script>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery.dataTables.min.js"/>'></script>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/dataTables.buttons.min.js"/>'></script>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/jszip.min.js"/>'></script>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/buttons.html5.min.js"/>'></script>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/buttons.print.min.js"/>'></script>
+		<!--estilos -->
 		<link rel="stylesheet" type="text/css" href='<c:url value="/resources/jquery.dataTables.min.css"/>'>
-		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
-		<script type="text/javascript" src='<c:url value="/resources/common.js"/>'></script>
-		<script type="text/javascript" src='<c:url value="/resources/solucion.js"/>'></script>
-
-
-	<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery-1.12.0.min.js"/>'></script>
-	<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery.dataTables.min.js"/>'></script>
-	<link rel="stylesheet" type="text/css" href='<c:url value="/resources/estilo.css"/>'>
-
-	<script type="text/javascript" class="init">
-	
-$(document).ready(function() {
-	$('#example').DataTable( {
-		"pagingType": "full_numbers",
-		"columnDefs": [
-            {
-                
-            }
-        ]
-	} );
-	
-} );
-
-	</script>
+		<link rel="stylesheet" type="text/css" href='<c:url value="/resources/buttons.dataTables.min.css"/>'>
+		<link rel="stylesheet" type="text/css" href='<c:url value="/resources/estilo.css"/>'>
 
 		<script type="text/javascript">
-			var projectUrl = '<c:url value="/"/>';
-			if(projectUrl.indexOf(";", 0) != -1){
-				projectUrl = projectUrl.substring(0, projectUrl.indexOf(";", 0));
-			}
-		</script>		
-
-			<script type="text/javascript" class="init">
-
-
-	</script>
-	</head>
+		$(document).ready(function() {
+			$('#example').DataTable( {
+				"pagingType": "full_numbers",
+				"bPaginate": true,
+				"bLengthChange": true,
+				"columnDefs": [ ],
+				 "dom": 'lBfrtip',
+				 "buttons": [
+					'excel'
+				]
+			} );
+			
+		} );
+		</script>
+</head>
 	<body>
-		<fieldset>
-			<% String tituloPagina="Aplicaciones de la Solución"; %>
-			<%@include file="cabecera.inc" %>
-		<center>
-		<c:url var="post_ctx"  value="/" />
 
-		</center>
-		</fieldset>
+			<% String tituloPagina="Listado de Aplicaciones"; %>
+			<%@include file="cabecera.inc" %>
 		<c:if test="${!empty appVersiones}">
 		
 			<br />
@@ -65,10 +49,12 @@ $(document).ready(function() {
 						<th>Versi&oacute;n</th>		
 						<th>Criticidad</th>				
 						<th>Exposici&oacute;n</th>
+						<th>Público</th>
 						<th>&Aacute;rea</th>
 						<th>Custodio</th>
 						<th>Tipo</th>		
-						<th>Fecha</th>						
+						<th>Fecha Pase</th>
+						<th align="left">Estado</th>							
 						<th></th>
 					</tr>
 					</thead>
@@ -76,13 +62,15 @@ $(document).ready(function() {
 					<tr style="background-color: #ed6c23;color:white !important;">
 						<th>Id</th>
 						<th>Nombre</th>
-						<th>Versi&oacute;n</th>
+						<th>Versi&oacute;n</th>		
 						<th>Criticidad</th>				
 						<th>Exposici&oacute;n</th>
+						<th>Público</th>
 						<th>&Aacute;rea</th>
 						<th>Custodio</th>
 						<th>Tipo</th>		
-						<th>Fecha</th>											
+						<th>Fecha Pase</th>
+						<th align="left">Estado</th>							
 						<th></th>
 					</tr>
 					</tfoot>
@@ -94,11 +82,13 @@ $(document).ready(function() {
 							<td><c:out value="${appVersion.corVersion}"/></td>
 							<td><c:out value="${appVersion.desCriticidad}"/></td>
 							<td><c:out value="${appVersion.desExposicion}"/></td>
+							<td><c:out value="${appVersion.desPublico}"/></td>
 							<td><c:out value="${appVersion.desArea}"/></td>
 							<td><c:out value="${appVersion.desCustodio}"/></td>	
 							<td><c:out value="${appVersion.desTipoApp}"/></td>	
 							<fmt:formatDate value="${appVersion.fechaVersion}" pattern="dd/MM/yyyy" var="newdatevar" />
 							<td><c:out value="${newdatevar}"/></td>
+							<td><c:choose><c:when test="${appVersion.estado==1}">Activo</c:when><c:otherwise>Inactivo</c:otherwise></c:choose></td>
 							<td><a href="consulta?idApp=${appVersion.id}&corVer=${appVersion.corVersion}">Ir</a></td>
 						</tr>
 					</c:forEach>

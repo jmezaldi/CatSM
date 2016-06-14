@@ -12,6 +12,7 @@ public class AplicacionVersionBean extends AplicacionBean {
 	private SoftwareBaseVersionBean swbaseVersion;
 	private Date fechaVersion;
 	private String  comentario;
+	private String  ticketPase;
 		
 	public Integer getCorVersion() {
 		return corVersion;
@@ -60,6 +61,12 @@ public class AplicacionVersionBean extends AplicacionBean {
 	}
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
+	}
+	public String getTicketPase() {
+		return ticketPase;
+	}
+	public void setTicketPase(String ticketPase) {
+		this.ticketPase = ticketPase;
 	}
 	
 	
