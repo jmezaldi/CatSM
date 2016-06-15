@@ -33,16 +33,10 @@
 		</script>
 	</head>
 	<body>
-		<fieldset>
 			<% String tituloPagina="Listado de Bases de Datos"; %>
 			<%@include file="cabecera.inc" %>
 		<center>
-		<c:url var="post_ctx"  value="/" />
-
-		</center>
-		</fieldset>
-		<c:if test="${!empty basedatosl}">
-		
+		<c:if test="${!empty basedatosl}">		
 			<br />
 			<center>
 				<div id="listado_p">

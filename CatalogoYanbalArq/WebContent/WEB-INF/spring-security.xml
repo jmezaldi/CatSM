@@ -19,8 +19,8 @@
 			username-parameter="username"
 			password-parameter="password" />
 		<logout logout-success-url="/login?logout"  />
-		<!-- enable csrf protection -->
-		<csrf/>
 	</http>
-
+	<authentication-manager>
+		<authentication-provider ref="customAuthenticationProvider" />
+	</authentication-manager>
 </beans:beans>

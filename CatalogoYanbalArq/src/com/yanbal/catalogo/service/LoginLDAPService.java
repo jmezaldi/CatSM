@@ -8,6 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.stereotype.Component;
 
+import com.ibm.ws.webservices.engine.client.Stub;
 import com.yanbal.integracionyanbalstore.ws.beans.WSMantenimientoUsuariosProxy;
 import com.yanbal.integracionyanbalstore.ws.tramas.comun.CodigoPaisOD;
 import com.yanbal.integracionyanbalstore.ws.tramas.comun.solicitud.Cabecera;
@@ -30,6 +31,9 @@ public class LoginLDAPService {
 		try {		
 		WSMantenimientoUsuariosProxy ws = new WSMantenimientoUsuariosProxy();
 		ws.setEndpoint(com.yanbal.catalogo.util.Propiedad.getValue("wslogin.endPoint").toString());
+		((Stub) ws.getWSMantenimientoUsuarios()).setTimeout(30000);
+		
+		
 		Cabecera cab = new Cabecera();
 	    cab.setCodigoAplicacion(com.yanbal.catalogo.util.Propiedad.getValue("wslogin.codigoAplicacion").toString());
 		cab.setUsuarioAplicacion(com.yanbal.catalogo.util.Propiedad.getValue("wslogin.usuarioAplicacion").toString());
@@ -56,16 +60,16 @@ public class LoginLDAPService {
 		det.setParametros(par);
 
 		integracionWSReq.setDetalle(det);
-
+		LOG.debug("Antes ws"); 
 		IntegracionWSResp integracionWSResp = ws.validaUsuariosObj(integracionWSReq);
-
+		LOG.debug("Despues ws"); 
 		Detalle detalleSalida = integracionWSResp.getDetalle();
 
 		return detalleSalida.getRespuesta();
 		} catch (Exception e)
 		{
 			
-			LOG.debug(e.toString());
+			LOG.error(e.toString());
 		}
 		return null;
 

@@ -69,14 +69,16 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         	
         	try
         	{
-        		
+        		log.info("Antes de llamar al servicio "+usuario);
         		Respuesta respuesta = (new LoginLDAPService()).login(usuario,password,usr.get(0).getDominio());
         		
-        	
+        		log.info("Despues de llamar al servicio "+respuesta);
         		
 	        	if (respuesta != null && respuesta.getDatos().getFlagValidacion().equals("1"))
 	        	{
 	        		String[] authorities = new String[usr.size()];
+	        		
+	        		log.info("authorities "+authorities.toString());
 	        		
 	        		for(int i = 0; i < usr.size(); i++) 
 	        		{ authorities[i] = usr.get(i).getDesRol(); 

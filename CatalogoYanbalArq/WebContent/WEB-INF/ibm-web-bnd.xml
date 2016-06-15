@@ -6,5 +6,5 @@
 	version="1.2">
 
 	<virtual-host name="default_host" />
-	<resource-ref name="dataSourceArquiteDB2" binding-name="jdbc/dataSourceArquiteDB2" />
+	<resource-ref name="dataSourceArquitectoDB2" binding-name="jdbc/dataSourceArquitectoDB2" />
 </web-bnd>
