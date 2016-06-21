@@ -1,20 +1,21 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page language="java" pageEncoding="UTF-8" session="true" isELIgnored="false"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page session="true" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>Catбlogo de Arquitectura</title>
-		<link rel="stylesheet" type="text/css" href='<c:url value="/resources/jquery.dataTables.min.css"/>'>
-		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Cat&aacute;logo de Arquitectura</title>
 		<script type="text/javascript" src='<c:url value="/resources/common.js"/>'></script>
 		<script type="text/javascript" src='<c:url value="/resources/solucion.js"/>'></script>
-
-
-	<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery-1.12.0.min.js"/>'></script>
-	<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery.dataTables.min.js"/>'></script>
-	<link rel="stylesheet" type="text/css" href='<c:url value="/resources/estilo.css"/>'>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery-1.12.0.min.js"/>'></script>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery.dataTables.min.js"/>'></script>
+		<link rel="stylesheet" type="text/css" href='<c:url value="/resources/jquery.dataTables.min.css"/>'>
+		<link rel="stylesheet" type="text/css" href='<c:url value="/resources/estilo.css"/>'>
 
 	<script type="text/javascript" class="init">
 	
@@ -50,11 +51,11 @@ $(document).ready(function() {
 			<br>
 			<table class="display">
 				<tr><td class="rosa">Nombre:</td><td><c:out value="${solucion.nombre}"/></td></tr>
-				<tr><td class="rosa">Descripciуn:</td><td><c:out value="${solucion.descripcion}"/></td></tr>
+				<tr><td class="rosa">Descripci&oacute;n:</td><td><c:out value="${solucion.descripcion}"/></td></tr>
 				<tr><td class="rosa">Vertical:</td><td><c:out value="${solucion.desVertical}"/></td></tr>
-				<tr><td class="rosa">Бmbito:</td><td><c:out value="${solucion.desAmbito}"/></td></tr>
+				<tr><td class="rosa">&Aacute;mbito:</td><td><c:out value="${solucion.desAmbito}"/></td></tr>
 				<tr><td class="rosa">Tipo:</td><td><c:out value="${solucion.desTipo}"/></td></tr>
-				<tr><td class="rosa">Бrea:</td><td><c:out value="${solucion.desArea}"/></td></tr>
+				<tr><td class="rosa">&Aacute;rea:</td><td><c:out value="${solucion.desArea}"/></td></tr>
 				<tr><td class="rosa">Estado:</td><td><c:choose><c:when test="${solucion.estado==1}">Activo</c:when><c:otherwise>Inactivo</c:otherwise></c:choose></td>
 			</table>
 		
@@ -70,7 +71,7 @@ $(document).ready(function() {
 						<th>Versi&oacute;n</th>		
 						<th>Criticidad</th>				
 						<th>Exposici&oacute;n</th>
-						<th>Pъblico</th>
+						<th>P&uacute;blico</th>
 						<th>&Aacute;rea</th>
 						<th>Custodio</th>
 						<th>Tipo</th>		
@@ -86,7 +87,7 @@ $(document).ready(function() {
 						<th>Versi&oacute;n</th>		
 						<th>Criticidad</th>				
 						<th>Exposici&oacute;n</th>
-						<th>Pъblico</th>
+						<th>P&uacute;blico</th>
 						<th>&Aacute;rea</th>
 						<th>Custodio</th>
 						<th>Tipo</th>		

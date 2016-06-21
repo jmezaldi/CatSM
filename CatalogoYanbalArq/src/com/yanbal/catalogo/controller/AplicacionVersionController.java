@@ -182,6 +182,21 @@ public class AplicacionVersionController extends BaseController {
 		return "appVersionInstVs";
 	}
 	
+	@RequestMapping(value = "/consultaInstUN", method = RequestMethod.GET)
+	public String consultaInstUN(HttpServletRequest request,@RequestParam("idApp") Integer idApp, @RequestParam("corVer") Integer corVer, ModelMap model) {
+		try {
+		
+			LOG.debug("/consultaRel ");
+			model.addAttribute("instalaciones", aplicacionVersionDAO.getAllInstalacionUNXIdAppVersion(idApp, corVer));
+
+
+		} catch (Exception e) {
+			LOG.error(e.getMessage(), e);
+
+		}
+		return "appVersionInstUN";
+	}
+	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ModelAndView add(@ModelAttribute(value = "solucion") AplicacionVersionBean solucion, BindingResult result) {
 		validator.validate(solucion, result);

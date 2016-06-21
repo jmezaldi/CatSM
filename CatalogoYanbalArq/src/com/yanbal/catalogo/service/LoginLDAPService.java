@@ -1,13 +1,8 @@
 package com.yanbal.catalogo.service;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.stereotype.Component;
-
 import com.ibm.ws.webservices.engine.client.Stub;
 import com.yanbal.integracionyanbalstore.ws.beans.WSMantenimientoUsuariosProxy;
 import com.yanbal.integracionyanbalstore.ws.tramas.comun.CodigoPaisOD;
@@ -69,7 +64,8 @@ public class LoginLDAPService {
 		} catch (Exception e)
 		{
 			
-			LOG.error(e.toString());
+			LOG.error("WS Servicio de Login: "+e.toString());
+			LOG.error(e.getMessage());
 		}
 		return null;
 

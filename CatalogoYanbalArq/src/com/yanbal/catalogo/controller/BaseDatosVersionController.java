@@ -78,7 +78,6 @@ public class BaseDatosVersionController extends BaseController {
 			model.addAttribute("bd", bd);
 			model.addAttribute("appVersiones", aplicacionVersionDAO.getAplicacionVersionXBDVersion(id, corVer));
 			model.addAttribute("clusters", baseDatosVersionDAO.getAllClusterServidorXBDVersion(id, corVer));
-			
 
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
@@ -87,6 +86,22 @@ public class BaseDatosVersionController extends BaseController {
 		return "bdVersionXPk";
 	}
 
+	@RequestMapping(value = "/consultaInstUN", method = RequestMethod.GET)
+	public String consultaInstUN(HttpServletRequest request,@RequestParam("id") Integer id, @RequestParam("corVer") Integer corVer, ModelMap model) {
+		try {
+		
+			LOG.debug("/consultaInstUN ");
+			model.addAttribute("instalaciones", baseDatosVersionDAO.getAllInstalacionUNXIdBDVersion(id, corVer));
+
+
+		} catch (Exception e) {
+			LOG.error(e.getMessage(), e);
+
+		}
+		return "bdVersionInstUN";
+	}
+	
+	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ModelAndView add(@ModelAttribute(value = "solucion") BaseDatosVersionBean solucion, BindingResult result) {
 		validator.validate(solucion, result);

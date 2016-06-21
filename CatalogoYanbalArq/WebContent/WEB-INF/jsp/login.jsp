@@ -1,8 +1,14 @@
+<!DOCTYPE html>
+<%@ page language="java" pageEncoding="UTF-8" session="true" isELIgnored="false"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page session="true"%>
 <html>
 <head>
-		<title>Cat·logo de Arquitectura</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Cat√°logo de Arquitectura</title>
 <style>
 body{
 	color:#666666;
@@ -99,7 +105,7 @@ body{
 				<img src='images/unique-transparente.png' />
 			</div>
 			<div id="tit_cta">
-				Cat·logo de Arquitectura
+				Cat√°logo de Arquitectura
 			</div>
 			<div id="menuHeader">
 				<div class="menutop"><a href="javascript:window.close();"><img src="images/salir.png"></a></div>
@@ -127,7 +133,7 @@ body{
 					<td><input type='text' name='username'></td>
 				</tr>
 				<tr>
-					<td>ContraseÒa:</td>
+					<td>Contrase√±a:</td>
 					<td><input type='password' name='password' /></td>
 				</tr>
 				<tr>

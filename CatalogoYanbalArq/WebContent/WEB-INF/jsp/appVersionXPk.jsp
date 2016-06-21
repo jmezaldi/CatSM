@@ -1,4 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page language="java" pageEncoding="UTF-8" session="true" isELIgnored="false"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page session="true" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -7,7 +9,10 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>Catálogo de Arquitectura</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Cat&aacute;logo de Arquitectura</title>
 		<link rel="stylesheet" type="text/css" href='<c:url value="/resources/jquery.dataTables.min.css"/>'>
 		<link rel="stylesheet" type="text/css" href='<c:url value="/resources/jquery-1.12.0.ui.css"/>'>
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
@@ -42,21 +47,21 @@
 
 	</head>
 	<body>
-			<% String tituloPagina="Detalle Aplicación"; %>
+			<% String tituloPagina="Detalle Aplicaci&oacute;n"; %>
 			<%@include file="cabecera.inc" %>
 		<div id="contenido_p">
 		<br>
 			<table class="display">
 				<tr><td class="rosa">Nombre:</td><td><c:out value="${appVersion.nombre}"/>&nbsp;&nbsp;</td>
 				<td class="rosa">Versi&oacute;n:</td><td><c:out value="${appVersion.corVersion}"/></td><td><div id="modal"><a title="Aplicaciones Relacionadas" href='<c:url value="/"/>app/appVersion/consultaRel?idApp=${appVersion.id}&corVer=${appVersion.corVersion}'>&#60;Aplicaciones Relacionadas&#62;</a></div></td></tr>
-				<tr><td class="rosa">Descripción:</td><td colspan="7"><c:out value="${appVersion.descripcion}"/></td></tr>
+				<tr><td class="rosa">Descripci&oacute;n:</td><td colspan="7"><c:out value="${appVersion.descripcion}"/></td></tr>
 				<tr><td class="rosa">Criticidad:</td><td><form:select path="appVersion.codDatoCriticidad" id="DatoCriticidad" class="form-control" disabled="${true}">
 						    <form:option value="" label="--"/>
 							<form:options items="${TabCod7}" itemValue="codDato" itemLabel="desAbreviada" />
 				</form:select></td><td class="rosa">Exposici&oacute;n:</td><td><form:select path="appVersion.codDatoExposicion" id="DatoExposicion" class="form-control" disabled="${true}">
 						    <form:option value="" label="--"/>
 							<form:options items="${TabCod8}" itemValue="codDato" itemLabel="desAbreviada" />
-				</form:select></td><td class="rosa">Público:</td><td><form:select path="appVersion.codDatoPublico" id="DatoPublico" class="form-control" disabled="${true}">
+				</form:select></td><td class="rosa">P&uacute;blico:</td><td><form:select path="appVersion.codDatoPublico" id="DatoPublico" class="form-control" disabled="${true}">
 						    <form:option value="" label="--"/>
 							<form:options items="${TabCod19}" itemValue="codDato" itemLabel="desAbreviada" />
 				</form:select></td></tr>
@@ -77,15 +82,15 @@
 							<form:options items="${TabCod9}" itemValue="codDato" itemLabel="desAbreviada" />
 				</form:select></td></tr>
 				<tr><td class="rosa">Fuente:</td><td colspan="3"><c:out value="${appVersion.fuente}"/></td></tr>
-				<tr><td class="rosa">Documentación:</td><td colspan="3"><c:out value="${appVersion.documentacion}"/></td></tr>
-				<tr><td class="rosa">Software Base:</td><td colspan="3"><c:out value="${appVersion.swbaseVersion.nombre}"/> Versión <c:out value="${appVersion.swbaseVersion.version}"/> Fix <c:out value="${appVersion.swbaseVersion.fix}"/>&nbsp;<a href='<c:url value="/"/>app/swBaseVersion/consulta?id=${appVersion.swbaseVersion.id}&corVer=${appVersion.swbaseVersion.corVersion}'>Ir</a></td></tr>
+				<tr><td class="rosa">Documentaci&oacute;n:</td><td colspan="3"><c:out value="${appVersion.documentacion}"/></td></tr>
+				<tr><td class="rosa">Software Base:</td><td colspan="3"><c:out value="${appVersion.swbaseVersion.nombre}"/> Versi&oacute;n <c:out value="${appVersion.swbaseVersion.version}"/> Fix <c:out value="${appVersion.swbaseVersion.fix}"/>&nbsp;<a href='<c:url value="/"/>app/swBaseVersion/consulta?id=${appVersion.swbaseVersion.id}&corVer=${appVersion.swbaseVersion.corVersion}'>Ir</a></td></tr>
 			</table>
 
 		<h2>Base de Datos</h2>
 		<table class="ybl">
 						<thead><tr>
 							<th>Nombre</th>			
-							<th>Versión</th>		
+							<th>Versi&oacute;n</th>		
 							<th>Datos Sensibles</th>			
 							<th>Datos Personales</th>		
 							<th colspan="2">Software</th>		
@@ -103,7 +108,7 @@
 						</tr>
 			</c:forEach>
 		</table>
-		<h2>Características</h2>
+		<h2>Caracter&iacute;sticas</h2>
 		<table class="ybl">
 			<c:forEach items="${caracteristicas}" var="caract">
 						<c:if test="${caract.codDato==0}">
@@ -124,7 +129,7 @@
 				<table class="ybl">
 						<thead>
 						<tr>
-							<th>Instalación</th>			
+							<th>Instalaci&oacute;n</th>			
 							<th>Servidor</th>		
 							<th>Tipo</th>					
 						</tr>
@@ -137,14 +142,14 @@
 						</tr>
 			</c:forEach>
 		</table>
-		<h2>Unidades de Negocio</h2>	
+		<table border="0"><tr><td><h2>Unidades de Negocio</h2></td><td style="width:50px;">&nbsp;</td><td><div id="modal"><a title="Unidades de Negocio vs Instalaciones" href='<c:url value="/"/>app/appVersion/consultaInstUN?idApp=${appVersion.id}&corVer=${appVersion.corVersion}'>&#60;Unidades de Negocio vs Instalaciones&#62;</a></div></td></tr></table>		
 		<table class="ybl">
 						<thead>
 						<tr>
 							<th>Id</th>
-							<th>Código</th>
+							<th>C&oacute;digo</th>
 							<th>Nombre</th>
-							<th>Fecha Activación</th>			
+							<th>Fecha Activaci&oacute;n</th>			
 							<th>Ticket</th>	
 						</tr>
 						</thead>

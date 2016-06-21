@@ -8,6 +8,7 @@ import com.yanbal.catalogo.bean.AplicacionVersionBean;
 import com.yanbal.catalogo.bean.AppInstalacionVSBDInstalacionBean;
 import com.yanbal.catalogo.bean.BaseDatosVersionBean;
 import com.yanbal.catalogo.bean.ClusterServidorBean;
+import com.yanbal.catalogo.bean.InstalacionUNBean;
 import com.yanbal.catalogo.bean.TablasCodigosUtilBean;;
 
 public interface AplicacionVersionDAO {
@@ -29,5 +30,6 @@ public interface AplicacionVersionDAO {
 	public List<AplicacionVersionBean> getAllAppVersionHijo(@Param("id") Integer id,@Param("corVer")  Integer corVer);
 	public List<AplicacionVersionBean> getAllAppVersionPadre(@Param("id") Integer id,@Param("corVer")  Integer corVer);
 	public List<AppInstalacionVSBDInstalacionBean> getAllBDInstalacionvsAppInstalcionXAppVersion(@Param("id") Integer id,@Param("corVer")  Integer corVer);	
+	public List<InstalacionUNBean> getAllInstalacionUNXIdAppVersion(@Param("id") Integer id,@Param("corVer")  Integer corVer);
 	
 }

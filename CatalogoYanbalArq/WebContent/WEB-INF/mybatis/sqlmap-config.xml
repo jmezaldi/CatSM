@@ -24,5 +24,6 @@
 		<typeAlias type="com.yanbal.catalogo.bean.AppVersionRelacionBean" alias="appVersionRelacionBean"/>
 		<typeAlias type="com.yanbal.catalogo.bean.UnidadNegocioAppVersionBean" alias="unidadNegocioAppVersionBean"/>
 		<typeAlias type="com.yanbal.catalogo.bean.AppInstalacionVSBDInstalacionBean" alias="appInstalacionVSBDInstalacionBean"/>
+		<typeAlias type="com.yanbal.catalogo.bean.InstalacionUNBean" alias="instalacionUNBean"/>
 	</typeAliases>
 </configuration>

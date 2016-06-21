@@ -1,20 +1,23 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page language="java" pageEncoding="UTF-8" session="true" isELIgnored="false"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page session="true" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
-		<title>Catбlogo de Arquitectura</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Cat&aacute;logo de Arquitectura</title>
 		<link rel="stylesheet" type="text/css" href='<c:url value="/resources/jquery.dataTables.min.css"/>'>
 		<link rel="stylesheet" type="text/css" href='<c:url value="/resources/jquery-1.12.0.ui.css"/>'>
 		<script type="text/javascript" src='<c:url value="/resources/common.js"/>'></script>
 		<script type="text/javascript" src='<c:url value="/resources/solucion.js"/>'></script>
-
-	<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery-1.12.0.min.js"/>'></script>
-	<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery-1.12.0.ui.min.js"/>'></script>
-	<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery.dataTables.min.js"/>'></script>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery-1.12.0.min.js"/>'></script>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery-1.12.0.ui.min.js"/>'></script>
+		<script type="text/javascript" language="javascript" src='<c:url value="/resources/jquery.dataTables.min.js"/>'></script>
     <link rel="stylesheet" type="text/css" href='<c:url value="/resources/estilo.css"/>'>
 		<script type="text/javascript">
 			var projectUrl = '<c:url value="/"/>';
@@ -58,11 +61,11 @@
 				<tr><td class="rosa" >Serial:</td><td colspan="5"><c:out value="${servidor.serial}"/></td></tr>
 				<tr><td class="rosa" >Responsable:</td><td colspan="5"><c:out value="${servidor.responsable}"/></td></tr>
 				<tr><td class="rosa" >Ambiente:</td><td colspan="5"><c:out value="${servidor.desAmbiente}"/></td></tr>
-				<tr><td class="rosa" >Ubicaciуn:</td><td colspan="5"><c:out value="${servidor.desUbicacionServidor}"/></td></tr>
+				<tr><td class="rosa" >Ubicaci&oacute;n:</td><td colspan="5"><c:out value="${servidor.desUbicacionServidor}"/></td></tr>
 				<tr><td class="rosa" >Tipo de Contrato:</td><td colspan="5"><c:out value="${servidor.desTipoContrato}"/></td></tr>
 				<tr><td class="rosa" >Tipo Servidor:</td><td colspan="5"><c:out value="${servidor.desTipoServidor}"/></td></tr>
-				<tr><td class="rosa" >Servidor Fнsico:</td><td colspan="5"><c:out value="${servidor.servidorFisico.nombre}"/>&nbsp;&nbsp;<a href='<c:url value="/"/>app/servidor/consulta?idServidor=${servidor.servidorFisico.id}'>Ir</a></td></tr>
-				<tr><td class="rosa" >Tecnologнa:</td><td colspan="5"><c:out value="${servidor.desTecnologia}"/></td></tr>
+				<tr><td class="rosa" >Servidor F&iacute;sico:</td><td colspan="5"><c:out value="${servidor.servidorFisico.nombre}"/>&nbsp;&nbsp;<a href='<c:url value="/"/>app/servidor/consulta?idServidor=${servidor.servidorFisico.id}'>Ir</a></td></tr>
+				<tr><td class="rosa" >Tecnolog&iacute;a:</td><td colspan="5"><c:out value="${servidor.desTecnologia}"/></td></tr>
 				<tr><td class="rosa" >Comentario Interno:</td><td colspan="7"><c:out value="${servidor.comentarioInterno}"/></td></tr>
 			</table>			<br />
 			<h2>Software Base Instalado</h2>				
@@ -129,8 +132,8 @@
 						<th>Datos Sensibles</th>				
 						<th>Datos Personales</th>
 						<th>Comentario</th>			
-						<th>Nombre Fнsico</th>	
-						<th>Descripciуn</th>
+						<th>Nombre F&iacute;sico</th>	
+						<th>Descripci&oacute;n</th>
 						<th></th>
 					</tr>
 					</thead>      					

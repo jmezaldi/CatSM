@@ -431,5 +431,36 @@
 			ON (S.CODIGO_TABLA_AMBIENTE=TC.CODIGO_TABLA AND S.CODIGO_DATO_AMBIENTE=TC.CODIGO_DATO )
 		WHERE APPI.ID_APLICACION = #{idApp} AND APPI.CORRELATIVO_VERSION = #{corVer}
 	</select>
+	
+	<resultMap id="resultInstUN" type="InstalacionUNBean">	
+        <result property="corInstalacion" column="CORRELATIVO_INSTALACION"/>
+        <result property="idUnidadNegocio" column="ID_UNIDAD_NEGOCIO"/>
+        <result property="nombreUN" column="NOMBRE_UN"/>
+        <result property="tipoInstalacion" column="NOM_C"/>
+        <result property="idCluster" column="ID_C"/>
+        <result property="idServidor" column="ID_S"/>
+        <result property="nombreInstalacion" column="NOMBRE"/>
+    </resultMap>	
+	
+	<select id="getAllInstalacionUNXIdAppVersion" parameterType="map" resultMap="resultInstUN">  
+		SELECT 
+			APPU.CORRELATIVO_INSTALACION,
+			APPU.ID_UNIDAD_NEGOCIO,
+			UN.NOMBRE AS NOMBRE_UN,
+			C.ID AS ID_C,			
+			CASE WHEN C.ID IS NOT NULL THEN 'Cluster ' ELSE 'Servidor ' END AS NOM_C,
+			S.ID AS ID_S,
+			COALESCE(C.NOMBRE,S.NOMBRE) AS NOMBRE
+		FROM CATALOGO.APLICACION_VERSION_UN_INSTALACION APPU
+		INNER JOIN CATALOGO.APLICACION_VERSION_INSTALACION APPI
+		ON (APPU.ID_APLICACION=APPI.ID_APLICACION AND APPU.CORRELATIVO_VERSION=APPI.CORRELATIVO_VERSION
+		    AND APPU.CORRELATIVO_INSTALACION=APPI.CORRELATIVO_INSTALACION)
+		INNER JOIN CATALOGO.UNIDAD_NEGOCIO UN ON (APPU.ID_UNIDAD_NEGOCIO=UN.ID)
+		LEFT OUTER JOIN CATALOGO.CLUSTER C
+			ON (C.ID=APPI.ID_CLUSTER)
+		LEFT OUTER JOIN CATALOGO.SERVIDOR S
+			ON (S.ID =APPI.ID_SERVIDOR)
+		WHERE APPU.ID_APLICACION = #{id} AND APPU.CORRELATIVO_VERSION =  #{corVer}
+	</select>	
 
 </mapper>
