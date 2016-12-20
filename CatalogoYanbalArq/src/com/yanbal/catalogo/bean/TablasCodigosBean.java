@@ -7,6 +7,9 @@ public class TablasCodigosBean {
 	private String  desAbreviada;
 	private String  desCompleta;
 	private Integer estado;
+	
+	public static final int TODOS = 0;
+	
 	public Integer getCodTabla() {
 		return codTabla;
 	}

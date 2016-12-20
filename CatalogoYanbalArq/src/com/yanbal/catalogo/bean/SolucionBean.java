@@ -28,7 +28,8 @@ public class SolucionBean implements Serializable {
 	private String  usuarioCreacion;
 	private String  usuarioActualizacion;
 	
-
+	public static final int ESTADO_ACTIVO = 1;
+	public static final int ESTADO_INACTIVO = 0;
 	
 	public SolucionBean() {
 		super();

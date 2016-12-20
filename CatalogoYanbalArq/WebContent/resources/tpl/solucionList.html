@@ -1,0 +1,41 @@
+<div ui-view></div>      
+<div id="listado_p">
+	<table id="tblList" class="table table-striped table-bordered" cellspacing="0" width="100%">
+	   <thead>
+			<tr style="background-color: #ed6c23;color:white !important;">
+				<th>Id</th>
+				<th>Nombre</th>
+				<th>Descripci&oacute;n</th>
+				<th>Vertical</th>
+				<th>&Aacute;mbito</th>
+				<th>Tipo</th>
+				<th>&Aacute;rea</th>	
+				<th>Estado</th>	
+			</tr>
+		</thead>
+		<tfoot>
+			<tr style="background-color: #ed6c23; color:white !important;">
+				<th>Id</th>
+				<th>Nombre</th>
+				<th>Descripci&oacute;n</th>
+				<th>Vertical</th>
+				<th>&Aacute;mbito</th>
+				<th>Tipo</th>
+				<th>&Aacute;rea</th>	
+				<th>Estado</th>
+			</tr>
+		</tfoot>
+		<tbody>
+            <tr ng-repeat="solucion in soluciones">
+            	<td>{{solucion.id}}</td>
+            	<td><a ui-sref='.item({id: solucion.id})'>{{solucion.nombre}}</a></td>
+            	<td>{{solucion.descripcion}}</td>
+            	<td>{{solucion.desVertical}}</td>
+            	<td>{{solucion.desAmbito}}</td>
+            	<td>{{solucion.desTipo}}</td>
+            	<td>{{solucion.desArea}}</td>
+            	<td>{{solucion.estado | HTMLActive}}</td>				
+			</tr>
+		</tbody>
+	</table>
+</div>

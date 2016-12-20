@@ -1,16 +1,28 @@
 package com.yanbal.catalogo.service;
 
 import java.util.List;
+
+import javax.annotation.ManagedBean;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.yanbal.catalogo.bean.TablasCodigosBean;
-import com.yanbal.catalogo.dao.TablasCodigosDAOImpl;
+import com.yanbal.catalogo.dao.TablasCodigosDAO;
 
 
+@ManagedBean
 public class TablasCodigosService {
 	
-	public static List<TablasCodigosBean> obtenerTablasCodigosxCodTabla(Integer id)
+	private TablasCodigosDAO tablasCodigosDAO = null;
+
+	@Autowired
+	public void setTablasCodigosDAO(TablasCodigosDAO tablasCodigosDAO) {
+		this.tablasCodigosDAO = tablasCodigosDAO;
+	}	
+	
+	public List<TablasCodigosBean> obtenerTablasCodigosxCodTabla(Integer id)
 	{
-		TablasCodigosDAOImpl dao = new TablasCodigosDAOImpl();
-		return dao.getAllDatosXCodigoTabla(id);
+		return tablasCodigosDAO.getAllDatosXCodigoTabla(id);
 	}
 		
 }

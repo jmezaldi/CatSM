@@ -1,0 +1,6 @@
+<select class="form-control"
+	ng-model="codDatoObj"
+	ng-options="codigo.desAbreviada for codigo in codigos track by codigo.codDato"
+	ng-change="update()">
+	>
+</select>

@@ -81,33 +81,17 @@
 	
 	
 	<insert id="saveSolucion" parameterType="solucionBean">
-		INSERT INTO <include refid="sqlSchema"/>SOLUCION (CODIGO, NOMBRE, DESCRIPCION, 
-		CODIGO_TABLA_VERTICAL,CODIGO_DATO_VERTICAL, CODIGO_TABLA_AMBITO, CODIGO_DATO_AMBITO,
-  		CODIGO_TABLA_TIPO, CODIGO_DATO_TIPO, CODIGO_TABLA_AREA, CODIGO_DATO_AREA,
-  		ESTADO,  USUARIO_CREACION, USUARIO_ACTUALIZACION,FECHA_CREACION,FECHA_ACTUALIZACION) 
-    	VALUES (#{codigo},#{nombre},#{descripcion},#{codTablaVertical},#{codDatoVertical},
-    	#{codTablaAmbito},#{codDatoAmbito},#{codTablaTipo},#{codDatoTipo},
-    	#{codTablaArea},#{codDatoArea},#{estado},#{usuarioCreacion},#{usuarioActualizacion},
-    	CURRENT TIMESTAMP,CURRENT TIMESTAMP)    	
+		CALL <include refid="sqlSchema"/>USP_SOLUCION_INS
+		(#{codigo}, #{nombre}, #{descripcion}, #{codTablaVertical}, #{codDatoVertical},
+    	#{codTablaAmbito}, #{codDatoAmbito}, #{codTablaTipo}, #{codDatoTipo},
+    	#{codTablaArea}, #{codDatoArea}, #{estado}, #{usuarioCreacion})    	
 	</insert>
 	
 	<update id="updateSolucion" parameterType="solucionBean"> 
-  		UPDATE <include refid="sqlSchema"/>SOLUCION
-  		SET
-  			CODIGO = #{codigo},  
-			NOMBRE = #{nombre},  
-			DESCRIPCION = #{descripcion},  
-			CODIGO_TABLA_VERTICAL = #{codTablaVertical} ,
-			CODIGO_TABLA_AMBITO = #{codTablaAmbito},
-			CODIGO_TABLA_TIPO = #{codTablaTipo},
-			CODIGO_TABLA_AREA = #{codTablaArea},
-			CODIGO_DATO_VERTICAL = #{codDatoVertical} ,
-			CODIGO_DATO_AMBITO = #{codDatoAmbito},
-			CODIGO_DATO_TIPO = #{codDatoTipo},
-			CODIGO_DATO_AREA = #{codDatoArea},
-			USUARIO_ACTUALIZACION = #{usuarioActualizacion},
-			FECHA_ACTUALIZACION = CURRENT TIMESTAMP		
- 		where id = #{id} 
+  		CALL <include refid="sqlSchema"/>USP_SOLUCION_UPD
+		(#{id}, #{codigo}, #{nombre}, #{descripcion}, #{codTablaVertical}, #{codDatoVertical},
+    	#{codTablaAmbito}, #{codDatoAmbito}, #{codTablaTipo}, #{codDatoTipo},
+    	#{codTablaArea}, #{codDatoArea}, #{estado}, #{usuarioCreacion})    	
 	</update>
 	
 	<delete id="deleteSolucion" parameterType="int">
