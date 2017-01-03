@@ -107,9 +107,6 @@ body{
 			<div id="tit_cta">
 				Catálogo de Arquitectura
 			</div>
-			<div id="menuHeader">
-				<div class="menutop"><a href="javascript:window.close();"><img src="images/salir.png"></a></div>
-			</div>
 		</div>
 	</div>
 

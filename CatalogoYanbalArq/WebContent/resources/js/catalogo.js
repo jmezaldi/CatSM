@@ -20,15 +20,21 @@ angular.module('catalogo', ["ui.router", "ngResource"])
 .config(['$qProvider', function ($qProvider) {
     $qProvider.errorOnUnhandledRejections(false);
 }])
-.controller("mainCtrl", function ($scope, $rootScope, $http) {
+.controller("mainCtrl", function ($scope, $rootScope, $http, $window) {	
 	$rootScope.title = "Inicio";
+	$scope.isSidebar = true;
 	$http.get(URL_API + "/catalogo/tablas_codigos")
     .then(function(response) {
     	$rootScope.tablasCodigos = response.data;
     });
-	$rootScope.estados = [0, 1]; 
-	//TODO add token
-	$http.defaults.headers.common['test']= 'team'; 
+	$rootScope.estados = [0, 1];
+	//$http.defaults.headers.common['test']= 'team'; 
+	$scope.salir = function(){		
+		$http.post(URL_LOGOUT)
+		.then(function(response){
+			$window.location.href = URL_BASE;
+		});
+	};
 })
 .filter('HTMLActive', function() {
     return function(estado) {        
@@ -42,6 +48,7 @@ angular.module('catalogo', ["ui.router", "ngResource"])
 	    }
 	});
 })
+//TODO improve: constants for tablas 
 .factory('TablasCodigos', function($rootScope) {	
 	var factory = {};
 	factory.getCodigos = function(codTabla){

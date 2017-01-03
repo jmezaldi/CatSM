@@ -18,48 +18,62 @@
 	<script>
 		URL_BASE = "<c:url value="/"/>";
 		URL_API = URL_BASE + "api";
+		URL_LOGOUT = URL_BASE + "j_spring_security_logout";
 	</script>
-	<nav class="navbar navbar-fixed-top" id="navbar">
+	
+	
+	
+	<nav class="navbar navbar-fixed-top">
       <div class="container-fluid">
-        <div class="navbar-collapse collapse">
-        	<div id="contenidoHeader">
-				<div id="tit_cta">
-					Catálogo: {{title}}
-				</div>
-				<div id="menuHeader">
-					<div class="menutop">
-						<a href="#">SALIR</a><!-- TODO implement logout -->
-					</div>
-					<br/><br/>
-					<div style="display: inline-block; text-align: right;">
-					<!-- improve, implement main menu, go back -->
-					<a class="linkb" href="<c:url value="/"/>app">Ir al menú principal</a>
-					<a class="linkb" href="javascript:window.history.back();">Regresar</a>
-					</div>
-				</div>
-			</div>  
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">{{title}}</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="<c:url value="/"/>app">Inicio</a></li>
+            <li><a href="javascript:window.history.back();">Regresar</a></li>
+            <li><a href="#" ng-click="salir()"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></a></li>
+          </ul>
         </div>
       </div>
     </nav>
-	<div class="container-fluid">
+	<div class="container-fluid content">
 		<div clas="row">
-			<div id="menulistado" class="col-sm-3 col-md-2 sidebar">
-				<a class="linkm" ui-sref="solucion" ui-sref-active="active">Soluciones</a>
-				<br/>
-				<a class="linkm" href="<c:url value="/"/>app/appVersion/todas">Aplicaciones</a>
-				<br/>
-				<a class="linkm" href="<c:url value="/"/>app/basedatosversion">Bases de Datos</a>
-				<br/>
-				<a class="linkm" href="<c:url value="/"/>app/swBaseVersion">Software Base</a>
-				<br/>
-				<a class="linkm" href="<c:url value="/"/>app/servidor">Servidores</a>
-				<br/>
-				<a class="linkm" href="<c:url value="/"/>app/cluster">Clusters</a>
+			<div class="col-sm-12 col-md-12">
+				<div class="sidebar" ng-class="{'active': isSidebar}">
+				  <ul>
+					<li>
+						<button type="button" class="navbar-toggle" 
+							data-toggle="collapse" data-target="#sidebar-nav" 
+							aria-expanded="true" aria-controls="sidebar-nav"
+							ng-click="isSidebar = !isSidebar"
+							>
+				            <span class="sr-only">Toggle navigation</span>
+				            <span class="icon-bar"></span>
+				            <span class="icon-bar"></span>
+				            <span class="icon-bar"></span>
+				        </button>
+					</li>
+				  </ul>
+				  <ul id="sidebar-nav" class="sidebar-nav collapse in">				
+					<li><a ui-sref="solucion" ui-sref-active="active">Soluciones</a></li>
+					<li><a href="<c:url value="/"/>app/appVersion/todas">Aplicaciones</a></li>
+					<li><a href="<c:url value="/"/>app/basedatosversion">Bases de Datos</a></li>
+					<li><a href="<c:url value="/"/>app/swBaseVersion">Software Base</a></li>
+					<li><a href="<c:url value="/"/>app/servidor">Servidores</a></li>
+					<li><a href="<c:url value="/"/>app/cluster">Clusters</a></li>
+				  </ul>
+				</div>
+				<div class="main">
+					<ui-view></ui-view>		
+				</div>
 			</div>
-			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<ui-view></ui-view>		
-			</div>
-			
 		</div>
 	</div>
 	<script src='<c:url value="/resources/jquery-1.12.0.min.js"/>'></script><!-- TODO update version -->	

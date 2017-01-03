@@ -32,9 +32,36 @@
     ALTER TABLE CATALOGO.SOLUCION ALTER COLUMN ID RESTART WITH 75
 - <http://blog.idleworx.com/2011/09/mybatis-dao-example-code-tutorial.html>
   
-# REST API
+# REST API, Spring REST
 - <http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api>
 - <http://www.java2blog.com/2016/04/spring-restful-web-services-crud-example.html>
+- <http://websystique.com/springmvc/spring-mvc-4-restful-web-services-crud-example-resttemplate/>
+
+# Spring, Security
+- <http://www.java2blog.com/2016/09/spring-rest-spring-security-example.html>
+ - <http://docs.spring.io/spring-security/site/docs/3.0.x/reference/appendix-namespace.html>
+ - <https://github.com/spring-projects/spring-security/blob/master/web/src/main/java/org/springframework/security/web/authentication/LoginUrlAuthenticationEntryPoint.java>
+ - <http://stackoverflow.com/questions/34087954/spring-security-how-to-add-a-redirect-query-parameter-to-the-login-url-to-allow/34091221#34091221>
+ - <http://stackoverflow.com/questions/15847932/prevent-redirect-to-login-for-spring-security/15875641#15875641>
+- <http://www.baeldung.com/securing-a-restful-web-service-with-spring-security>
+- <https://malalanayake.wordpress.com/2014/06/27/spring-security-on-rest-api/>
+- <https://spring.io/blog/2015/01/12/spring-and-angular-js-a-secure-single-page-application>
+- <https://spring.io/blog/2015/01/12/the-login-page-angular-js-and-spring-security-part-ii>
+- <https://spring.io/blog/2015/01/20/the-resource-server-angular-js-and-spring-security-part-iii>  
+- <https://spring.io/guides/tutorials/spring-security-and-angular-js/>
+- <http://stackoverflow.com/questions/10826293/restful-authentication-via-spring>
+- <http://www.mkyong.com/tutorials/spring-security-tutorials/> 
+- Token
+ - <https://javattitude.com/2014/06/07/spring-security-custom-token-based-rest-authentication/>
+ - <https://www.toptal.com/java/rest-security-with-jwt-spring-security-and-java>
+- CSRF
+ - <https://scotch.io/tutorials/the-ins-and-outs-of-token-based-authentication>
+ - <https://stormpath.com/blog/angular-xsrf>
+ - <https://docs.spring.io/spring-security/site/docs/current/reference/html/csrf.html>
+- CORS
+ - <https://gist.github.com/zeroows/80bbe076d15cb8a4f0ad>
+ - <http://dontpanic.42.nl/2015/04/cors-with-spring-mvc.html>
+
 
 # AngularJs, Router, UI Router, Component, Datatables, Resource
 - <https://docs.angularjs.org/api/ng/service/$http>
@@ -60,4 +87,11 @@
  - <https://www.sitepoint.com/creating-crud-app-minutes-angulars-resource/>
  - <https://docs.angularjs.org/api/ngResource/service/$resource>
  - <http://www.angularjshub.com/examples/servercalls/resourceservice/>
+ 
+# CSS design, templates
+- Bootstrap
+ - <http://getbootstrap.com/examples/dashboard>
+ - <http://getbootstrap.com/javascript/#collapse>
+ - <http://www.webdesignerdepot.com/2014/02/how-to-create-horizontal-scrolling-using-display-table-cell/>
+ 
  
