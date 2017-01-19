@@ -1,6 +1,6 @@
 angular.module('catalogo', ["ui.router", "ngResource", "ncy-angular-breadcrumb", 
                             'datatables', 'datatables.buttons', 'datatables.bootstrap',
-                            'angular-growl', 'ngAnimate'])
+                            'angular-growl', 'ngAnimate', 'angular-loading-bar'])
 
 .config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/")
@@ -60,18 +60,27 @@ angular.module('catalogo', ["ui.router", "ngResource", "ncy-angular-breadcrumb",
     });
  })
 .config(['growlProvider', function(growlProvider) {
-  growlProvider.globalPosition('bottom-left');
-  growlProvider.globalTimeToLive(5000);
-  growlProvider.globalDisableCountDown(true);
-  growlProvider.globalDisableCloseButton(true);
+	growlProvider.globalPosition('bottom-left');
+	growlProvider.globalTimeToLive(5000);
+	growlProvider.globalDisableCountDown(true);
+	growlProvider.globalDisableCloseButton(true);
+}])
+.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+	cfpLoadingBarProvider.includeSpinner = false;
 }])
 .factory('appInterceptor', function($q, $window, $state, $rootScope){
-    return {
+	$rootScope.pendingRequests = 0;
+	return {    	
+    	request: function (config) {
+            return config || $q.when(config);
+        },
+        requestError: function(rejection) {
+            return $q.reject(rejection);
+        },
         response: function(response){
             return response || $q.when(response);
         },
         responseError: function(responseError) {
-        	console.log(responseError);
         	var status = responseError.status;        	
             if (status == 401) {  
             	//TODO IMPROVE redirect
@@ -81,8 +90,8 @@ angular.module('catalogo', ["ui.router", "ngResource", "ncy-angular-breadcrumb",
             }else if ((status >= 400) && (status < 600) ) {
             	return $q.reject(responseError);
             }
-        	$rootScope.$broadcast("HttpError", status);
-            return;
+        	$rootScope.$broadcast("HttpError", status);        	
+            return $q.reject(responseError);
         }
     }
 })

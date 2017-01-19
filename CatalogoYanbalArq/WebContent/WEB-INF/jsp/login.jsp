@@ -102,7 +102,7 @@ body{
 	<div id="header">
 		<div id="contenidoHeader">
 			<div id="logo">
-				<img src='images/unique-transparente.png' />
+				<img src='<c:url value='/images/unique-transparente.png' />' />
 			</div>
 			<div id="tit_cta">
 				Catálogo de Arquitectura

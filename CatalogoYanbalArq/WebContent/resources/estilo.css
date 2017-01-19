@@ -176,3 +176,7 @@ table.ybl tbody th, table.ybl tbody td {
 .form .form-group .check{
 	display: none;
 }
+/**/
+#loading-bar .bar{
+	background: grey;
+}

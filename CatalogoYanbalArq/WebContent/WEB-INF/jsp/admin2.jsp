@@ -12,6 +12,7 @@
 	<link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/datatables.bootstrap.min.css"/>'>    
 	<link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/buttons.dataTables.min.css"/>'>
     <link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/angular-growl.min.css"/>'>
+    <link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/angular-loading-bar.css"/>'>
     <link rel="stylesheet" type="text/css" href='<c:url value="/resources/estilo.css"/>'>
 </head>
 <body ng-app="catalogo" ng-controller="mainCtrl">
@@ -63,7 +64,7 @@
 			</div>
 		</div>
 	</div>
-	<script src='<c:url value="/resources/jquery-1.12.0.min.js"/>'></script><!-- TODO update version -->	
+	<script src='<c:url value="/resources/js/jquery-1.12.0.min.js"/>'></script><!-- TODO update version -->	
 	<script src='<c:url value="/resources/js/jquery.dataTables.min.js"/>'></script>	
 	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/angular.min.js"/>"></script>
@@ -81,7 +82,8 @@
 	<script src="<c:url value="/resources/js/angular-ui-router.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/angular-breadcrumb.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/angular-growl.min.js"/>"></script>
-	<script src="<c:url value="/resources/js/catalogo.js"/>"></script>
+	<script src="<c:url value="/resources/js/angular-loading-bar.js"/>"></script>
+	<script src="<c:url value="/resources/app/catalogo.js"/>"></script>
 	<script src="<c:url value="/resources/app/solucionList.js"/>"></script>	
 	<script src="<c:url value="/resources/app/solucion.js"/>"></script>
 	<script src="<c:url value="/resources/app/selectTablasCodigos.js"/>"></script>

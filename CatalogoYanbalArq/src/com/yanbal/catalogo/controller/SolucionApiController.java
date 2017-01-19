@@ -1,5 +1,6 @@
 package com.yanbal.catalogo.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -36,27 +37,28 @@ public class SolucionApiController extends BaseController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
-	public SolucionBean addSolucion(@RequestBody SolucionBean elemento) {
-		//TODO add user to elemento
-		//elemento.setUsuarioCreacion(usuarioActualizacion);
+	public SolucionBean addSolucion(Principal principal, 
+			@RequestBody SolucionBean elemento) {
+		elemento.setUsuarioCreacion(principal.getName());
 		solucionService.addSolucion(elemento);
 		return elemento;
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, headers = "Accept=application/json")
-	public SolucionBean updateSolucion(@PathVariable int id, @RequestBody SolucionBean elemento) {
-		//TODO add user to elemento
-		//elemento.setUsuarioActualizacion(usuarioActualizacion);
+	public SolucionBean updateSolucion(Principal principal,
+			@PathVariable int id, @RequestBody SolucionBean elemento) {		
+		elemento.setUsuarioActualizacion(principal.getName());
 		elemento.setId(id);
 		solucionService.updateSolucion(elemento);
 		return elemento;
 	}
 	
 	 @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")  
-	 public void deleteSolucion(@PathVariable("id") int id) {  
+	 public void deleteSolucion(Principal principal, 
+			 @PathVariable("id") int id) {  
 		 SolucionBean elemento = solucionService.getSolucionXPk(id);
 		 elemento.setEstado(SolucionBean.ESTADO_INACTIVO);
-		 //elemento.setUsuarioActualizacion(usuarioActualizacion);
+		 elemento.setUsuarioActualizacion(principal.getName());
 		 solucionService.updateSolucion(elemento);
 	 }
 	
