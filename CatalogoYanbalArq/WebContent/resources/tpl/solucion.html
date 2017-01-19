@@ -1,51 +1,65 @@
-<div class="panel panel-default">
-  <div class="panel-heading">{{solucion.nombre}}</div>
+<div class="panel panel-default">  
   <div class="panel-body">
-	<form name="frmSolucion" class="form-inline">
-	  <div class="form-group" >
-	    <label for="nombre">Nombre</label>
-	    <input type="text" size="50" ng-model="solucion.nombre" required>
+	<form name="frmSolucion" class="form" ng-submit="save()" novalidate>
+	  <div class="form-group required has-feedback" ng-class="{'has-error': frmSolucion.nombre.$invalid && frmSolucion.nombre.$dirty }">
+	    <label for="nombre" class="control-label">Nombre</label>
+	    <input name="nombre" type="text" size="50" ng-model="solucion.nombre" required>
+	    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>  		
 	  </div>
 	  <div class="form-group">
 	    <label for="descripcion">Descripci&oacute;n:</label>
 	    <textarea class="form-control" rows="4" cols="50"
 	    	ng-model="solucion.descripcion"></textarea>
 	  </div>
-	  <div class="form-group">
-	    <label for="">Vertical:</label>
+	  <div class="form-group required has-feedback" ng-class="{'has-error': frmSolucion.codDatoVertical.$invalid && frmSolucion.codDatoVertical.$dirty }">
+	    <label for="codDatoVertical" class="control-label">Vertical:</label>	    
 	    <select-tablas-codigos cod-tabla="solucion.codTablaVertical"
-	    	cod-dato="solucion.codDatoVertical">
+	    	cod-dato="solucion.codDatoVertical" name="codDatoVertical" required>
 	    </select-tablas-codigos>
+	    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
 	  </div>
-	  <div class="form-group">
+	  <div class="form-group required has-feedback" ng-class="{'has-error': frmSolucion.codDatoAmbito.$invalid && frmSolucion.codDatoAmbito.$dirty }">
 	    <label for="">&Aacute;mbito:</label>
-	    <select-tablas-codigos cod-tabla="solucion.codTablaAmbito"
-	    	cod-dato="solucion.codDatoAmbito">
+	    <select-tablas-codigos cod-tabla="solucion.codTablaAmbito" 
+	    	cod-dato="solucion.codDatoAmbito" name="codDatoAmbito" required>
 	    </select-tablas-codigos>
+	    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
 	  </div>
-	  <div class="form-group">
+	  <div class="form-group required has-feedback" ng-class="{'has-error': frmSolucion.codDatoTipo.$invalid && frmSolucion.codDatoTipo.$dirty }">
 	    <label for="">Tipo:</label>
 	    <select-tablas-codigos cod-tabla="solucion.codTablaTipo"
-	    	cod-dato="solucion.codDatoTipo">
+	    	cod-dato="solucion.codDatoTipo" name="codDatoTipo" required>
 	    </select-tablas-codigos>
+	    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
+	  </div>
+	  <div class="form-group required has-feedback" ng-class="{'has-error': frmSolucion.codDatoArea.$invalid && frmSolucion.codDatoArea.$dirty }">
+	    <label for="">&Aacute;rea:</label>
+	    <select-tablas-codigos cod-tabla="solucion.codTablaArea"
+	    	cod-dato="solucion.codDatoArea" name="codDatoArea" required>
+	    </select-tablas-codigos>
+	    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
 	  </div>
 	  <div class="form-group">
-	    <label for="">&Aacute;rea:</label>
-	    <input type="text" ng-model="solucion.area">
-	  </div><div class="form-group">
 	    <label for="">Estado:</label>
-	    <select ng-options="(estado | HTMLActive) for estado in $root.estados"
-	    	ng-model="solucion.estado" required/>
+	    <select name="estado" ng-options="(estado | HTMLActive) for estado in $root.estados"
+	    	ng-model="solucion.estado" required>
+	    	<option value=""></option>
+	    </select>
 	  </div>
+	  <p class="help-block">
+	   * Requerido</p>
 	  <br>
-	  <button type="submit" class="btn btn-primary" ng-click="save()" 
-	  	ng-disabled="!frmSolucion.$dirty">
+	  <button type="submit" class="btn btn-default btn-sm"  
+	  	ng-disabled="frmSolucion.$pristine || frmSolucion.$invalid">
 		<span ng-hide="result && !frmSolucion.$dirty">
 			Guardar
 		</span>
 	  	<span ng-show="result && !frmSolucion.$dirty">	  	
 	  		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Guardado 
 	  	</span>
+	  </button> 
+	  <button type="submit" class="btn btn-default  btn-sm" ng-click="cancel()">
+	  	Cancelar
 	  </button>
 	  <!-- <button type="submit" class="btn btn-default">Borrar</button>  -->
 	</form>	

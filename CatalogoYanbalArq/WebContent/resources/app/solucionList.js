@@ -1,35 +1,43 @@
 app = angular.module('catalogo');
 
 function SolucionListController($scope, $rootScope, $http, $state, 
-		$timeout, Solucion) {
-	var ctrl = this;
-	
-	$rootScope.title = "Lista de soluciones";//TODO fix: update after select solucion 
-	
-	Solucion.query(function(soluciones) {
-		$scope.soluciones = soluciones;		
-        $timeout(function () {            
-        	$('#tblList').DataTable( {
-        		"pagingType": "full_numbers",
-        		"bPaginate": true,
-        		"bLengthChange": true,		
-        		"dom": 'lBfrtip',
-        		"buttons": [{
-        			extend: 'excelHtml5',
-        			text: 'Excel'
-        		}, {
-        			text: 'Nuevo',
-        			action: function ( e, dt, node, config ) {        				
-        				$state.go('solucion.item', {id: 0});
-        			}
-        		}
-        		],
-        		"columnDefs": []
-        	});
-        }, 400);//after angular updates.//TODO improve this event        
-	});
+		$timeout, Solucion, DTOptionsBuilder, DTColumnBuilder) {
+	$rootScope.title = "Lista de soluciones";
+		
+	$scope.updateList = function(solucion, isNew){
+		//TODO update table list without losing state
+		console.log(solucion);
+		if(solucion != null){
+			if(isNew){
+				$scope.soluciones.push(solucion);
+			}else{				
+				$scope.soluciones.forEach(function(item, index){
+					if(item.id == solucion.id){	
+						$scope.soluciones[index] = solucion;
+					}
+				});
+			}
+		}
+	}
+	this.$onInit = function() {
+		$scope.soluciones = this.soluciones;
+	    $scope.dtOptions = DTOptionsBuilder.newOptions()
+	     	.withBootstrap()
+	    	.withPaginationType('full_numbers')
+	    	.withDOM('lBfrtip')
+	    	.withButtons([
+	            'excel',
+	            {
+	                text: 'Nuevo',
+	                action: function (e, dt, node, config) {
+	                	$state.go('solucion.item', {id: 0});
+	                }
+	            }
+	        ]);
+	};
 }
 app.component("solucionList", {
   templateUrl: URL_BASE + "resources/tpl/solucionList.html",
-  controller: SolucionListController
+  controller: SolucionListController,
+  bindings: { soluciones: '<' }	
 });

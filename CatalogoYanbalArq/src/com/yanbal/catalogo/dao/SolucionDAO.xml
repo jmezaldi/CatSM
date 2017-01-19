@@ -80,11 +80,18 @@
 	</select>
 	
 	
-	<insert id="saveSolucion" parameterType="solucionBean">
+	<insert id="saveSolucion" parameterType="solucionBean"
+		useGeneratedKeys="true" keyProperty="id">
+		<selectKey keyProperty="id" resultType="int" order="AFTER">
+	    	SELECT max(id) FROM <include refid="sqlSchema"/>SOLUCION
+	    </selectKey>
 		CALL <include refid="sqlSchema"/>USP_SOLUCION_INS
-		(#{codigo}, #{nombre}, #{descripcion}, #{codTablaVertical}, #{codDatoVertical},
+		(#{codigo,jdbcType=VARCHAR}, 
+		#{nombre}, #{descripcion,jdbcType=VARCHAR}, 
+		#{codTablaVertical}, #{codDatoVertical},
     	#{codTablaAmbito}, #{codDatoAmbito}, #{codTablaTipo}, #{codDatoTipo},
-    	#{codTablaArea}, #{codDatoArea}, #{estado}, #{usuarioCreacion})    	
+    	#{codTablaArea}, #{codDatoArea}, #{estado}, 
+    	#{usuarioCreacion,jdbcType=VARCHAR})    	
 	</insert>
 	
 	<update id="updateSolucion" parameterType="solucionBean"> 

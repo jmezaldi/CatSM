@@ -3,15 +3,18 @@ package com.yanbal.catalogo.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.ManagedBean;
+import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import com.yanbal.catalogo.bean.SolucionBean;
 import com.yanbal.catalogo.dao.SolucionDAO;
 
-@ManagedBean
+@Validated
+@Service
 public class SolucionService {
 	private static final Logger LOG = Logger.getLogger(SolucionService.class);
 	
@@ -42,7 +45,7 @@ public class SolucionService {
 		return elemento;
 	}
 
-	public void addSolucion(SolucionBean elemento) {		
+	public void addSolucion(@Valid SolucionBean elemento) {		
 		try {
 			solucionDAO.saveSolucion(elemento);
 		} catch (Exception e) {

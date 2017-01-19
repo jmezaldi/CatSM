@@ -31,11 +31,24 @@
    
     ALTER TABLE CATALOGO.SOLUCION ALTER COLUMN ID RESTART WITH 75
 - <http://blog.idleworx.com/2011/09/mybatis-dao-example-code-tutorial.html>
+
+# MyBatis
+- <http://stackoverflow.com/questions/19136784/hibernate-throwing-an-unexpected-token-was-found-following/19138036#19138036>
+- <https://www.toadworld.com/platforms/sql-server/w/wiki/10261.stored-procedures-output-parameters-return-values>
+- <http://www.ibm.com/support/knowledgecenter/SSEPGG_9.7.0/com.ibm.db2.luw.sql.ref.doc/doc/r0004231.html>
   
 # REST API, Spring REST
 - <http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api>
 - <http://www.java2blog.com/2016/04/spring-restful-web-services-crud-example.html>
 - <http://websystique.com/springmvc/spring-mvc-4-restful-web-services-crud-example-resttemplate/>
+- Validation
+ - <http://www.naturalprogrammer.com/spring-framework-rest-api-validation/>
+ - <http://springinpractice.com/2013/10/09/generating-json-error-object-responses-with-spring-web-mvc>
+ - <http://www.baeldung.com/exception-handling-for-rest-with-spring>
+ - <https://spring.io/blog/2013/11/01/exception-handling-in-spring-mvc>.
+ - <http://www.leveluplunch.com/java/tutorials/017-validate-spring-rest-webservice-request/>
+ - <https://github.com/naturalprogrammer/spring-lemon/tree/master/src/main/java/com/naturalprogrammer/spring/lemon/validation>
+ - <http://blog.trifork.com/2009/08/04/bean-validation-integrating-jsr-303-with-spring/>
 
 # Spring, Security
 - <http://www.java2blog.com/2016/09/spring-rest-spring-security-example.html>
@@ -61,6 +74,9 @@
 - CORS
  - <https://gist.github.com/zeroows/80bbe076d15cb8a4f0ad>
  - <http://dontpanic.42.nl/2015/04/cors-with-spring-mvc.html>
+- Get User
+ - <https://www.mkyong.com/spring-security/get-current-logged-in-username-in-spring-security/> 
+ - <http://www.baeldung.com/get-user-in-spring-security>
 
 
 # AngularJs, Router, UI Router, Component, Datatables, Resource
@@ -74,11 +90,17 @@
 - <https://velesin.io/2016/05/18/communication-between-angular-1-5-components/>
 - <http://www.angularjshub.com/examples/forms/formreset/>
 
+- <http://stackoverflow.com/questions/35639435/how-to-wait-for-binding-in-angular-1-5-component-without-scope-watch/35639523#35639523>
+
+- Datatables
+ - <http://l-lin.github.io/angular-datatables/archives/#/gettingStarted>
+
 - Ui Router
  - <http://stackoverflow.com/questions/39931983/angularjs-possible-unhandled-rejection-when-using-ui-router>
  - <https://ui-router.github.io/tutorial/ng1/hellosolarsystem>
  - <http://stackoverflow.com/questions/25647454/how-to-pass-parameters-using-ui-sref-in-ui-router-to-controller>
  - <https://github.com/angular-ui/ui-router/wiki/Quick-Reference#ui-sref>
+ - Breadcrumb <https://github.com/ncuillery/angular-breadcrumb/issues/170>
 - Compile 
  - <http://stackoverflow.com/questions/19977592/angular-ui-routers-ui-sref-created-dynamically-in-a-directive/24263737#24263737>
  - <https://docs.angularjs.org/api/ng/service/$compile>
@@ -88,10 +110,19 @@
  - <https://docs.angularjs.org/api/ngResource/service/$resource>
  - <http://www.angularjshub.com/examples/servercalls/resourceservice/>
  
+- Growl
+ - <http://janstevens.github.io/angular-growl-2/>
+
+- Http interceptor
+ - <http://stackoverflow.com/questions/23851424/how-to-detect-when-online-offline-status-changes/24000804#24000804>
+ - <http://stackoverflow.com/questions/19446755/on-and-broadcast-in-angular/19446975#19446975> 
+ 
 # CSS design, templates
 - Bootstrap
  - <http://getbootstrap.com/examples/dashboard>
  - <http://getbootstrap.com/javascript/#collapse>
  - <http://www.webdesignerdepot.com/2014/02/how-to-create-horizontal-scrolling-using-display-table-cell/>
+ - <http://bootsnipp.com/snippets/featured/navigation-sidebar-with-toggle>
+ 
  
  

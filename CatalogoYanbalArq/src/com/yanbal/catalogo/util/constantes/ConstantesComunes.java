@@ -1,10 +1,10 @@
 package com.yanbal.catalogo.util.constantes;
 
-import com.yanbal.catalogo.util.YanbalUtil;
-
 public class ConstantesComunes {
 
 	public static final String ERROR_OBJECT = "errorObject";
+	public static final int ESTADO_ACTIVO = 1;
+	public static final int ESTADO_INACTIVO = 0;
 	
 	public static final String SEPARADOR_PROPERTIES = ".";
 	public static final String KEY_MESSAGE_ERROR = "textoError";
@@ -23,8 +23,5 @@ public class ConstantesComunes {
 	public static final String TablasCodigosAPP_SOLUCION_RELACION = "13";
 	public static final String TablasCodigosTIPO_APP = "18";
 	public static final String TablasCodigos_APP_PUBLICO = "19";
-	public static final String TablasCodigosAREA = "999";
-	
-
-	
+	public static final String TablasCodigosAREA = "22";
 }

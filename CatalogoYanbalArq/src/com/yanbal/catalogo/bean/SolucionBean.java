@@ -2,6 +2,8 @@ package com.yanbal.catalogo.bean;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+
 import com.yanbal.catalogo.util.constantes.ConstantesComunes;
 
 public class SolucionBean implements Serializable {
@@ -10,26 +12,32 @@ public class SolucionBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String  codigo;
+	@NotNull
 	private String  nombre;
 	private String  descripcion;
 	private Integer codTablaVertical;
+	@NotNull
 	private Integer codDatoVertical;
 	private String  desVertical;
 	private Integer codTablaAmbito;
+	@NotNull
 	private Integer codDatoAmbito;
 	private String  desAmbito;
 	private Integer codTablaTipo;
+	@NotNull
 	private Integer codDatoTipo;
 	private String  desTipo;
 	private Integer codTablaArea;
+	@NotNull
 	private Integer codDatoArea;
 	private String  desArea;
+	@NotNull
 	private Integer estado;
 	private String  usuarioCreacion;
 	private String  usuarioActualizacion;
 	
-	public static final int ESTADO_ACTIVO = 1;
-	public static final int ESTADO_INACTIVO = 0;
+	public static final int ESTADO_ACTIVO = ConstantesComunes.ESTADO_ACTIVO;
+	public static final int ESTADO_INACTIVO = ConstantesComunes.ESTADO_INACTIVO;
 	
 	public SolucionBean() {
 		super();
