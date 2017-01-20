@@ -1,0 +1,48 @@
+<div class="horizontal">
+    <div class="table-article">
+        <article id="servidores">
+			<div id="listado_p">
+				<table id="tblList"
+					datatable="ng" dt-options="dtOptions"  
+					class="ybl table table-striped table-bordered">
+				   <thead>
+						<tr>
+							<th>Id</th>
+							<th>Nombre</th>
+							<th>Procesador</th>
+							<th>#</th>			
+							<th>Memoria</th>										
+							<th>Serial</th>						
+							<th>Ambiente</th>		
+							<th>Tipo</th>				
+							<th>Ubicaci&oacute;n</th>
+							<th>Contrato</th>
+							<th>Tecnolog&iacute;a</th>
+							<th>Responsable</th>
+							<th>Comentario</th>	
+							<th>Estado</th>	
+						</tr>
+					</thead>
+					<tbody>
+			            <tr ng-repeat="servidor in servidores">
+			            	<td>{{servidor.id}}</td>
+			            	<td><a ui-sref='.item({id: servidor.id})'>{{servidor.nombre}}</a></td>
+			            	<td>{{servidor.procesador}}</td>
+			            	<td>{{servidor.numeroProcesador}}</td>
+			            	<td>{{servidor.memoria}}</td>
+			            	<td>{{servidor.serial}}</td>
+			            	<td>{{servidor.codDatoAmbiente | TCDescripcionBy:$root.codTabla.tipoAmbiente}}</td>
+			            	<td>{{servidor.codDatoTipoServidor | TCDescripcionBy:$root.codTabla.tipoServidor}}</td>			            	
+			            	<td>{{servidor.codDatoUbicacionServidor | TCDescripcionBy:$root.codTabla.ubicacionServidor}}</td>
+			            	<td>{{servidor.codDatoTipoContrato | TCDescripcionBy:$root.codTabla.tipoContrato}}</td>
+			            	<td>{{servidor.codDatoTecnologia | TCDescripcionBy:$root.codTabla.tecnologiaServidor}}</td>
+			            	<td>{{servidor.responsable}}</td>
+			            	<td>{{servidor.comentarioInterno}}</td>
+			            	<td>{{servidor.estado | HTMLActive}}</td>			            	
+						</tr>
+					</tbody>
+				</table>
+			</div>    
+        </article>
+    </div>
+</div>

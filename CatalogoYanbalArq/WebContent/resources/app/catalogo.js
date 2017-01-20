@@ -44,9 +44,62 @@ angular.module('catalogo', ["ui.router", "ngResource", "ncy-angular-breadcrumb",
 	    .state("aplicacion", {
 			url: '/aplicacion',
 		    component: 'aplicacionList',
+		    resolve:{
+				aplicaciones: function(Aplicacion){					
+					return Aplicacion.query().$promise;
+		        }
+		    },
 		    ncyBreadcrumb: {
 		    	label: 'Aplicaciones'
 	        }
+		})
+		.state("baseDatos", {
+			url: '/baseDatos',
+			component: 'baseDatosList',
+			resolve:{
+				basesDatos: function(BaseDatos){					
+					return BaseDatos.query().$promise;
+				}
+			},
+			ncyBreadcrumb: {
+				label: 'Bases de Datos'
+			}
+		})
+		.state("softwareBase", {
+			url: '/softwareBase',
+			component: 'softwareBaseList',
+			resolve:{
+				softwaresBase: function(SoftwareBase){					
+					return SoftwareBase.query().$promise;
+				}
+			},
+			ncyBreadcrumb: {
+				label: 'Softwares Base'
+			}
+		})
+		.state("servidor", {
+			url: '/servidor',
+			component: 'servidorList',
+			resolve:{
+				servidores: function(Servidor){					
+					return Servidor.query().$promise;
+				}
+			},
+			ncyBreadcrumb: {
+				label: 'Servidores'
+			}
+		})
+		.state("cluster", {
+			url: '/cluster',
+			component: 'clusterList',
+			resolve:{
+				clusters: function(Cluster){					
+					return Cluster.query().$promise;
+				}
+			},
+			ncyBreadcrumb: {
+				label: 'Clusters'
+			}
 		})
 	;
 })
@@ -119,11 +172,23 @@ angular.module('catalogo', ["ui.router", "ngResource", "ncy-angular-breadcrumb",
 			$window.location.href = URL_BASE;
 		});
 	};
-	$rootScope.codTabla = {
-		vertical: 2,
-		ambito: 3,
-		tipo: 4,
-		area: 22
+	$rootScope.codTabla = {			
+		vertical: 	2,
+		ambito: 	3,
+		tipo: 		4,
+		area: 		22,
+		
+		criticidad: 7,
+		exposicion: 8,
+		publico: 	19,
+		custodio: 	9,
+		tipoApp: 	18,
+		
+		tipoAmbiente: 1,
+		tipoServidor: 14,
+		ubicacionServidor: 15,
+		tipoContrato: 16,
+		tecnologiaServidor: 17		
 	}
 })
 .filter('HTMLActive', function() {
@@ -142,6 +207,41 @@ angular.module('catalogo', ["ui.router", "ngResource", "ncy-angular-breadcrumb",
 		update: {
 			method: 'PUT'
 	    }
+	});
+})
+.factory('Aplicacion', function($resource) {
+	return $resource(URL_API + "/aplicaciones/:id", { id: '@id' }, {//aplicacionesVersion
+		update: {
+			method: 'PUT'
+	    }
+	});
+})
+.factory('BaseDatos', function($resource) {
+	return $resource(URL_API + "/bases_datos/:id", { id: '@id' }, {//basesDatosVersion
+		update: {
+			method: 'PUT'
+		}
+	});
+})
+.factory('SoftwareBase', function($resource) {
+	return $resource(URL_API + "/softwares_base/:id", { id: '@id' }, {
+		update: {
+			method: 'PUT'
+		}
+	});
+})
+.factory('Servidor', function($resource) {
+	return $resource(URL_API + "/servidores/:id", { id: '@id' }, {
+		update: {
+			method: 'PUT'
+		}
+	});
+})
+.factory('Cluster', function($resource) {
+	return $resource(URL_API + "/clusters/:id", { id: '@id' }, {
+		update: {
+			method: 'PUT'
+		}
 	});
 })
 //TODO improve: constants for tablas 

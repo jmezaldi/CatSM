@@ -14,8 +14,9 @@
         <result property="memoria" column="MEMORIA"/>
         <result property="servidorFisico.id" column="SERVIDOR_FISICO_ID"/>
         <result property="codTablaTipoServidor" column="CODIGO_TABLA_TIPO_SERVIDOR"/>
-        <result property="codDatoUbicacionServidor" column="CODIGO_DATO_TIPO_SERVIDOR"/>
+        <result property="codDatoTipoServidor" column="CODIGO_DATO_TIPO_SERVIDOR"/>
 		<result property="codTablaUbicacionServidor" column="CODIGO_TABLA_UBICACION_SERVIDOR"/>
+        <result property="codDatoUbicacionServidor" column="CODIGO_DATO_TIPO_SERVIDOR"/>
         <result property="estado" column="CODIGO_DATO_UBICACION_SERVIDOR"/>
         <result property="comentarioInterno" column="COMENTARIO_INTERNO"/>
         <result property="serial" column="SERIAL"/>
@@ -37,8 +38,9 @@
 	<select id="getAllServidores" resultMap="result">  
 		SELECT ID, NOMBRE, CODIGO_TABLA_AMBIENTE, CODIGO_DATO_AMBIENTE,
 		  PROCESADOR, NUMERO_PROCESADORES, MEMORIA, SERVIDOR_FISICO_ID,
-		  CODIGO_TABLA_TIPO_SERVIDOR, CODIGO_DATO_TIPO_SERVIDOR, CODIGO_TABLA_UBICACION_SERVIDOR,
-		  CODIGO_DATO_UBICACION_SERVIDOR, COMENTARIO_INTERNO, SERIAL,
+		  CODIGO_TABLA_TIPO_SERVIDOR, CODIGO_DATO_TIPO_SERVIDOR, 
+		  CODIGO_TABLA_UBICACION_SERVIDOR, CODIGO_DATO_UBICACION_SERVIDOR, 
+		  COMENTARIO_INTERNO, SERIAL,
 		  RESPONSABLE, CODIGO_TABLA_TIPO_CONTRATO, CODIGO_DATO_TIPO_CONTRATO,
 		  CODIGO_TABLA_TECNOLOGIA, CODIGO_DATO_TECNOLOGIA, SER.ESTADO AS ESTADO, 
 		  SER.USUARIO_CREACION, SER.USUARIO_ACTUALIZACION,

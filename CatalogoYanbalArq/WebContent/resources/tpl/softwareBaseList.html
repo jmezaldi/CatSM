@@ -1,0 +1,34 @@
+<div class="horizontal">
+    <div class="table-article">
+        <article id="softwaresBase">
+			<div id="listado_p">
+				<table id="tblList"
+					datatable="ng" dt-options="dtOptions"  
+					class="ybl table table-striped table-bordered">
+				   <thead>
+						<tr>
+							<th>Id</th>
+							<th>Nombre</th>
+							<th>Versi&oacute;n</th>		
+							<th>Fix</th>				
+							<th>Fin de Soporte </th>
+							<th>Licenciado</th>
+							<th>Fabricante</th>
+						</tr>
+					</thead>
+					<tbody>
+			            <tr ng-repeat="softwareBase in softwaresBase">
+			            	<td>{{softwareBase.id}}</td>
+			            	<td><a ui-sref='.item({id: softwareBase.id})'>{{softwareBase.nombre}}</a></td>
+			            	<td>{{softwareBase.version}}</td>
+			            	<td>{{softwareBase.fix}}</td>
+			            	<td>{{softwareBase.fechaFinSoporte | date : "dd/MM/yyyy"}}</td>
+			            	<td>{{softwareBase.licenciado}}</td>
+			            	<td>{{softwareBase.desFabricante}}</td>						
+						</tr>
+					</tbody>
+				</table>
+			</div>    
+        </article>
+    </div>
+</div>

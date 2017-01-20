@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Catálogo de Arquitectura</title>
+	<title>${initParam.appName} ${initParam.appVersion}</title>
 <style>
 body{
 	color:#666666;
@@ -105,7 +105,7 @@ body{
 				<img src='<c:url value='/images/unique-transparente.png' />' />
 			</div>
 			<div id="tit_cta">
-				Catálogo de Arquitectura
+				${initParam.appName}
 			</div>
 		</div>
 	</div>

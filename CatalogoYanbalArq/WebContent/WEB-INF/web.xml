@@ -12,6 +12,10 @@
   	<param-name>appName</param-name>
 	<param-value>Catálogo de Arquitectura</param-value> 
   </context-param>  
+  <context-param> 
+  	<param-name>appVersion</param-name>
+	<param-value>v0.5</param-value> 
+  </context-param>  
   
   <servlet>
     <servlet-name>Spring MVC Dispatcher Servlet5</servlet-name>

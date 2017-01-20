@@ -1,5 +1,7 @@
 package com.yanbal.catalogo.bean;
 
+import com.yanbal.catalogo.util.constantes.ConstantesComunes;
+
 public class ServidorBean {
 	
 	private Integer id;
@@ -29,6 +31,15 @@ public class ServidorBean {
 	private String  desTecnologia;
 	private String  usuarioCreacion;
 	private String  usuarioActualizacion;
+	
+	public ServidorBean(){
+		this.setCodTablaAmbiente(Integer.parseInt(ConstantesComunes.TablasCodigosTIPO_AMBIENTE));
+		this.setCodTablaTipoServidor(Integer.parseInt(ConstantesComunes.TablasCodigosTIPO_SERVIDOR));
+		this.setCodTablaUbicacionServidor(Integer.parseInt(ConstantesComunes.TablasCodigosUBICACION_SERVIDOR));
+		this.setCodTablaTipoContrato(Integer.parseInt(ConstantesComunes.TablasCodigosTIPO_CONTRATO));
+		this.setCodTablaTecnologia(Integer.parseInt(ConstantesComunes.TablasCodigosTECNOLOGIA_SERVIDOR));
+	}
+	
 	public Integer getId() {
 		return id;
 	}

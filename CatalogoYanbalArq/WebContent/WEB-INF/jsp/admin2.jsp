@@ -6,7 +6,8 @@
 <head>
 	<base href="<c:url value="/app/"/>">
 	<meta charset="UTF-8">
-    <title>${initParam.appName}</title>
+    <title>${initParam.appName} ${initParam.appVersion}</title>
+    <link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/font-awesome.min.css"/>'>    
     <link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/bootstrap.min.css"/>'>
     <link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/dashboard.css"/>'>    
 	<link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/datatables.bootstrap.min.css"/>'>    
@@ -50,12 +51,32 @@
 			<div class="col-sm-12 col-md-12">
 				<div class="sidebar" ng-class="{'active': isSidebar}">
 				  <ul id="sidebar-nav" class="sidebar-nav collapse in">				
-					<li><a ui-sref="solucion" ui-sref-active="active">Soluciones</a></li>
+					<li><a ui-sref="solucion" ui-sref-active="active">
+						<i class="fa fa-cubes" aria-hidden="true"></i>
+						Soluciones</a></li>
+					<li><a ui-sref="aplicacion" ui-sref-active="active">
+						<i class="fa fa-cube" aria-hidden="true"></i>
+						Aplicaciones</a></li>
+					<li><a ui-sref="baseDatos" ui-sref-active="active">
+						<i class="fa fa-database" aria-hidden="true"></i>
+						Bases de datos</a></li>
+					<li><a ui-sref="softwareBase" ui-sref-active="active">
+						<i class="fa fa-square-o" aria-hidden="true"></i>
+						Softwares Base</a></li>
+					<li><a ui-sref="servidor" ui-sref-active="active">
+						<i class="fa fa-server" aria-hidden="true"></i>
+						Servidores</a></li>
+					<li><a ui-sref="cluster" ui-sref-active="active">
+						<i class="fa fa-object-group" aria-hidden="true"></i>
+						Clusters</a></li>
+					<!-- TEST TMP
+					<li><a href="<c:url value="/"/>app/solucion">Soluciones</a></li>
 					<li><a href="<c:url value="/"/>app/appVersion/todas">Aplicaciones</a></li>
 					<li><a href="<c:url value="/"/>app/basedatosversion">Bases de Datos</a></li>
 					<li><a href="<c:url value="/"/>app/swBaseVersion">Software Base</a></li>
 					<li><a href="<c:url value="/"/>app/servidor">Servidores</a></li>
 					<li><a href="<c:url value="/"/>app/cluster">Clusters</a></li>
+					 -->
 				  </ul>
 				</div>
 				<div class="main">
@@ -84,8 +105,13 @@
 	<script src="<c:url value="/resources/js/angular-growl.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/angular-loading-bar.js"/>"></script>
 	<script src="<c:url value="/resources/app/catalogo.js"/>"></script>
+	<script src="<c:url value="/resources/app/selectTablasCodigos.js"/>"></script>
 	<script src="<c:url value="/resources/app/solucionList.js"/>"></script>	
 	<script src="<c:url value="/resources/app/solucion.js"/>"></script>
-	<script src="<c:url value="/resources/app/selectTablasCodigos.js"/>"></script>
+	<script src="<c:url value="/resources/app/aplicacionList.js"/>"></script>	
+	<script src="<c:url value="/resources/app/baseDatosList.js"/>"></script>	
+	<script src="<c:url value="/resources/app/softwareBaseList.js"/>"></script>	
+	<script src="<c:url value="/resources/app/servidorList.js"/>"></script>	
+	<script src="<c:url value="/resources/app/clusterList.js"/>"></script>	
 </body>
 </html>

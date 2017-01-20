@@ -1,0 +1,34 @@
+<div class="horizontal">
+    <div class="table-article">
+        <article id="basesDatos">
+			<div id="listado_p">
+				<table id="tblList"
+					datatable="ng" dt-options="dtOptions"  
+					class="ybl table table-striped table-bordered">
+				   <thead>
+						<tr>
+							<th>Id</th>
+							<th>Nombre</th>
+							<th>Versi&oacute;n</th>		
+							<th>Datos Sensibles</th>				
+							<th>Datos Personales</th>
+							<th>Software Base</th>		
+							<th>Estado</th>		
+						</tr>
+					</thead>
+					<tbody>
+			            <tr ng-repeat="baseDatos in basesDatos">
+			            	<td>{{baseDatos.id}}</td>
+			            	<td><a ui-sref='.item({id: baseDatos.id})'>{{baseDatos.nombre}}</a></td>
+			            	<td>{{baseDatos.corVersion}}</td>
+			            	<td>{{baseDatos.datSensibles}}</td>
+			            	<td>{{baseDatos.datPersonales}}</td>
+			            	<td>{{baseDatos.desSoftwareBaseVersion}}</td>
+			            	<td>{{baseDatos.estado | HTMLActive}}</td>			
+						</tr>
+					</tbody>
+				</table>
+			</div>    
+        </article>
+    </div>
+</div>

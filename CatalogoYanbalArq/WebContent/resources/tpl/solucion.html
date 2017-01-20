@@ -19,32 +19,33 @@
 	    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
 	  </div>
 	  <div class="form-group required has-feedback" ng-class="{'has-error': frmSolucion.codDatoAmbito.$invalid && frmSolucion.codDatoAmbito.$dirty }">
-	    <label for="">&Aacute;mbito:</label>
+	    <label for="codDatoAmbito" class="control-label">&Aacute;mbito:</label>
 	    <select-tablas-codigos cod-tabla="solucion.codTablaAmbito" 
 	    	cod-dato="solucion.codDatoAmbito" name="codDatoAmbito" required>
 	    </select-tablas-codigos>
 	    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
 	  </div>
 	  <div class="form-group required has-feedback" ng-class="{'has-error': frmSolucion.codDatoTipo.$invalid && frmSolucion.codDatoTipo.$dirty }">
-	    <label for="">Tipo:</label>
+	    <label for="codDatoTipo" class="control-label">Tipo:</label>
 	    <select-tablas-codigos cod-tabla="solucion.codTablaTipo"
 	    	cod-dato="solucion.codDatoTipo" name="codDatoTipo" required>
 	    </select-tablas-codigos>
 	    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
 	  </div>
 	  <div class="form-group required has-feedback" ng-class="{'has-error': frmSolucion.codDatoArea.$invalid && frmSolucion.codDatoArea.$dirty }">
-	    <label for="">&Aacute;rea:</label>
+	    <label for="codDatoArea" class="control-label">&Aacute;rea:</label>
 	    <select-tablas-codigos cod-tabla="solucion.codTablaArea"
 	    	cod-dato="solucion.codDatoArea" name="codDatoArea" required>
 	    </select-tablas-codigos>
 	    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
 	  </div>
-	  <div class="form-group">
-	    <label for="">Estado:</label>
+	  <div class="form-group required has-feedback" ng-class="{'has-error': frmSolucion.estado.$invalid && frmSolucion.estado.$dirty }">
+	    <label for="estado" class="control-label">Estado:</label><br>
 	    <select name="estado" ng-options="(estado | HTMLActive) for estado in $root.estados"
 	    	ng-model="solucion.estado" required>
 	    	<option value=""></option>
 	    </select>
+	    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
 	  </div>
 	  <p class="help-block">
 	   * Requerido</p>

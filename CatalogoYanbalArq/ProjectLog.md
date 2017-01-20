@@ -101,21 +101,29 @@
  - <http://stackoverflow.com/questions/25647454/how-to-pass-parameters-using-ui-sref-in-ui-router-to-controller>
  - <https://github.com/angular-ui/ui-router/wiki/Quick-Reference#ui-sref>
  - Breadcrumb <https://github.com/ncuillery/angular-breadcrumb/issues/170>
+ - Component Resolve
+  - <https://ui-router.github.io/guide/ng1/route-to-component>
+  - <https://ui-router.github.io/guide/ng1/route-to-component#routed-parentchild-component-communication>
+  
 - Compile 
  - <http://stackoverflow.com/questions/19977592/angular-ui-routers-ui-sref-created-dynamically-in-a-directive/24263737#24263737>
  - <https://docs.angularjs.org/api/ng/service/$compile>
 
 - Resource
- - <https://www.sitepoint.com/creating-crud-app-minutes-angulars-resource/>
  - <https://docs.angularjs.org/api/ngResource/service/$resource>
+ - <https://www.sitepoint.com/creating-crud-app-minutes-angulars-resource/> 
  - <http://www.angularjshub.com/examples/servercalls/resourceservice/>
  
 - Growl
  - <http://janstevens.github.io/angular-growl-2/>
 
+- Loading bar
+ - <https://github.com/chieffancypants/angular-loading-bar> 
+ 
 - Http interceptor
  - <http://stackoverflow.com/questions/23851424/how-to-detect-when-online-offline-status-changes/24000804#24000804>
  - <http://stackoverflow.com/questions/19446755/on-and-broadcast-in-angular/19446975#19446975> 
+ - <http://stackoverflow.com/questions/17494732/how-to-make-a-loading-indicator-for-every-asynchronous-action-using-q-in-an-a/19983576#19983576>
  
 # CSS design, templates
 - Bootstrap

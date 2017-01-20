@@ -1,0 +1,42 @@
+<div class="horizontal">
+    <div class="table-article">
+        <article id="aplicaciones">
+			<div id="listado_p">
+				<table id="tblList"
+					datatable="ng" dt-options="dtOptions"  
+					class="ybl table table-striped table-bordered">
+				   <thead>
+						<tr>
+							<th>Id</th>
+							<th>Nombre</th>
+							<th>Versi&oacute;n</th>		
+							<th>Criticidad</th>				
+							<th>Exposici&oacute;n</th>
+							<th>P&uacute;blico</th>
+							<th>&Aacute;rea</th>
+							<th>Custodio</th>
+							<th>Tipo</th>		
+							<th>Fecha Pase</th>
+							<th>Estado</th>
+						</tr>
+					</thead>
+					<tbody>
+			            <tr ng-repeat="aplicacion in aplicaciones">
+			            	<td>{{aplicacion.id}}</td>
+			            	<td><a ui-sref='.item({id: aplicacion.id})'>{{aplicacion.nombre}}</a></td>
+			            	<td>{{aplicacion.corVersion}}</td>
+			            	<td>{{aplicacion.codDatoCriticidad | TCDescripcionBy:$root.codTabla.criticidad}}</td>
+			            	<td>{{aplicacion.codDatoExposicion | TCDescripcionBy:$root.codTabla.exposicion}}</td>			            	
+			            	<td>{{aplicacion.codDatoPublico | TCDescripcionBy:$root.codTabla.publico}}</td>
+			            	<td>{{aplicacion.codDatoArea | TCDescripcionBy:$root.codTabla.area}}</td>
+			            	<td>{{aplicacion.codDatoCustodio | TCDescripcionBy:$root.codTabla.custodio}}</td>
+			            	<td>{{aplicacion.codDatoTipoApp | TCDescripcionBy:$root.codTabla.tipoApp}}</td>
+			            	<td>{{aplicacion.fechaVersion | date : "dd/MM/yyyy"}}</td>
+			            	<td>{{aplicacion.estado | HTMLActive}}</td>				
+						</tr>
+					</tbody>
+				</table>
+			</div>    
+        </article>
+    </div>
+</div>

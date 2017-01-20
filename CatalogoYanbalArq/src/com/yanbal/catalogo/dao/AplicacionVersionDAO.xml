@@ -8,7 +8,14 @@
         <result property="id" column="ID_APLICACION"/>
         <result property="corVersion" column="CORRELATIVO_VERSION"/>
         <result property="nombre" column="NOMBRE"/>
-         <result property="codigo" column="CODIGO"/>
+        <result property="codigo" column="CODIGO"/>
+        <result property="codDatoArea" column="CODIGO_DATO_AREA"/>
+        <result property="codDatoCriticidad" column="CODIGO_DATO_CRITICIDAD"/>
+        <result property="codDatoExposicion" column="CODIGO_DATO_EXPOSICION"/>
+        <result property="codDatoCustodio" column="CODIGO_DATO_CUSTODIO"/>
+        <result property="codDatoTipoApp" column="CODIGO_DATO_TIPO_APP"/>
+        <result property="codDatoPublico" column="CODIGO_DATO_PUBLICO"/>
+        
         <result property="desCriticidad" column="DES_CRI"/>
         <result property="desExposicion" column="DES_EXP"/>
         <result property="desArea" column="DES_AREA"/>
@@ -67,6 +74,12 @@
 		   ID_SOLUCION,
 		   CODIGO,
 		   NOMBRE,
+		   APP.CODIGO_DATO_AREA, 
+		   APP.CODIGO_DATO_CRITICIDAD,
+		   APP.CODIGO_DATO_EXPOSICION,
+		   APP.CODIGO_DATO_CUSTODIO,
+		   APP.CODIGO_DATO_TIPO_APP,
+		   APP.CODIGO_DATO_PUBLICO,
 		   AREA.DESCRIPCION_ABREVIADA AS DES_AREA,
 		   CRI.DESCRIPCION_ABREVIADA AS DES_CRI,
 		   EXP.DESCRIPCION_ABREVIADA AS DES_EXP,

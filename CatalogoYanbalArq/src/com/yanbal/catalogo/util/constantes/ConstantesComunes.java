@@ -21,6 +21,10 @@ public class ConstantesComunes {
 	public static final String TablasCodigosSEG_GRANULARIDAD = "11";
 	public static final String TablasCodigosTIPO_IMPL_APP = "12";
 	public static final String TablasCodigosAPP_SOLUCION_RELACION = "13";
+	public static final String TablasCodigosTIPO_SERVIDOR = "14";
+	public static final String TablasCodigosUBICACION_SERVIDOR = "15";
+	public static final String TablasCodigosTIPO_CONTRATO = "16";
+	public static final String TablasCodigosTECNOLOGIA_SERVIDOR = "17";	
 	public static final String TablasCodigosTIPO_APP = "18";
 	public static final String TablasCodigos_APP_PUBLICO = "19";
 	public static final String TablasCodigosAREA = "22";

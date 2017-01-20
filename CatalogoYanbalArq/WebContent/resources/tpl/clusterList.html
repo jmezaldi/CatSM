@@ -1,0 +1,28 @@
+<div class="horizontal">
+    <div class="table-article">
+        <article id="clusters">
+			<div id="listado_p">
+				<table id="tblList"
+					datatable="ng" dt-options="dtOptions"  
+					class="ybl table table-striped table-bordered">
+				   <thead>
+						<tr>
+							<th>Id</th>
+							<th>Nombre</th>
+							<th>Comentario</th>
+							<th>Estado</th>
+						</tr>
+					</thead>
+					<tbody>
+			            <tr ng-repeat="cluster in clusters">
+			            	<td>{{cluster.id}}</td>
+			            	<td><a ui-sref='.item({id: cluster.id})'>{{cluster.nombre}}</a></td>
+			            	<td>{{cluster.comentario}}</td>
+							<td>{{cluster.estado | HTMLActive}}</td>						
+						</tr>
+					</tbody>
+				</table>
+			</div>    
+        </article>
+    </div>
+</div>

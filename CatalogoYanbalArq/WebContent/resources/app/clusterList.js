@@ -1,11 +1,11 @@
 app = angular.module('catalogo');
 
-function SolucionListController($scope, $rootScope, $http, $state, 
-		$timeout, Solucion, DTOptionsBuilder, DTColumnBuilder) {
-	$rootScope.title = "Lista de soluciones";
+function ClusterListController($scope, $rootScope, $state, 
+		DTOptionsBuilder, DTColumnBuilder) {
+	$rootScope.title = "Lista de Clusters";
 		
-	$scope.updateList = function(solucion, isNew){
-		//TODO update table list without losing state
+	/*$scope.updateList = function(solucion, isNew){
+		//TODO update table list without losing state		
 		if(solucion != null){
 			if(isNew){
 				$scope.soluciones.push(solucion);
@@ -17,9 +17,9 @@ function SolucionListController($scope, $rootScope, $http, $state,
 				});
 			}
 		}
-	}
+	}*/
 	this.$onInit = function() {
-		$scope.soluciones = this.soluciones;
+		$scope.clusters = this.clusters;
 	    $scope.dtOptions = DTOptionsBuilder.newOptions()
 	     	.withBootstrap()
 	    	.withPaginationType('full_numbers')
@@ -29,15 +29,15 @@ function SolucionListController($scope, $rootScope, $http, $state,
 	            {
 	                text: 'Nuevo',
 	                action: function (e, dt, node, config) {
-	                	$state.go('solucion.item', {id: 0});
+	                	$state.go('cluster.item', {id: 0});
 	                }
 	            }
 	        ]);
 	};
 }
-app.component("solucionList", {
-  templateUrl: URL_BASE + "resources/tpl/solucionList.html?v=" + 
+app.component("clusterList", {
+  templateUrl: URL_BASE + "resources/tpl/clusterList.html?v=" + 
   	(new Date()).getTime(),//TEST
-  controller: SolucionListController,
-  bindings: { soluciones: '<' }	
+  controller: ClusterListController,
+  bindings: { clusters: '<' }	
 });

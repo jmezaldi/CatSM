@@ -80,7 +80,8 @@ body{
     -ms-transition: background .5s;
     transition: background .5s;
 }
-.sidebar .sidebar-nav li a:hover {
+.sidebar .sidebar-nav li a:hover,  
+.sidebar .sidebar-nav li a.active{
   /*background: rgba(255,255,255,0.2);*/
   font-weight: bolder;
   text-decoration: none;
@@ -159,9 +160,12 @@ table.ybl tfoot th, table.ybl tfoot td {
 table.ybl tbody th, table.ybl tbody td {
 	padding: 4px
 }
-/**/
-#soluciones{
+/*List widths*/
+#soluciones, #basesDatos, #softwaresBase, #clusters{
 	width: 800px; 
+}
+#servidores{
+	width: 1200px;
 }
 /*style="background-color: #ed6c23; color:white !important;"*/
 .form-group.required .control-label:after { 

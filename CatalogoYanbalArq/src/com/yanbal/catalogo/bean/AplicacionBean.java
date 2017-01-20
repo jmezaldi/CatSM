@@ -1,5 +1,7 @@
 package com.yanbal.catalogo.bean;
 
+import com.yanbal.catalogo.util.constantes.ConstantesComunes;
+
 public class AplicacionBean {
 	
 		private Integer id;
@@ -27,6 +29,15 @@ public class AplicacionBean {
 		private String  desPublico;	
 		private Integer estado;
 		private SolucionBean solucion;
+		
+		public AplicacionBean(){
+			this.setCodTablaCriticidad(Integer.parseInt(ConstantesComunes.TablasCodigosCRITICIDAD_APP));
+			this.setCodTablaExposicion(Integer.parseInt(ConstantesComunes.TablasCodigosEXPOSICION_APP));
+			this.setCodTablaCustodio(Integer.parseInt(ConstantesComunes.TablasCodigosCUSTODIO_APP));
+			this.setCodTablaTipoApp(Integer.parseInt(ConstantesComunes.TablasCodigosTIPO_APP));
+			this.setCodTablaPublico(Integer.parseInt(ConstantesComunes.TablasCodigos_APP_PUBLICO));
+			this.setCodTablaArea(Integer.parseInt(ConstantesComunes.TablasCodigosAREA));
+		}
 		
 		public Integer getId() {
 			return id;
