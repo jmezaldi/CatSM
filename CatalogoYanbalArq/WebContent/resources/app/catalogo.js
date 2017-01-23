@@ -3,12 +3,10 @@ angular.module('catalogo', ["ui.router", "ngResource", "ncy-angular-breadcrumb",
                             'angular-growl', 'ngAnimate', 'angular-loading-bar'])
 
 .config(function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise("/")
 	$stateProvider
 		.state("main", {
 			url: '/',
 			template : "<div class='ui active centered inline loader'></div>",
-		    controller: 'mainCtrl',
 		    ncyBreadcrumb: {
 	          label: 'Catálogo'
 	        }
@@ -140,8 +138,6 @@ angular.module('catalogo', ["ui.router", "ngResource", "ncy-angular-breadcrumb",
             	//$window.location.href = URL_BASE + "?sessionExpired";
             	$window.location.reload();
                 return;
-            }else if ((status >= 400) && (status < 600) ) {
-            	return $q.reject(responseError);
             }
         	$rootScope.$broadcast("HttpError", status);        	
             return $q.reject(responseError);
@@ -155,9 +151,15 @@ angular.module('catalogo', ["ui.router", "ngResource", "ncy-angular-breadcrumb",
 	$rootScope.title = "Inicio";
 	$scope.isSidebar = true;
 	
-	$scope.$on("HttpError", function(param){
-		console.log(param);
-		growl.error('No hay conexión a internet. Reintente más tarde.');
+	$scope.$on("HttpError", function(event, status){
+		if(status == 500){
+			growl.error('Error en el servidor. Reintente. Si persiste contacte a Soporte.');
+		}
+		else if ((status >= 400) && (status < 600) ) {
+        	//
+        }else{        	
+        	growl.error('No hay conexión a internet. Reintente más tarde.');
+        }		
 	});
 	
 	$http.get(URL_API + "/catalogo/tablas_codigos")

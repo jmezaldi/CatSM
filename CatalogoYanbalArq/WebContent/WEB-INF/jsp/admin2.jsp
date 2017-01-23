@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<base href="<c:url value="/app/"/>">
+	<base href="<c:url value="/app"/>">
 	<meta charset="UTF-8">
     <title>${initParam.appName} ${initParam.appVersion}</title>
     <link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/font-awesome.min.css"/>'>    
@@ -20,7 +20,7 @@
 	<script>
 		URL_BASE = "<c:url value="/"/>";
 		URL_API = URL_BASE + "api";
-		URL_LOGOUT = URL_BASE + "j_spring_security_logout";
+		URL_LOGOUT = URL_BASE + "logout";
 	</script>
 	<div growl></div>
 	<nav class="navbar navbar-fixed-top">

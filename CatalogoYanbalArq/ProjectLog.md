@@ -49,6 +49,16 @@
  - <http://www.leveluplunch.com/java/tutorials/017-validate-spring-rest-webservice-request/>
  - <https://github.com/naturalprogrammer/spring-lemon/tree/master/src/main/java/com/naturalprogrammer/spring/lemon/validation>
  - <http://blog.trifork.com/2009/08/04/bean-validation-integrating-jsr-303-with-spring/>
+ 
+ - <http://docs.spring.io/spring/docs/current/spring-framework-reference/html/validation.html>
+ - <http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html#mvc-config-validation> 
+ - <http://www.mkyong.com/spring-mvc/spring-3-mvc-and-jsr303-valid-example/>
+ - <http://www.java4s.com/spring-mvc/spring-mvc-annotation-jsr-303-bean-validation-with-valid-example/>
+ 
+ - <http://www.codejava.net/frameworks/spring/spring-mvc-form-validation-example-with-bean-validation-api>
+ - <http://hillert.blogspot.pe/2011/12/method-validation-with-hibernate.html>
+ - <http://apprize.info/javascript/wrox/16.html>
+ - <http://www.programering.com/a/MjM3AzNwATM.html>
 
 # Spring, Security
 - <http://www.java2blog.com/2016/09/spring-rest-spring-security-example.html>
@@ -77,7 +87,8 @@
 - Get User
  - <https://www.mkyong.com/spring-security/get-current-logged-in-username-in-spring-security/> 
  - <http://www.baeldung.com/get-user-in-spring-security>
-
+- 3 to 4
+ - http://stackoverflow.com/questions/27469834/spring-security-j-spring-security-check-not-found-404/31497947#31497947
 
 # AngularJs, Router, UI Router, Component, Datatables, Resource
 - <https://docs.angularjs.org/api/ng/service/$http>

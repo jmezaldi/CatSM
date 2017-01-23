@@ -9,7 +9,6 @@
 		<setting name="lazyLoadingEnabled" value="false" />
 	</settings>
 	<typeAliases>
-		<typeAlias type="com.raistudies.domain.User" alias="user"/>
 		<typeAlias type="com.yanbal.catalogo.bean.SolucionBean" alias="solucionBean"/>
 		<typeAlias type="com.yanbal.catalogo.bean.ServidorBean" alias="servidorBean"/>
 		<typeAlias type="com.yanbal.catalogo.bean.ServidorIPBean" alias="servidorIPBean"/>
