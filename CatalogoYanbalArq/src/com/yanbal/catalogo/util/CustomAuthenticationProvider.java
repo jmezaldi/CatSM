@@ -1,5 +1,13 @@
 package com.yanbal.catalogo.util;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -7,19 +15,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import com.yanbal.catalogo.bean.UsuarioBean;
 import com.yanbal.catalogo.dao.UsuarioDAO;
 import com.yanbal.catalogo.service.LoginLDAPService;
-import org.springframework.security.core.authority.GrantedAuthorityImpl;
-import org.apache.log4j.Logger;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
 import com.yanbal.integracionyanbalstore.ws.tramas.vusuarios.respuesta.Respuesta;
 
 @Component
@@ -92,7 +93,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	        		List<GrantedAuthority> grantedAuths = new ArrayList();
 	                for(String item : mySet)
 	                {
-	                	grantedAuths.add(new GrantedAuthorityImpl(item));
+	                	grantedAuths.add(new SimpleGrantedAuthority(item));
 	                }
 	                
 	                Authentication auth = new UsernamePasswordAuthenticationToken(usuario, password, grantedAuths);
