@@ -22,7 +22,6 @@ function AplicacionListController($scope, $rootScope, $http, $state,
 		$scope.aplicaciones = this.aplicaciones;
 	    $scope.dtOptions = DTOptionsBuilder.newOptions()
 	     	.withBootstrap()
-	    	.withPaginationType('full_numbers')
 	    	.withDOM('lBfrtip')
 	    	.withButtons([
 	            'excel',
@@ -36,8 +35,7 @@ function AplicacionListController($scope, $rootScope, $http, $state,
 	};
 }
 app.component("aplicacionList", {
-  templateUrl: URL_BASE + "resources/tpl/aplicacionList.html?v=" + 
-  	(new Date()).getTime(),//TEST
+  templateUrl: URL_BASE + "resources/tpl/aplicacionList.html",
   controller: AplicacionListController,
   bindings: { aplicaciones: '<' }	
 });

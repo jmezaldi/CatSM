@@ -115,7 +115,8 @@
  - Component Resolve
   - <https://ui-router.github.io/guide/ng1/route-to-component>
   - <https://ui-router.github.io/guide/ng1/route-to-component#routed-parentchild-component-communication>
-  
+ - Unknown provider
+  - <http://stackoverflow.com/questions/14846466/angularjs-resolve-and-unknown-provider/18305438#18305438> 
 - Compile 
  - <http://stackoverflow.com/questions/19977592/angular-ui-routers-ui-sref-created-dynamically-in-a-directive/24263737#24263737>
  - <https://docs.angularjs.org/api/ng/service/$compile>
@@ -135,7 +136,7 @@
  - <http://stackoverflow.com/questions/23851424/how-to-detect-when-online-offline-status-changes/24000804#24000804>
  - <http://stackoverflow.com/questions/19446755/on-and-broadcast-in-angular/19446975#19446975> 
  - <http://stackoverflow.com/questions/17494732/how-to-make-a-loading-indicator-for-every-asynchronous-action-using-q-in-an-a/19983576#19983576>
- 
+ - <http://stackoverflow.com/questions/16098430/angular-ie-caching-issue-for-http/19771501#19771501>
 # CSS design, templates
 - Bootstrap
  - <http://getbootstrap.com/examples/dashboard>

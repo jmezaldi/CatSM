@@ -22,7 +22,6 @@ function SoftwareBaseListController($scope, $rootScope, $state,
 		$scope.softwaresBase = this.softwaresBase;
 	    $scope.dtOptions = DTOptionsBuilder.newOptions()
 	     	.withBootstrap()
-	    	.withPaginationType('full_numbers')
 	    	.withDOM('lBfrtip')
 	    	.withButtons([
 	            'excel',
@@ -36,8 +35,7 @@ function SoftwareBaseListController($scope, $rootScope, $state,
 	};
 }
 app.component("softwareBaseList", {
-  templateUrl: URL_BASE + "resources/tpl/softwareBaseList.html?v=" + 
-  	(new Date()).getTime(),//TEST
+  templateUrl: URL_BASE + "resources/tpl/softwareBaseList.html",
   controller: SoftwareBaseListController,
   bindings: { softwaresBase: '<' }	
 });

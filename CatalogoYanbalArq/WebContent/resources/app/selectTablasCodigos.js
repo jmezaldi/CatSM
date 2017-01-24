@@ -13,8 +13,7 @@ function SelectTablasCodigosController($scope, TablasCodigos, $timeout) {
 	};
 }
 app.component("selectTablasCodigos", {
-  templateUrl: URL_BASE + "resources/tpl/selectTablasCodigos.html?v=" + 
-  	(new Date()).getTime(),//TEST,
+  templateUrl: URL_BASE + "resources/tpl/selectTablasCodigos.html",
   controller: SelectTablasCodigosController,
   bindings: {
     codTabla: '<',

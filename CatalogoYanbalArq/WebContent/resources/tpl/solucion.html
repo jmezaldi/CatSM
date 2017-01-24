@@ -1,55 +1,68 @@
 <div class="panel panel-default">  
   <div class="panel-body">
-	<form name="frmSolucion" class="form" ng-submit="save()" novalidate>
+	<form name="frmSolucion" class="form-horizontal" ng-submit="save()" novalidate>
 	  <div class="form-group required has-feedback" ng-class="{'has-error': frmSolucion.nombre.$invalid && frmSolucion.nombre.$dirty }">
-	    <label for="nombre" class="control-label">Nombre</label>
-	    <input name="nombre" type="text" size="50" ng-model="solucion.nombre" required>
-	    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>  		
+	    <label for="nombre" class="control-label col-sm-3">Nombre</label>
+	    <div class="col-sm-9"> 	    
+		    <input name="nombre" type="text" size="35" ng-model="solucion.nombre" required>
+		    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>  		
+	    </div>
 	  </div>
 	  <div class="form-group">
-	    <label for="descripcion">Descripci&oacute;n:</label>
-	    <textarea class="form-control" rows="4" cols="50"
-	    	ng-model="solucion.descripcion"></textarea>
+	    <label for="descripcion" class="control-label col-sm-3">Descripci&oacute;n:</label>
+	    <div class="col-sm-9">
+	    	<textarea class="form-control" rows="8" cols="30"
+	    		ng-model="solucion.descripcion"></textarea>
+	    </div>
 	  </div>
 	  <div class="form-group required has-feedback" ng-class="{'has-error': frmSolucion.codDatoVertical.$invalid && frmSolucion.codDatoVertical.$dirty }">
-	    <label for="codDatoVertical" class="control-label">Vertical:</label>	    
-	    <select-tablas-codigos cod-tabla="solucion.codTablaVertical"
-	    	cod-dato="solucion.codDatoVertical" name="codDatoVertical" required>
-	    </select-tablas-codigos>
-	    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
+	    <label for="codDatoVertical" class="control-label col-sm-3">Vertical:</label>	    
+	    <div class="col-sm-9">
+		    <select-tablas-codigos cod-tabla="solucion.codTablaVertical"
+		    	cod-dato="solucion.codDatoVertical" name="codDatoVertical" required>
+		    </select-tablas-codigos>
+		    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
+	    </div>
 	  </div>
 	  <div class="form-group required has-feedback" ng-class="{'has-error': frmSolucion.codDatoAmbito.$invalid && frmSolucion.codDatoAmbito.$dirty }">
-	    <label for="codDatoAmbito" class="control-label">&Aacute;mbito:</label>
-	    <select-tablas-codigos cod-tabla="solucion.codTablaAmbito" 
-	    	cod-dato="solucion.codDatoAmbito" name="codDatoAmbito" required>
-	    </select-tablas-codigos>
-	    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
+	    <label for="codDatoAmbito" class="control-label col-sm-3">&Aacute;mbito:</label>
+	    <div class="col-sm-9">
+		    <select-tablas-codigos cod-tabla="solucion.codTablaAmbito" 
+		    	cod-dato="solucion.codDatoAmbito" name="codDatoAmbito" required>
+		    </select-tablas-codigos>
+		    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
+	    </div>
 	  </div>
 	  <div class="form-group required has-feedback" ng-class="{'has-error': frmSolucion.codDatoTipo.$invalid && frmSolucion.codDatoTipo.$dirty }">
-	    <label for="codDatoTipo" class="control-label">Tipo:</label>
-	    <select-tablas-codigos cod-tabla="solucion.codTablaTipo"
-	    	cod-dato="solucion.codDatoTipo" name="codDatoTipo" required>
-	    </select-tablas-codigos>
-	    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
+	    <label for="codDatoTipo" class="control-label col-sm-3">Tipo:</label>
+	    <div class="col-sm-9">
+		    <select-tablas-codigos cod-tabla="solucion.codTablaTipo"
+		    	cod-dato="solucion.codDatoTipo" name="codDatoTipo" required>
+		    </select-tablas-codigos>
+		    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
+		</div>
 	  </div>
 	  <div class="form-group required has-feedback" ng-class="{'has-error': frmSolucion.codDatoArea.$invalid && frmSolucion.codDatoArea.$dirty }">
-	    <label for="codDatoArea" class="control-label">&Aacute;rea:</label>
-	    <select-tablas-codigos cod-tabla="solucion.codTablaArea"
-	    	cod-dato="solucion.codDatoArea" name="codDatoArea" required>
-	    </select-tablas-codigos>
-	    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
+	    <label for="codDatoArea" class="control-label col-sm-3">&Aacute;rea:</label>
+	    <div class="col-sm-9">
+		    <select-tablas-codigos cod-tabla="solucion.codTablaArea"
+		    	cod-dato="solucion.codDatoArea" name="codDatoArea" required>
+		    </select-tablas-codigos>
+		    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
+	    </div>
 	  </div>
 	  <div class="form-group required has-feedback" ng-class="{'has-error': frmSolucion.estado.$invalid && frmSolucion.estado.$dirty }">
-	    <label for="estado" class="control-label">Estado:</label><br>
-	    <select name="estado" ng-options="(estado | HTMLActive) for estado in $root.estados"
-	    	ng-model="solucion.estado" required>
-	    	<option value=""></option>
-	    </select>
-	    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
+	    <label for="estado" class="control-label col-sm-3">Estado:</label>
+	    <div class="col-sm-9">
+		    <select name="estado" ng-options="(estado | HTMLActive) for estado in $root.estados"
+		    	ng-model="solucion.estado" required>
+		    	<option value=""></option>
+		    </select>
+		    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
+	    </div>
 	  </div>
 	  <p class="help-block">
 	   * Requerido</p>
-	  <br>
 	  <button type="submit" class="btn btn-default btn-sm"  
 	  	ng-disabled="frmSolucion.$pristine || frmSolucion.$invalid">
 		<span ng-hide="result && !frmSolucion.$dirty">

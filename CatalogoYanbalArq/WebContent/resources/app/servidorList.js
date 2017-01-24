@@ -22,7 +22,6 @@ function ServidorListController($scope, $rootScope, $state,
 		$scope.servidores = this.servidores;
 	    $scope.dtOptions = DTOptionsBuilder.newOptions()
 	     	.withBootstrap()
-	    	.withPaginationType('full_numbers')
 	    	.withDOM('lBfrtip')
 	    	.withButtons([
 	            'excel',
@@ -36,8 +35,7 @@ function ServidorListController($scope, $rootScope, $state,
 	};
 }
 app.component("servidorList", {
-  templateUrl: URL_BASE + "resources/tpl/servidorList.html?v=" + 
-  	(new Date()).getTime(),//TEST
+  templateUrl: URL_BASE + "resources/tpl/servidorList.html",
   controller: ServidorListController,
   bindings: { servidores: '<' }	
 });

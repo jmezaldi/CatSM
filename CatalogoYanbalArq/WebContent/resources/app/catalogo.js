@@ -99,6 +99,7 @@ angular.module('catalogo', ["ui.router", "ngResource", "ncy-angular-breadcrumb",
 				label: 'Clusters'
 			}
 		})
+		//TODO improve: avoid duplicated request
 	;
 })
 .config(['$qProvider', function ($qProvider) {
@@ -121,6 +122,7 @@ angular.module('catalogo', ["ui.router", "ngResource", "ncy-angular-breadcrumb",
 }])
 .factory('appInterceptor', function($q, $window, $state, $rootScope){
 	$rootScope.pendingRequests = 0;
+	//TODO handle response length = 0
 	return {    	
     	request: function (config) {
             return config || $q.when(config);
@@ -146,6 +148,12 @@ angular.module('catalogo', ["ui.router", "ngResource", "ncy-angular-breadcrumb",
 })
 .config(['$httpProvider',function($httpProvider) {
     $httpProvider.interceptors.push('appInterceptor');
+    //TEST avoid cache
+    if (!$httpProvider.defaults.headers.get) {
+        $httpProvider.defaults.headers.get = {};    
+    }
+    $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
+    $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
 }])
 .controller("mainCtrl", function ($scope, $rootScope, $http, $window, growl) {	
 	$rootScope.title = "Inicio";
@@ -263,6 +271,7 @@ angular.module('catalogo', ["ui.router", "ngResource", "ncy-angular-breadcrumb",
 	};
 	return factory;
  })
-.run(function ($rootScope) {
-	
+.run(function ($rootScope, DTDefaultOptions) {
+	DTDefaultOptions.setOption('stateSave', true);
+	DTDefaultOptions.setOption('pagingType', 'full_numbers');
 });

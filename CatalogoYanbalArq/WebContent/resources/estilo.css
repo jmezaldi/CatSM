@@ -167,6 +167,9 @@ table.ybl tbody th, table.ybl tbody td {
 #servidores{
 	width: 1200px;
 }
+solucion .panel form{
+	min-width: 400px;
+}
 /*style="background-color: #ed6c23; color:white !important;"*/
 .form-group.required .control-label:after { 
     color: #d00;
@@ -174,10 +177,10 @@ table.ybl tbody th, table.ybl tbody td {
     margin-left: 8px;
     top:7px;
 }
-.form .form-group.has-error .check{
+form .form-group.has-error .check{
 	display: block;
 }
-.form .form-group .check{
+form .form-group .check{
 	display: none;
 }
 /**/

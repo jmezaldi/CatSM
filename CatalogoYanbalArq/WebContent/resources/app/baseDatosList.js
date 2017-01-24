@@ -22,7 +22,6 @@ function BaseDatosListController($scope, $rootScope, $http, $state,
 		$scope.basesDatos = this.basesDatos;
 	    $scope.dtOptions = DTOptionsBuilder.newOptions()
 	     	.withBootstrap()
-	    	.withPaginationType('full_numbers')
 	    	.withDOM('lBfrtip')
 	    	.withButtons([
 	            'excel',
@@ -36,8 +35,7 @@ function BaseDatosListController($scope, $rootScope, $http, $state,
 	};
 }
 app.component("baseDatosList", {
-  templateUrl: URL_BASE + "resources/tpl/baseDatosList.html?v=" + 
-  	(new Date()).getTime(),//TEST
+  templateUrl: URL_BASE + "resources/tpl/baseDatosList.html",
   controller: BaseDatosListController,
   bindings: { basesDatos: '<' }	
 });

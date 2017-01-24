@@ -47,8 +47,7 @@ function SolucionController($scope, $rootScope, $state, $stateParams, $http,
     };
 }
 app.component("solucion", {
-  templateUrl: URL_BASE + "resources/tpl/solucion.html?v=" + 
-  	(new Date()).getTime(),//TEST
+  templateUrl: URL_BASE + "resources/tpl/solucion.html",
   controller: SolucionController,
   bindings: { solucion: '<' }	
 });

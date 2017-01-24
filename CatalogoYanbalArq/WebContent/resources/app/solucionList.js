@@ -22,7 +22,6 @@ function SolucionListController($scope, $rootScope, $http, $state,
 		$scope.soluciones = this.soluciones;
 	    $scope.dtOptions = DTOptionsBuilder.newOptions()
 	     	.withBootstrap()
-	    	.withPaginationType('full_numbers')
 	    	.withDOM('lBfrtip')
 	    	.withButtons([
 	            'excel',
@@ -36,8 +35,7 @@ function SolucionListController($scope, $rootScope, $http, $state,
 	};
 }
 app.component("solucionList", {
-  templateUrl: URL_BASE + "resources/tpl/solucionList.html?v=" + 
-  	(new Date()).getTime(),//TEST
+  templateUrl: URL_BASE + "resources/tpl/solucionList.html",
   controller: SolucionListController,
   bindings: { soluciones: '<' }	
 });

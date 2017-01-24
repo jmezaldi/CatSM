@@ -22,7 +22,6 @@ function ClusterListController($scope, $rootScope, $state,
 		$scope.clusters = this.clusters;
 	    $scope.dtOptions = DTOptionsBuilder.newOptions()
 	     	.withBootstrap()
-	    	.withPaginationType('full_numbers')
 	    	.withDOM('lBfrtip')
 	    	.withButtons([
 	            'excel',
@@ -36,8 +35,7 @@ function ClusterListController($scope, $rootScope, $state,
 	};
 }
 app.component("clusterList", {
-  templateUrl: URL_BASE + "resources/tpl/clusterList.html?v=" + 
-  	(new Date()).getTime(),//TEST
+  templateUrl: URL_BASE + "resources/tpl/clusterList.html",
   controller: ClusterListController,
   bindings: { clusters: '<' }	
 });
