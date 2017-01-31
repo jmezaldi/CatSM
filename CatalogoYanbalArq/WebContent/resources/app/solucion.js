@@ -1,8 +1,6 @@
 app = angular.module('catalogo');
 
-function SolucionController($scope, $rootScope, $state, $stateParams, $http, 
-		$window, 
-		TablasCodigos) {
+function SolucionController($scope, $rootScope, $state, $window, TablasCodigos) {
 		
     $scope.setCodTablas = function(solucion){
 		solucion.codTablaVertical = $rootScope.codTabla.vertical;
@@ -10,9 +8,16 @@ function SolucionController($scope, $rootScope, $state, $stateParams, $http,
 		solucion.codTablaTipo = $rootScope.codTabla.tipo;
 		solucion.codTablaArea = $rootScope.codTabla.area;
 	};
+	$scope.showResult = function(){//and reload
+		$scope.frmSolucion.$setPristine();
+		$scope.result = 1;//OK
+		//TODO improve messages
+		$scope.$parent.updateList(angular.copy($scope.solucion), $scope.isNew);
+		$scope.isNew = false;
+	};
 	//TODO validate form
 	$scope.save = function() {
-		if(typeof $scope.solucion.id == "undefined"){
+		if($scope.solucion.id == undefined){
 			$scope.solucion.$save(function() {//TODO use params
 				$scope.showResult();
 			});
@@ -29,21 +34,13 @@ function SolucionController($scope, $rootScope, $state, $stateParams, $http,
     this.$onInit = function() {
 		$scope.isNew = false;
 		this.label = "Solución";
-		if($stateParams.id == 0){		
+		if(this.solucion.id == undefined){		
 			this.label = "Nueva Solución";
 			$scope.isNew = true;
 		}	
 		$scope.solucion = this.solucion;
 		$scope.setCodTablas(this.solucion);
 		$window.scrollTo($window.innerWidth, 0);
-	     
-		$scope.showResult = function(){//and reload
-			$scope.frmSolucion.$setPristine();
-			$scope.result = 1;//OK
-			//TODO improve messages
-			$scope.$parent.updateList(angular.copy($scope.solucion), $scope.isNew);
-			$scope.isNew = false;
-		};
     };
 }
 app.component("solucion", {

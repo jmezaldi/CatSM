@@ -1,13 +1,17 @@
 package com.yanbal.catalogo.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yanbal.catalogo.bean.AplicacionBean;
 import com.yanbal.catalogo.bean.AplicacionVersionBean;
 import com.yanbal.catalogo.service.AplicacionService;
 
@@ -28,35 +32,35 @@ public class AplicacionApiController extends BaseController {
 		return aplicacionService.getAllAplicaciones();
 	}
 
-	/*@RequestMapping(value = "/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
-	public SolucionBean getSolucionById(@PathVariable int id) {
-		return solucionService.getSolucionXPk(id);
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
+	public AplicacionBean getAplicacionById(@PathVariable int id) {
+		return aplicacionService.getAplicacionXPk(id);
 	}
-
+	
 	@RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
-	public SolucionBean addSolucion(Principal principal, 
-			@RequestBody SolucionBean elemento) {
+	public AplicacionBean addAplicacion(Principal principal, 
+			@RequestBody AplicacionBean elemento) {
 		elemento.setUsuarioCreacion(principal.getName());
-		solucionService.addSolucion(elemento);
+		aplicacionService.addAplicacion(elemento);
 		return elemento;
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, headers = "Accept=application/json")
-	public SolucionBean updateSolucion(Principal principal,
-			@PathVariable int id, @RequestBody SolucionBean elemento) {		
+	public AplicacionBean updateAplicacion(Principal principal,
+			@PathVariable int id, @RequestBody AplicacionBean elemento) {		
 		elemento.setUsuarioActualizacion(principal.getName());
 		elemento.setId(id);
-		solucionService.updateSolucion(elemento);
+		aplicacionService.updateAplicacion(elemento);
 		return elemento;
 	}
 	
 	 @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")  
-	 public void deleteSolucion(Principal principal, 
+	 public void deleteAplicacion(Principal principal, 
 			 @PathVariable("id") int id) {  
-		 SolucionBean elemento = solucionService.getSolucionXPk(id);
-		 elemento.setEstado(SolucionBean.ESTADO_INACTIVO);
+		 AplicacionBean elemento = aplicacionService.getAplicacionXPk(id);
+		 elemento.setEstado(AplicacionBean.ESTADO_INACTIVO);
 		 elemento.setUsuarioActualizacion(principal.getName());
-		 solucionService.updateSolucion(elemento);
-	 }*/
+		 aplicacionService.updateAplicacion(elemento);
+	 }
 	
 }

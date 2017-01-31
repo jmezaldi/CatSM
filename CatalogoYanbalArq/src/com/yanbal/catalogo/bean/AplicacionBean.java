@@ -1,24 +1,33 @@
 package com.yanbal.catalogo.bean;
 
+import javax.validation.constraints.NotNull;
+
 import com.yanbal.catalogo.util.constantes.ConstantesComunes;
 
 public class AplicacionBean {
 	
 		private Integer id;
 		private String  codigo;
+		@NotNull
 		private String  nombre;
 		private String  descripcion;
 		private Integer codTablaArea;
+		@NotNull
 		private Integer codDatoArea;
 		private Integer codTablaCriticidad;
+		@NotNull
 		private Integer codDatoCriticidad;
 		private Integer codTablaExposicion;
+		@NotNull
 		private Integer codDatoExposicion;
 		private Integer codTablaCustodio;
+		@NotNull
 		private Integer codDatoCustodio;
 		private Integer codTablaTipoApp;
+		@NotNull
 		private Integer codDatoTipoApp;
 		private Integer codTablaPublico;
+		@NotNull
 		private Integer codDatoPublico;
 		private String  usuarioLider;
 		private String  desCriticidad;
@@ -26,8 +35,16 @@ public class AplicacionBean {
 		private String  desArea;
 		private String  desCustodio;
 		private String  desTipoApp;
-		private String  desPublico;	
+		private String  desPublico;
+		@NotNull
 		private Integer estado;
+		
+		private String  usuarioCreacion;
+		private String  usuarioActualizacion;
+		
+		public static final int ESTADO_ACTIVO = ConstantesComunes.ESTADO_ACTIVO;
+		public static final int ESTADO_INACTIVO = ConstantesComunes.ESTADO_INACTIVO;
+		
 		private SolucionBean solucion;
 		
 		public AplicacionBean(){
@@ -35,7 +52,7 @@ public class AplicacionBean {
 			this.setCodTablaExposicion(Integer.parseInt(ConstantesComunes.TablasCodigosEXPOSICION_APP));
 			this.setCodTablaCustodio(Integer.parseInt(ConstantesComunes.TablasCodigosCUSTODIO_APP));
 			this.setCodTablaTipoApp(Integer.parseInt(ConstantesComunes.TablasCodigosTIPO_APP));
-			this.setCodTablaPublico(Integer.parseInt(ConstantesComunes.TablasCodigos_APP_PUBLICO));
+			this.setCodTablaPublico(Integer.parseInt(ConstantesComunes.TablasCodigosAPP_PUBLICO));
 			this.setCodTablaArea(Integer.parseInt(ConstantesComunes.TablasCodigosAREA));
 		}
 		
@@ -188,6 +205,22 @@ public class AplicacionBean {
 		}
 		public void setDesPublico(String desPublico) {
 			this.desPublico = desPublico;
+		}
+
+		public String getUsuarioCreacion() {
+			return usuarioCreacion;
+		}
+
+		public void setUsuarioCreacion(String usuarioCreacion) {
+			this.usuarioCreacion = usuarioCreacion;
+		}
+
+		public String getUsuarioActualizacion() {
+			return usuarioActualizacion;
+		}
+
+		public void setUsuarioActualizacion(String usuarioActualizacion) {
+			this.usuarioActualizacion = usuarioActualizacion;
 		}
 
 

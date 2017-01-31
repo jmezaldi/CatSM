@@ -52,22 +52,22 @@
 				<div class="sidebar" ng-class="{'active': isSidebar}">
 				  <ul id="sidebar-nav" class="sidebar-nav collapse in">				
 					<li><a ui-sref="solucion" ui-sref-active="active">
-						<i class="fa fa-cubes" aria-hidden="true"></i>
+						<i class="fa fa-cubes fa-fw" aria-hidden="true"></i>
 						Soluciones</a></li>
 					<li><a ui-sref="aplicacion" ui-sref-active="active">
-						<i class="fa fa-cube" aria-hidden="true"></i>
+						<i class="fa fa-cube fa-fw" aria-hidden="true"></i>
 						Aplicaciones</a></li>
 					<li><a ui-sref="baseDatos" ui-sref-active="active">
-						<i class="fa fa-database" aria-hidden="true"></i>
+						<i class="fa fa-database fa-fw" aria-hidden="true"></i>
 						Bases de datos</a></li>
 					<li><a ui-sref="softwareBase" ui-sref-active="active">
-						<i class="fa fa-square-o" aria-hidden="true"></i>
+						<i class="fa fa-square-o fa-fw" aria-hidden="true"></i>
 						Softwares Base</a></li>
 					<li><a ui-sref="servidor" ui-sref-active="active">
-						<i class="fa fa-server" aria-hidden="true"></i>
+						<i class="fa fa-server fa-fw" aria-hidden="true"></i>
 						Servidores</a></li>
 					<li><a ui-sref="cluster" ui-sref-active="active">
-						<i class="fa fa-object-group" aria-hidden="true"></i>
+						<i class="fa fa-object-group fa-fw" aria-hidden="true"></i>
 						Clusters</a></li>
 					<!-- TEST TMP
 					<li><a href="<c:url value="/"/>app/solucion">Soluciones</a></li>
@@ -104,11 +104,14 @@
 	<script src="<c:url value="/resources/js/angular-breadcrumb.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/angular-growl.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/angular-loading-bar.js"/>"></script>
+	<script src="<c:url value="/resources/js/angular-filter.js"/>"></script>
 	<script src="<c:url value="/resources/app/catalogo.js"/>"></script>
 	<script src="<c:url value="/resources/app/selectTablasCodigos.js"/>"></script>
 	<script src="<c:url value="/resources/app/solucionList.js"/>"></script>	
 	<script src="<c:url value="/resources/app/solucion.js"/>"></script>
 	<script src="<c:url value="/resources/app/aplicacionList.js"/>"></script>	
+	<script src="<c:url value="/resources/app/versionList.js"/>"></script>	
+	<script src="<c:url value="/resources/app/aplicacion.js"/>"></script>	
 	<script src="<c:url value="/resources/app/baseDatosList.js"/>"></script>	
 	<script src="<c:url value="/resources/app/softwareBaseList.js"/>"></script>	
 	<script src="<c:url value="/resources/app/servidorList.js"/>"></script>	

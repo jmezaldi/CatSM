@@ -1,6 +1,7 @@
 angular.module('catalogo', ["ui.router", "ngResource", "ncy-angular-breadcrumb", 
                             'datatables', 'datatables.buttons', 'datatables.bootstrap',
-                            'angular-growl', 'ngAnimate', 'angular-loading-bar'])
+                            'angular-growl', 'ngAnimate', 'angular-loading-bar',
+                            'angular.filter'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider
@@ -49,6 +50,22 @@ angular.module('catalogo', ["ui.router", "ngResource", "ncy-angular-breadcrumb",
 		    },
 		    ncyBreadcrumb: {
 		    	label: 'Aplicaciones'
+	        }
+		})
+		.state("aplicacion.item", {
+			parent: 'aplicacion',
+		    url: '/{id}',
+		    component: 'aplicacion',
+		    resolve:{
+				aplicacion: function(Aplicacion, $stateParams){					
+		        	if($stateParams.id == 0){
+		        		return new Aplicacion();
+			     	}
+		        	return Aplicacion.get({ id: $stateParams.id }).$promise;
+		        }
+		    },
+		    ncyBreadcrumb: {
+		       label: '{{$$childHead.$ctrl.label}}'
 	        }
 		})
 		.state("baseDatos", {
@@ -131,6 +148,9 @@ angular.module('catalogo', ["ui.router", "ngResource", "ncy-angular-breadcrumb",
             return $q.reject(rejection);
         },
         response: function(response){
+        	if(response.data.length == 0){
+        		$rootScope.$broadcast("HttpError", 500);//error
+        	}
             return response || $q.when(response);
         },
         responseError: function(responseError) {
@@ -161,7 +181,7 @@ angular.module('catalogo', ["ui.router", "ngResource", "ncy-angular-breadcrumb",
 	
 	$scope.$on("HttpError", function(event, status){
 		if(status == 500){
-			growl.error('Error en el servidor. Reintente. Si persiste contacte a Soporte.');
+			growl.error('Error en el servidor. Reintente. Si persiste, contacte a Soporte.');
 		}
 		else if ((status >= 400) && (status < 600) ) {
         	//

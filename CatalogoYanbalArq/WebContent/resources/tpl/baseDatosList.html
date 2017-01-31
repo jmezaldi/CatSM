@@ -19,7 +19,8 @@
 					<tbody>
 			            <tr ng-repeat="baseDatos in basesDatos">
 			            	<td>{{baseDatos.id}}</td>
-			            	<td><a ui-sref='.item({id: baseDatos.id})'>{{baseDatos.nombre}}</a></td>
+			            	<td class="text-left">
+			            		<a ui-sref='.item({id: baseDatos.id})'>{{baseDatos.nombre}}</a></td>
 			            	<td>{{baseDatos.corVersion}}</td>
 			            	<td>{{baseDatos.datSensibles}}</td>
 			            	<td>{{baseDatos.datPersonales}}</td>

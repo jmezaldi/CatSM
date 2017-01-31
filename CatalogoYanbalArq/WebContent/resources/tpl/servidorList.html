@@ -26,7 +26,8 @@
 					<tbody>
 			            <tr ng-repeat="servidor in servidores">
 			            	<td>{{servidor.id}}</td>
-			            	<td><a ui-sref='.item({id: servidor.id})'>{{servidor.nombre}}</a></td>
+			            	<td class="text-left">
+			            		<a ui-sref='.item({id: servidor.id})'>{{servidor.nombre}}</a></td>
 			            	<td>{{servidor.procesador}}</td>
 			            	<td>{{servidor.numeroProcesador}}</td>
 			            	<td>{{servidor.memoria}}</td>

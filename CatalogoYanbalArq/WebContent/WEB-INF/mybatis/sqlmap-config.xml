@@ -7,11 +7,13 @@
 	<settings>
 		<!-- changes from the defaults -->
 		<setting name="lazyLoadingEnabled" value="false" />
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
 	<typeAliases>
 		<typeAlias type="com.yanbal.catalogo.bean.SolucionBean" alias="solucionBean"/>
 		<typeAlias type="com.yanbal.catalogo.bean.ServidorBean" alias="servidorBean"/>
 		<typeAlias type="com.yanbal.catalogo.bean.ServidorIPBean" alias="servidorIPBean"/>
+		<typeAlias type="com.yanbal.catalogo.bean.AplicacionBean" alias="aplicacionBean"/>
 		<typeAlias type="com.yanbal.catalogo.bean.AplicacionVersionBean" alias="aplicacionVersionBean"/>
 		<typeAlias type="com.yanbal.catalogo.bean.TablasCodigosBean" alias="tablasCodigosBean"/>
 		<typeAlias type="com.yanbal.catalogo.bean.BaseDatosVersionBean" alias="baseDatosVersionBean"/>

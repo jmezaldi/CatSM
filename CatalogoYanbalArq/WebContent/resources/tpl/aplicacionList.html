@@ -3,7 +3,8 @@
         <article id="aplicaciones">
 			<div id="listado_p">
 				<table id="listAplicaciones"
-					datatable="ng" dt-options="dtOptions"  
+					datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs"
+					dt-instance="dtInstance"
 					class="ybl table table-striped table-bordered">
 				   <thead>
 						<tr>
@@ -15,28 +16,30 @@
 							<th>P&uacute;blico</th>
 							<th>&Aacute;rea</th>
 							<th>Custodio</th>
-							<th>Tipo</th>		
-							<th>Fecha Pase</th>
-							<th>Estado</th>
+							<th>Tipo</th>
 						</tr>
 					</thead>
 					<tbody>
 			            <tr ng-repeat="aplicacion in aplicaciones">
 			            	<td>{{aplicacion.id}}</td>
-			            	<td><a ui-sref='.item({id: aplicacion.id})'>{{aplicacion.nombre}}</a></td>
-			            	<td>{{aplicacion.corVersion}}</td>
+			            	<td class="text-left">
+			            		<a ui-sref='.item({id: aplicacion.id})'>{{aplicacion.nombre}}</a></td>			            	
+			            	<td ng-click='showVersion(aplicacion, $event)' class='click-details'>
+			            		<i class="fa fa-lg" aria-hidden="true" 
+			            			ng-class="aplicacion.isOpen? 'fa-minus-square-o' : 'fa-plus-square-o'">
+			            		</i></td>
 			            	<td>{{aplicacion.codDatoCriticidad | TCDescripcionBy:$root.codTabla.criticidad}}</td>
 			            	<td>{{aplicacion.codDatoExposicion | TCDescripcionBy:$root.codTabla.exposicion}}</td>			            	
 			            	<td>{{aplicacion.codDatoPublico | TCDescripcionBy:$root.codTabla.publico}}</td>
 			            	<td>{{aplicacion.codDatoArea | TCDescripcionBy:$root.codTabla.area}}</td>
 			            	<td>{{aplicacion.codDatoCustodio | TCDescripcionBy:$root.codTabla.custodio}}</td>
 			            	<td>{{aplicacion.codDatoTipoApp | TCDescripcionBy:$root.codTabla.tipoApp}}</td>
-			            	<td>{{aplicacion.fechaVersion | date : "dd/MM/yyyy"}}</td>
-			            	<td>{{aplicacion.estado | HTMLActive}}</td>				
 						</tr>
 					</tbody>
 				</table>
 			</div>    
+        </article>
+        <article ui-view>    
         </article>
     </div>
 </div>

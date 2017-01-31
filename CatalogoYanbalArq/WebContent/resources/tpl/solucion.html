@@ -55,7 +55,7 @@
 	    <label for="estado" class="control-label col-sm-3">Estado:</label>
 	    <div class="col-sm-9">
 		    <select name="estado" ng-options="(estado | HTMLActive) for estado in $root.estados"
-		    	ng-model="solucion.estado" required>
+		    	class="form-control" ng-model="solucion.estado" required>
 		    	<option value=""></option>
 		    </select>
 		    <span class="check glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>

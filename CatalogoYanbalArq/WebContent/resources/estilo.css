@@ -111,7 +111,7 @@ article:nth-child(2n+2)
 }
 /*Common***********************************************************************/
 .sidebar-nav a, .sidebar-nav a:link, .sidebar-nav a:visited, .sidebar-nav a:hover, .sidebar-nav a:active,
-.table a, .table a:link, .table a:visited, .table a:hover, .table a:active {
+.table td>a, .table td>a:link, .table td>a:visited, .table td>a:hover, .table td>a:active {
 	color: #ed6c23;
 	font-family: 'Arial';
 	text-decoration: none;
@@ -160,6 +160,28 @@ table.ybl tfoot th, table.ybl tfoot td {
 table.ybl tbody th, table.ybl tbody td {
 	padding: 4px
 }
+table.ybl tr td, table.ybl tr th {
+	text-align: center;
+}
+table.ybl tr td.text-left{
+	text-align: left;
+}
+table.ybl tr td.click-details{
+	cursor: pointer;	
+}
+table.ybl tr.odd, table.ybl tr.odd + tr.child{
+    background-color: #f9f9f9;
+}
+table.ybl tr.even {
+    background-color: white;
+}
+.inner-table .row{
+	margin-top: 0;
+}
+.inner-table .table{
+	margin-bottom: 0;
+	font-size: 0.83em;
+}
 /*List widths*/
 #soluciones, #basesDatos, #softwaresBase, #clusters{
 	width: 800px; 
@@ -168,6 +190,9 @@ table.ybl tbody th, table.ybl tbody td {
 	width: 1200px;
 }
 solucion .panel form{
+	min-width: 400px;
+}
+aplicacion .panel form{
 	min-width: 400px;
 }
 /*style="background-color: #ed6c23; color:white !important;"*/

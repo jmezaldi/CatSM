@@ -19,7 +19,8 @@
 					<tbody>
 			            <tr ng-repeat="softwareBase in softwaresBase">
 			            	<td>{{softwareBase.id}}</td>
-			            	<td><a ui-sref='.item({id: softwareBase.id})'>{{softwareBase.nombre}}</a></td>
+			            	<td class="text-left">
+			            		<a ui-sref='.item({id: softwareBase.id})'>{{softwareBase.nombre}}</a></td>
 			            	<td>{{softwareBase.version}}</td>
 			            	<td>{{softwareBase.fix}}</td>
 			            	<td>{{softwareBase.fechaFinSoporte | date : "dd/MM/yyyy"}}</td>

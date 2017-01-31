@@ -1,0 +1,27 @@
+<div class="inner-table">
+<div class="row">
+	<div class="col-xs-1 col-xs-offset-4">
+		<button>Nuevo</button>
+	</div>
+	<div class="col-xs-5">
+		<table 
+			datatable="ng" dt-options="dtOptions"  
+			class="ybl table table-striped table-bordered table-condensed table-hover">
+		   <thead>
+				<tr>
+					<th>Versi&oacute;n</th>
+					<th>Fecha Pase</th>
+					<th>Estado</th>
+				</tr>
+			</thead>
+			<tbody>
+		           <tr ng-repeat="version in versiones">           	
+					<td><a ui-sref='.item({id: version.corVersion})'>{{version.corVersion}}</a></td>
+		           	<td>{{version.fechaVersion | date : "dd/MM/yyyy"}}</td>
+		           	<td>{{version.estado | HTMLActive}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</div>

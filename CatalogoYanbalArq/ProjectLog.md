@@ -92,19 +92,25 @@
 
 # AngularJs, Router, UI Router, Component, Datatables, Resource
 - <https://docs.angularjs.org/api/ng/service/$http>
+- <https://docs.angularjs.org/api/ng/service/$compile>
 - <https://docs.angularjs.org/api/ng/directive/ngOptions>
 - <https://docs.angularjs.org/api/ng/directive/select>
 - <https://docs.angularjs.org/api/ngRoute/directive/ngView>
 - <https://docs.angularjs.org/guide/component>
+- <https://github.com/a8m/angular-filter>
 
 - <https://toddmotto.com/exploring-the-angular-1-5-component-method/>
 - <https://velesin.io/2016/05/18/communication-between-angular-1-5-components/>
 - <http://www.angularjshub.com/examples/forms/formreset/>
 
 - <http://stackoverflow.com/questions/35639435/how-to-wait-for-binding-in-angular-1-5-component-without-scope-watch/35639523#35639523>
+- <https://www.reddit.com/r/angularjs/comments/40w4i4/dynamically_adding_angular_15_components/>
+
 
 - Datatables
  - <http://l-lin.github.io/angular-datatables/archives/#/gettingStarted>
+ - <http://stackoverflow.com/questions/31771733/datatables-how-can-i-keep-child-rows-opened-after-the-ajax-reload>
+ - <http://www.edtor.datatables.net/forums/discussion/31979/how-to-keep-the-child-rows-open-after-ajax-reload>
 
 - Ui Router
  - <http://stackoverflow.com/questions/39931983/angularjs-possible-unhandled-rejection-when-using-ui-router>
@@ -137,6 +143,15 @@
  - <http://stackoverflow.com/questions/19446755/on-and-broadcast-in-angular/19446975#19446975> 
  - <http://stackoverflow.com/questions/17494732/how-to-make-a-loading-indicator-for-every-asynchronous-action-using-q-in-an-a/19983576#19983576>
  - <http://stackoverflow.com/questions/16098430/angular-ie-caching-issue-for-http/19771501#19771501>
+ 
+- Angular tips
+ - <https://www.toptal.com/angular-js/top-18-most-common-angularjs-developer-mistakes>
+
+    var injector = $(document.body).injector();
+    var $filter = injector.get('$filter');
+    s = $($0).scope()
+    var group = $filter('groupBy')(s.$ctrl.aplicaciones, 'id');
+ 
 # CSS design, templates
 - Bootstrap
  - <http://getbootstrap.com/examples/dashboard>

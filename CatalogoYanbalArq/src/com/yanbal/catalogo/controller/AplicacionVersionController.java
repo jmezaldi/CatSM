@@ -130,9 +130,9 @@ public class AplicacionVersionController extends BaseController {
 			{	session.setAttribute("TabCod"+ConstantesComunes.TablasCodigosTIPO_APP,tablasCodigosDao.getAllDatosXCodigoTabla(Integer.valueOf(ConstantesComunes.TablasCodigosTIPO_APP)));	}
 			model.addAttribute("TabCod"+ConstantesComunes.TablasCodigosTIPO_APP, session.getAttribute("TabCod"+ConstantesComunes.TablasCodigosTIPO_APP));
 
-			if (session.getAttribute("TabCod"+ConstantesComunes.TablasCodigos_APP_PUBLICO) ==null)
-			{	session.setAttribute("TabCod"+ConstantesComunes.TablasCodigos_APP_PUBLICO,tablasCodigosDao.getAllDatosXCodigoTabla(Integer.valueOf(ConstantesComunes.TablasCodigos_APP_PUBLICO)));	}
-			model.addAttribute("TabCod"+ConstantesComunes.TablasCodigos_APP_PUBLICO, session.getAttribute("TabCod"+ConstantesComunes.TablasCodigos_APP_PUBLICO));
+			if (session.getAttribute("TabCod"+ConstantesComunes.TablasCodigosAPP_PUBLICO) ==null)
+			{	session.setAttribute("TabCod"+ConstantesComunes.TablasCodigosAPP_PUBLICO,tablasCodigosDao.getAllDatosXCodigoTabla(Integer.valueOf(ConstantesComunes.TablasCodigosAPP_PUBLICO)));	}
+			model.addAttribute("TabCod"+ConstantesComunes.TablasCodigosAPP_PUBLICO, session.getAttribute("TabCod"+ConstantesComunes.TablasCodigosAPP_PUBLICO));
 
 			
 			model.addAttribute("caracteristicas", aplicacionVersionDAO.getAllAppCaracteristicaXCodigoTabla(idApp,corVer));
@@ -195,72 +195,5 @@ public class AplicacionVersionController extends BaseController {
 
 		}
 		return "appVersionInstUN";
-	}
-	
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ModelAndView add(@ModelAttribute(value = "solucion") AplicacionVersionBean solucion, BindingResult result) {
-		validator.validate(solucion, result);
-		LOG.debug("/add ");
-		//ModelAndView mv = new ModelAndView(new RedirectView("solucion"));
-		ModelAndView mv = new ModelAndView("solucion");
-		if (!result.hasErrors()) {
-			solucion.setEstado(1);
-			try {
-				
-				aplicacionVersionDAO.saveSolucion(solucion);
-				
-			} catch (Exception e) {
-				LOG.error(e.getMessage(), e);
-
-			}
-			solucion = new AplicacionVersionBean();			
-
-			mv.addObject("solucion", solucion);
-		}
-		mv.addObject("soluciones", aplicacionVersionDAO.getAllAplicacionVersionXSolucion(solucion.getId()));
-		return mv;
-	}
-
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public ModelAndView update(@ModelAttribute(value = "solucion") AplicacionVersionBean solucion, BindingResult result) {
-		//validator.validate(user, result);
-		LOG.debug("/update ");
-		ModelAndView mv = new ModelAndView(new RedirectView("solucion"));
-		if (!result.hasErrors()) {
-			try {
-				
-				aplicacionVersionDAO.updateSolucion(solucion);
-			} catch (Exception e) {
-				LOG.error(e.getMessage(), e);
-
-			}
-			
-			solucion = new AplicacionVersionBean();
-			
-			mv.addObject("solucion", solucion);
-		}
-	//	return new ModelAndView(new RedirectView(RUTA_MAPPING_EXITO));
-		mv.addObject("soluciones", aplicacionVersionDAO.getAllAplicacionVersionXSolucion(solucion.getId()));
-		return mv;
-	}
-
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public ModelAndView delete(@ModelAttribute(value = "solucion") AplicacionVersionBean solucion, BindingResult result) {
-		//validator.validate(user, result);
-		ModelAndView mv = new ModelAndView("registration");
-		if (!result.hasErrors()) {
-			try {
-
-				aplicacionVersionDAO.deleteAppVersion(solucion.getId());
-
-			} catch (Exception e) {
-				LOG.error(e.getMessage(), e);
-				return new ModelAndView(new RedirectView(""));
-			}
-			solucion = new AplicacionVersionBean();
-			mv.addObject("solucion", solucion);
-		}
-		mv.addObject("soluciones", aplicacionVersionDAO.getAllAplicacionVersionXSolucion(solucion.getId()));
-		return mv;
 	}
 }

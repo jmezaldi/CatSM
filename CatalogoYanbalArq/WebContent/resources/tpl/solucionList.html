@@ -21,8 +21,9 @@
 					<tbody>
 			            <tr ng-repeat="solucion in soluciones">
 			            	<td>{{solucion.id}}</td>
-			            	<td><a ui-sref='.item({id: solucion.id})'>{{solucion.nombre}}</a></td>
-			            	<td>{{solucion.descripcion}}</td>
+			            	<td class="text-left">
+			            		<a ui-sref='.item({id: solucion.id})'>{{solucion.nombre}}</a></td>
+			            	<td class="text-left">{{solucion.descripcion}}</td>
 			            	<td>{{solucion.codDatoVertical | TCDescripcionBy:$root.codTabla.vertical}}</td>
 			            	<td>{{solucion.codDatoAmbito | TCDescripcionBy:$root.codTabla.ambito}}</td>
 			            	<td>{{solucion.codDatoTipo | TCDescripcionBy:$root.codTabla.tipo}}</td>

@@ -16,8 +16,9 @@
 					<tbody>
 			            <tr ng-repeat="cluster in clusters">
 			            	<td>{{cluster.id}}</td>
-			            	<td><a ui-sref='.item({id: cluster.id})'>{{cluster.nombre}}</a></td>
-			            	<td>{{cluster.comentario}}</td>
+			            	<td class="text-left">
+			            		<a ui-sref='.item({id: cluster.id})'>{{cluster.nombre}}</a></td>
+			            	<td class="text-left">{{cluster.comentario}}</td>
 							<td>{{cluster.estado | HTMLActive}}</td>						
 						</tr>
 					</tbody>

@@ -4,6 +4,22 @@
 
 <mapper namespace="com.yanbal.catalogo.dao.AplicacionVersionDAO">
 	<sql id="sqlSchema">CATALOGO.</sql>
+	
+	<resultMap id="resultAplicacion" type="aplicacionBean">
+        <result property="codDatoArea" column="CODIGO_DATO_AREA"/>
+        <result property="codDatoCriticidad" column="CODIGO_DATO_CRITICIDAD"/>
+        <result property="codDatoExposicion" column="CODIGO_DATO_EXPOSICION"/>
+        <result property="codDatoCustodio" column="CODIGO_DATO_CUSTODIO"/>
+        <result property="codDatoTipoApp" column="CODIGO_DATO_TIPO_APP"/>
+        <result property="codDatoPublico" column="CODIGO_DATO_PUBLICO"/>
+	</resultMap> 
+	
+	<select id="getAplicacionxPK" parameterType="int" resultMap="resultAplicacion">  
+		SELECT *
+		FROM <include refid="sqlSchema"/>APLICACION					
+		WHERE ID = #{id} 
+	</select>
+	
 	<resultMap id="result1" type="aplicacionVersionBean">	
         <result property="id" column="ID_APLICACION"/>
         <result property="corVersion" column="CORRELATIVO_VERSION"/>
@@ -69,7 +85,7 @@
 	
 	<select id="getAllAplicacionVersion" resultMap="result1">  
 	SELECT
-		   APPVER.ID_APLICACION AS ID_APLICACION,
+		   APP.ID AS ID_APLICACION,
 		   APPVER.CORRELATIVO_VERSION AS CORRELATIVO_VERSION,
 		   ID_SOLUCION,
 		   CODIGO,
@@ -90,8 +106,8 @@
 		   FECHA_VERSION,
 		   APPVER.ESTADO as ESTADO,
 		   TICKET_PASE 
-		FROM CATALOGO.APLICACION_VERSION APPVER
-		INNER JOIN CATALOGO.APLICACION APP
+		FROM CATALOGO.APLICACION APP
+		LEFT JOIN CATALOGO.APLICACION_VERSION APPVER 
 		ON (APP.ID = APPVER.ID_APLICACION)    
 		LEFT OUTER JOIN CATALOGO.TABLAS_CODIGOS AREA
 		ON (APP.CODIGO_TABLA_AREA= AREA.CODIGO_TABLA AND APP.CODIGO_DATO_AREA=AREA.CODIGO_DATO)
@@ -314,51 +330,7 @@
 		ON (APPI.ID_SERVIDOR=SER2.ID)
 		WHERE INST.ID_APLICACION = #{id} AND INST.CORRELATIVO_VERSION_APP=#{corVer}
 		ORDER BY TIPO_INST_APP,INST_APP,TIPO_INST_BD,INST_BD
-	</select>
-			
-	
-	<insert id="saveSolucion" parameterType="solucionBean">
-		INSERT INTO <include refid="sqlSchema"/>SOLUCION (CODIGO, NOMBRE, DESCRIPCION, 
-		CODIGO_TABLA_VERTICAL,CODIGO_DATO_VERTICAL, CODIGO_TABLA_AMBITO, CODIGO_DATO_AMBITO,
-  		CODIGO_TABLA_TIPO, CODIGO_DATO_TIPO, CODIGO_TABLA_AREA, CODIGO_DATO_AREA,
-  		ESTADO,  USUARIO_CREACION, USUARIO_ACTUALIZACION,FECHA_CREACION,FECHA_ACTUALIZACION) 
-    	VALUES (#{codigo},#{nombre},#{descripcion},#{codTablaVertical},#{codDatoVertical},
-    	#{codTablaAmbito},#{codDatoAmbito},#{codTablaTipo},#{codDatoTipo},
-    	#{codTablaArea},#{codDatoArea},#{estado},#{usuarioCreacion},#{usuarioActualizacion},
-    	CURRENT TIMESTAMP,CURRENT TIMESTAMP)    	
-	</insert>
-	
-	<update id="updateSolucion" parameterType="solucionBean"> 
-  		UPDATE <include refid="sqlSchema"/>SOLUCION
-  		SET
-  			CODIGO = #{codigo},  
-			NOMBRE = #{nombre},  
-			DESCRIPCION = #{descripcion},  
-			CODIGO_TABLA_VERTICAL = #{codTablaVertical} ,
-			CODIGO_TABLA_AMBITO = #{codTablaAmbito},
-			CODIGO_TABLA_TIPO = #{codTablaTipo},
-			CODIGO_TABLA_AREA = #{codTablaArea},
-			CODIGO_DATO_VERTICAL = #{codDatoVertical} ,
-			CODIGO_DATO_AMBITO = #{codDatoAmbito},
-			CODIGO_DATO_TIPO = #{codDatoTipo},
-			CODIGO_DATO_AREA = #{codDatoArea},
-			USUARIO_ACTUALIZACION = #{usuarioActualizacion},
-			FECHA_ACTUALIZACION = CURRENT TIMESTAMP		
- 		where id = #{id} 
-	</update>
-	
-	<delete id="deleteSolucion" parameterType="int">
-    	DELETE FROM <include refid="sqlSchema"/>SOLUCION
-    	WHERE id = #{id}
-    </delete>
-	<resultMap id="resultTB" type="tablasCodigosUtilBean">	
-        <result property="codTabla" column="CODIGO_TABLA"/>
-        <result property="codDato" column="CODIGO_DATO"/>
-        <result property="desAbreviada" column="DESCRIPCION_ABREVIADA"/>
-        <result property="desCompleta" column="DESCRIPCION_COMPLETA"/>
-        <result property="seleccion" column="SELECCION"/>
-        <result property="estado" column="ESTADO"/>
-    </resultMap>
+	</select>	
     	
 	<select id="getAllAppCaracteristicaXCodigoTabla" parameterType="map" resultMap="resultTB">  
 		SELECT
@@ -475,5 +447,60 @@
 			ON (S.ID =APPI.ID_SERVIDOR)
 		WHERE APPU.ID_APLICACION = #{id} AND APPU.CORRELATIVO_VERSION =  #{corVer}
 	</select>	
+	
+	<insert id="saveAplicacion" parameterType="aplicacionBean"
+		useGeneratedKeys="true" keyProperty="id">
+		<selectKey keyProperty="id" resultType="int" order="AFTER">
+	    	SELECT max(id) FROM <include refid="sqlSchema"/>APLICACION
+	    </selectKey>
+		INSERT INTO <include refid="sqlSchema"/>APLICACION (NOMBRE, DESCRIPCION, 
+		CODIGO_TABLA_CRITICIDAD, CODIGO_DATO_CRITICIDAD, 
+		CODIGO_TABLA_EXPOSICION, CODIGO_DATO_EXPOSICION,		
+  		CODIGO_TABLA_PUBLICO, CODIGO_DATO_PUBLICO, 
+  		CODIGO_TABLA_AREA, CODIGO_DATO_AREA,
+  		CODIGO_TABLA_CUSTODIO, CODIGO_DATO_CUSTODIO,
+  		CODIGO_TABLA_TIPO_APP, CODIGO_DATO_TIPO_APP,
+  		ESTADO,  USUARIO_CREACION, USUARIO_ACTUALIZACION,FECHA_CREACION,FECHA_ACTUALIZACION) 
+    	VALUES (#{nombre},#{descripcion},
+    	#{codTablaCriticidad},#{codDatoCriticidad},
+    	#{codTablaExposicion},#{codDatoExposicion},
+    	#{codTablaPublico},#{codDatoPublico},
+    	#{codTablaArea},#{codDatoArea},
+    	#{codTablaCustodio},#{codDatoCustodio},
+    	#{codTablaTipoApp},#{codDatoTipoApp},
+    	#{estado},#{usuarioCreacion},#{usuarioActualizacion},
+    	CURRENT TIMESTAMP,CURRENT TIMESTAMP)    	
+	</insert>
+	
+	<update id="updateAplicacion" parameterType="aplicacionBean"> 
+  		UPDATE <include refid="sqlSchema"/>APLICACION
+  		SET
+			NOMBRE = #{nombre},  
+			DESCRIPCION = #{descripcion},  
+			CODIGO_DATO_CRITICIDAD = #{codDatoCriticidad} ,
+			CODIGO_DATO_EXPOSICION = #{codDatoExposicion},
+			CODIGO_DATO_PUBLICO = #{codDatoPublico},
+			CODIGO_DATO_AREA = #{codDatoArea},
+			CODIGO_DATO_CUSTODIO = #{codDatoCustodio},
+			CODIGO_DATO_TIPO_APP = #{codDatoTipoApp},
+			USUARIO_ACTUALIZACION = #{usuarioActualizacion},
+			FECHA_ACTUALIZACION = CURRENT TIMESTAMP		
+ 		where id = #{id} 
+	</update>
+	
+	<delete id="deleteAplicacion" parameterType="int">
+    	DELETE FROM <include refid="sqlSchema"/>APLICACION
+    	WHERE id = #{id}
+    </delete>
+    
+	<resultMap id="resultTB" type="tablasCodigosUtilBean">	
+        <result property="codTabla" column="CODIGO_TABLA"/>
+        <result property="codDato" column="CODIGO_DATO"/>
+        <result property="desAbreviada" column="DESCRIPCION_ABREVIADA"/>
+        <result property="desCompleta" column="DESCRIPCION_COMPLETA"/>
+        <result property="seleccion" column="SELECCION"/>
+        <result property="estado" column="ESTADO"/>
+    </resultMap>
 
+	
 </mapper>
