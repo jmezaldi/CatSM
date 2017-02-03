@@ -107,7 +107,7 @@ public class AplicacionVersionController extends BaseController {
 			AplicacionVersionBean bean = new AplicacionVersionBean();
 			bean.setId(idApp);
 			bean.setCorVersion(corVer);
-			bean = aplicacionVersionDAO.getAplicacionVersionXPK(bean);
+			bean = aplicacionVersionDAO.getAplicacionVersionXPKOld(bean);
 			
 			
 			if (session.getAttribute("TabCod"+ConstantesComunes.TablasCodigosCRITICIDAD_APP) ==null)

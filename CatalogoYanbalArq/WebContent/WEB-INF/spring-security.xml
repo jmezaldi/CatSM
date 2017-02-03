@@ -9,10 +9,8 @@
 		entry-point-ref="customAuthenticationEntryPoint">
 		<csrf disabled="true"/>		
 		<intercept-url pattern="/app**" access="isAuthenticated()" />
-		<intercept-url pattern="/app/*" access="isAuthenticated()" />
-		<intercept-url pattern="/app/*/*" access="isAuthenticated()" />
-		<intercept-url pattern="/api/*" access="isAuthenticated()" />
-		<intercept-url pattern="/api/*/*" access="isAuthenticated()" />
+		<intercept-url pattern="/app/**" access="isAuthenticated()" /> 
+		<intercept-url pattern="/api/**" access="isAuthenticated()" /> 
 		<form-login 
 		    login-page="/login" 
 		    default-target-url="/app" 

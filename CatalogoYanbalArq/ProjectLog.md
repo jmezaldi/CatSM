@@ -36,6 +36,7 @@
 - <http://stackoverflow.com/questions/19136784/hibernate-throwing-an-unexpected-token-was-found-following/19138036#19138036>
 - <https://www.toadworld.com/platforms/sql-server/w/wiki/10261.stored-procedures-output-parameters-return-values>
 - <http://www.ibm.com/support/knowledgecenter/SSEPGG_9.7.0/com.ibm.db2.luw.sql.ref.doc/doc/r0004231.html>
+- <http://www.mybatis.org/mybatis-3/sqlmap-xml.html>
   
 # REST API, Spring REST
 - <http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api>
@@ -60,6 +61,8 @@
  - <http://apprize.info/javascript/wrox/16.html>
  - <http://www.programering.com/a/MjM3AzNwATM.html>
 
+- <http://www.javablog.fr/javaweb-gzip-compression-protocol-http-filter-gzipresponsewrapper-gzipresponsewrapper.html>
+ 
 # Spring, Security
 - <http://www.java2blog.com/2016/09/spring-rest-spring-security-example.html>
  - <http://docs.spring.io/spring-security/site/docs/3.0.x/reference/appendix-namespace.html>
@@ -106,9 +109,9 @@
 - <http://stackoverflow.com/questions/35639435/how-to-wait-for-binding-in-angular-1-5-component-without-scope-watch/35639523#35639523>
 - <https://www.reddit.com/r/angularjs/comments/40w4i4/dynamically_adding_angular_15_components/>
 
-
 - Datatables
  - <http://l-lin.github.io/angular-datatables/archives/#/gettingStarted>
+ - <https://datatables.net/release-datatables/examples/api/row_details.html>
  - <http://stackoverflow.com/questions/31771733/datatables-how-can-i-keep-child-rows-opened-after-the-ajax-reload>
  - <http://www.edtor.datatables.net/forums/discussion/31979/how-to-keep-the-child-rows-open-after-ajax-reload>
 
@@ -159,5 +162,19 @@
  - <http://www.webdesignerdepot.com/2014/02/how-to-create-horizontal-scrolling-using-display-table-cell/>
  - <http://bootsnipp.com/snippets/featured/navigation-sidebar-with-toggle>
  
+ 
+# UX Design
+- <https://www.cxpartners.co.uk/our-thinking/web_forms_design_guidelines_an_eyetracking_study/>
+- <https://uxplanet.org/designing-more-efficient-forms-structure-inputs-labels-and-actions-e3a47007114f#.vor8z2jz5> 
+- <https://www.ventureharbour.com/form-design-best-practices/>
+- <http://www.creativebloq.com/ux/problems-81412676>
+- <http://ux.stackexchange.com/questions/3418/what-is-the-best-ui-for-multi-selecting-from-a-list/10170#10170>
+ - <https://harvesthq.github.io/chosen/>
+ 
+# Java
+- Shadowing
+ - <http://stackoverflow.com/questions/772663/having-2-variables-with-the-same-name-in-a-class-that-extends-another-class-in-j> 
+ - <https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.4.1>  
+ - <http://stackoverflow.com/questions/9414990/if-you-overwrite-a-field-in-a-subclass-of-a-class-the-subclass-has-two-fields-w>
  
  

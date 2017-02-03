@@ -62,4 +62,14 @@ public class AplicacionService {
 		}		
 	}
 	
+	public AplicacionVersionBean getAplicacionVersionXPk(
+			AplicacionVersionBean aplicacion) {
+		AplicacionVersionBean elemento = null;
+		try {
+			elemento = aplicacionVersionDAO.getAplicacionVersionXPK(aplicacion);
+		} catch (Exception e) {
+			LOG.error(e.getMessage(), e);			
+		}
+		return elemento;
+	}
 }

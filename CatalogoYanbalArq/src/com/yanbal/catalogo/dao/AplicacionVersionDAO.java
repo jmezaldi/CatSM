@@ -16,6 +16,7 @@ public interface AplicacionVersionDAO {
 	
 	public List<AplicacionVersionBean> getAllAplicacionVersionXSolucion(Integer idSolucion);
 	public AplicacionBean getAplicacionxPK(Integer id);
+	public AplicacionVersionBean getAplicacionVersionXPKOld(AplicacionVersionBean bean);
 	public AplicacionVersionBean getAplicacionVersionXPK(AplicacionVersionBean bean);
 	public List<TablasCodigosUtilBean> getAllAppCaracteristicaXCodigoTabla(@Param("idApp") Integer idApp,@Param("corVer")  Integer corVer);
 	public List<BaseDatosVersionBean> getAllBaseDatosXIdAppVersion(@Param("idApp") Integer idApp,@Param("corVer")  Integer corVer);

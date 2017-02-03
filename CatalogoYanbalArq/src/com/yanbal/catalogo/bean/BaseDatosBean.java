@@ -1,7 +1,10 @@
 package com.yanbal.catalogo.bean;
 
-public class BaseDatosBean {
-	
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonInclude(Include.NON_NULL)
+public class BaseDatosBean {	
 	private Integer id;
 	private String  nombre;
 	private Integer estado;

@@ -54,13 +54,21 @@ public class AplicacionApiController extends BaseController {
 		return elemento;
 	}
 	
-	 @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")  
-	 public void deleteAplicacion(Principal principal, 
-			 @PathVariable("id") int id) {  
-		 AplicacionBean elemento = aplicacionService.getAplicacionXPk(id);
-		 elemento.setEstado(AplicacionBean.ESTADO_INACTIVO);
-		 elemento.setUsuarioActualizacion(principal.getName());
-		 aplicacionService.updateAplicacion(elemento);
-	 }
-	
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")
+	public void deleteAplicacion(Principal principal, @PathVariable("id") int id) {
+		AplicacionBean elemento = aplicacionService.getAplicacionXPk(id);
+		elemento.setEstado(AplicacionBean.ESTADO_INACTIVO);
+		elemento.setUsuarioActualizacion(principal.getName());
+		aplicacionService.updateAplicacion(elemento);
+	}
+	 
+	@RequestMapping(value = "/{id}/versiones/{versionId}", method = 
+			RequestMethod.GET, headers = "Accept=application/json")
+	public AplicacionVersionBean getAplicacionVersionyId(@PathVariable int id, 
+			@PathVariable int versionId) {
+		AplicacionVersionBean aplicacion = new AplicacionVersionBean();
+		aplicacion.setId(id);
+		aplicacion.setCorVersion(versionId);
+		return aplicacionService.getAplicacionVersionXPk(aplicacion);
+	}
 }

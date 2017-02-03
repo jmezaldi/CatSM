@@ -125,7 +125,172 @@
 		ON (APP.CODIGO_TABLA_PUBLICO= PUB.CODIGO_TABLA AND APP.CODIGO_DATO_PUBLICO=PUB.CODIGO_DATO)					
 	</select>
 
-	<select id="getAplicacionVersionXPK" parameterType="aplicacionVersionBean" resultType="aplicacionVersionBean">  
+	<resultMap id="resultAplicacionVersion" type="aplicacionVersionBean" autoMapping="true">	
+        <id property="id" column="ID_APLICACION"/>
+        <id property="corVersion" column="CORRELATIVO_VERSION"/>
+        <result property="nombre" column="NOMBRE"/>
+        <result property="descripcion" column="DESCRIPCION"/>
+        <result property="codDatoArea" column="CODIGO_DATO_AREA"/>
+        <result property="codDatoCriticidad" column="CODIGO_DATO_CRITICIDAD"/>
+        <result property="codDatoExposicion" column="CODIGO_DATO_EXPOSICION"/>
+        <result property="codDatoCustodio" column="CODIGO_DATO_CUSTODIO"/>
+        <result property="codDatoTipoApp" column="CODIGO_DATO_TIPO_APP"/>
+        <result property="codDatoPublico" column="CODIGO_DATO_PUBLICO"/>
+        <result property="codDatoPublico" column="CODIGO_DATO_PUBLICO"/>
+        <collection property="soluciones" ofType="SolucionBean" columnPrefix="SOL_">
+		    <id property="id" column="id"/>
+		    <result property="nombre" column="NOMBRE"/>		    
+	        <result property="codDatoVertical" column="CODIGO_DATO_VERTICAL"/>			
+	        <result property="codDatoAmbito" column="CODIGO_DATO_AMBITO"/>	        
+	        <result property="codDatoTipo" column="CODIGO_DATO_TIPO"/>
+			<result property="codDatoArea" column="CODIGO_DATO_AREA"/>
+	        <result property="estado" column="ESTADO"/>
+	  	</collection>
+	  	<collection property="basesDatos" ofType="BaseDatosVersionBean" 
+	  		resultMap="resultBDV" columnPrefix="BD_"/>
+        <collection property="tablasCodigosCaracteristicas" ofType="TablasCodigosBean">
+        	<id property="codTabla" column="CODIGO_TABLA_CARACTERISTICA"/>
+        	<id property="codDato" column="CODIGO_DATO_CARACTERISTICA"/>
+        </collection>
+        <collection property="clustersServidores" ofType="ClusterServidorBean"
+        	resultMap="resultCluster" columnPrefix="CS_"/>
+        <collection property="unidadesNegocio" ofType="UnidadNegocioAppVersionBean" 
+        	resultMap="resultUnidadNegocioAppVersion" columnPrefix="UNAPPVER_"/>
+        <collection property="hijos" ofType="AppVersionRelacionBean" 
+        	resultMap="resultAppVersionRelacion" columnPrefix="HIJO_"/>
+        <collection property="padres" ofType="AppVersionRelacionBean" 
+        	resultMap="resultAppVersionRelacion" columnPrefix="PADRE_"/>
+    </resultMap>
+
+	<select id="getAplicacionVersionXPK" parameterType="aplicacionVersionBean" 
+		resultMap="resultAplicacionVersion">  
+		SELECT DISTINCT 
+		   APP.NOMBRE, 
+		   APP.DESCRIPCION,
+		   APP.CODIGO_DATO_AREA, 
+		   APP.CODIGO_DATO_CRITICIDAD,
+		   APP.CODIGO_DATO_EXPOSICION,
+		   APP.CODIGO_DATO_CUSTODIO,
+		   APP.CODIGO_DATO_TIPO_APP,
+		   APP.CODIGO_DATO_PUBLICO,
+		   APP.ESTADO,
+		   APPVER.ID_APLICACION,
+		   APPVER.CORRELATIVO_VERSION AS "corVersion",  		   
+		   APPVER.ESTADO as "estadoVersion",
+		   APPVER.TICKET_PASE as ticketPase,
+		   
+		   APPVER.ID_SOFTWARE_BASE as "swbaseVersion.id",
+  		   SW.NOMBRE as "swbaseVersion.nombre",
+  		   SWVER.CORRELATIVO_VERSION as "swbaseVersion.corVersion",
+  		   SWVER.VERSION as "swbaseVersion.version",
+  		   SWVER.FIX as "swbaseVersion.fix",
+  		   
+		   SOL.ID as SOL_ID,
+  		   SOL.NOMBRE as SOL_NOMBRE,
+  		   SOL.CODIGO_DATO_VERTICAL as SOL_CODIGO_DATO_VERTICAL,
+  		   SOL.CODIGO_DATO_AMBITO as SOL_CODIGO_DATO_AMBITO,
+  		   SOL.CODIGO_DATO_TIPO as SOL_CODIGO_DATO_TIPO,
+  		   SOL.CODIGO_DATO_AREA as SOL_CODIGO_DATO_AREA,
+  		   SOL.ESTADO as SOL_ESTADO,
+  		   
+  		   BD.ID AS BD_ID,
+  		   BDVER.CORRELATIVO_VERSION AS BD_CORVER,
+		   BD.NOMBRE AS BD_NOMBRE,
+  		   BDVER.DATOS_SENSIBLES AS BD_DAT_S, 
+  		   BDVER.DATOS_PERSONALES AS BD_DAT_P,
+  		   BD_SBVER.ID_SOFTWARE_BASE AS BD_SB_ID, 
+  		   BD_SBVER.CORRELATIVO_VERSION AS BD_SB_COR,
+  		   BD_SB.NOMBRE AS BD_SB_NOM,
+  		   BD_SBVER.VERSION AS BD_SB_VER,
+  		   BD_SBVER.FIX AS BD_SB_FIX,
+  		   
+  		   APPVER_CAR.CODIGO_TABLA_CARACTERISTICA,
+           APPVER_CAR.CODIGO_DATO_CARACTERISTICA,
+           
+           C.ID AS CS_C_ID,			
+		   C.NOMBRE AS CS_C_NOM,
+		   S.ID AS CS_S_ID,
+		   S.NOMBRE AS CS_S_NOM,
+		   S.CODIGO_DATO_AMBIENTE AS CS_S_CODIGO_DATO_AMBIENTE,
+		   COMENTARIO_INTERNO AS CS_S_COMENTARIO_INTERNO,
+		   
+		   UN.ID as UNAPPVER_ID, 
+           UN.CODIGO as UNAPPVER_CODIGO, 
+           UN.NOMBRE as UNAPPVER_NOMBRE, 
+           APV.TICKET_ACTIVACION as UNAPPVER_TICKET_ACTIVACION,
+           APV.FECHA_ACTIVACION as UNAPPVER_FECHA_ACTIVACION,
+           
+           APPH.ID HIJO_ID, 
+           APPH.NOMBRE HIJO_NOMBRE, 
+           APPHV.CORRELATIVO_VERSION HIJO_CORRELATIVO_VERSION,
+           VSH.CODIGO_DATO_RELACION HIJO_CODIGO_DATO_RELACION,
+           VSH.COMENTARIO HIJO_COMENTARIO,
+           APPP.ID PADRE_ID, 
+           APPP.NOMBRE PADRE_NOMBRE, 
+           APPPV.CORRELATIVO_VERSION PADRE_CORRELATIVO_VERSION,
+           VSP.CODIGO_DATO_RELACION PADRE_CODIGO_DATO_RELACION,
+           VSP.COMENTARIO PADRE_COMENTARIO
+           
+		FROM CATALOGO.APLICACION_VERSION APPVER
+		INNER JOIN CATALOGO.APLICACION APP ON (APP.ID = APPVER.ID_APLICACION) 
+			AND (APPVER.ID_APLICACION = #{id} AND APPVER.CORRELATIVO_VERSION = #{corVersion})		
+		LEFT OUTER JOIN CATALOGO.SOFTWARE_BASE_VERSION SWVER ON
+			(APPVER.ID_SOFTWARE_BASE = SWVER.ID_SOFTWARE_BASE AND 
+		    	APPVER.CORRELATIVO_VERSION = SWVER.CORRELATIVO_VERSION)
+		LEFT OUTER JOIN CATALOGO.SOFTWARE_BASE SW ON (APPVER.ID_SOFTWARE_BASE = SW.ID)
+		
+		LEFT JOIN CATALOGO.APLICACION_VERSION_SOLUCION APPVER_SOL ON
+			APPVER_SOL.ID_APLICACION = APPVER.ID_APLICACION AND
+			APPVER_SOL.CORRELATIVO_VERSION = APPVER.CORRELATIVO_VERSION 
+		LEFT JOIN CATALOGO.SOLUCION SOL ON SOL.Id = APPVER_SOL.ID_SOLUCION
+		
+		LEFT JOIN CATALOGO.APLICACION_BASE_DATOS_VERSION APPVER_BDVER ON
+			(APPVER.ID_APLICACION = APPVER_BDVER.ID_APLICACION AND 
+			 APPVER.CORRELATIVO_VERSION = APPVER_BDVER.CORRELATIVO_VERSION_APP)
+		LEFT JOIN CATALOGO.BASE_DATOS_VERSION BDVER ON
+			(APPVER_BDVER.ID_BASE_DATOS = BDVER.ID_BASE_DATOS AND 
+			 APPVER_BDVER.CORRELATIVO_VERSION_BD = BDVER.CORRELATIVO_VERSION) 
+
+        LEFT JOIN CATALOGO.BASE_DATOS BD ON (BDVER.ID_BASE_DATOS = BD.ID)
+		LEFT JOIN CATALOGO.SOFTWARE_BASE_VERSION BD_SBVER ON 
+			(BDVER.ID_SOFTWARE_BASE = BD_SBVER.ID_SOFTWARE_BASE AND 
+			BDVER.CORRELATIVO_SOFTWARE_BASE_VERSION= BD_SBVER.CORRELATIVO_VERSION)
+		LEFT OUTER JOIN CATALOGO.SOFTWARE_BASE BD_SB ON (BD_SBVER.ID_SOFTWARE_BASE = BD_SB.ID)
+		
+		LEFT JOIN CATALOGO.APLICACION_VERSION_CARACTERISTICA APPVER_CAR ON
+            (APPVER.ID_APLICACION = APPVER_CAR.ID_APLICACION AND
+             APPVER.CORRELATIVO_VERSION = APPVER_CAR.CORRELATIVO_VERSION)	
+            
+        LEFT JOIN CATALOGO.APLICACION_VERSION_INSTALACION APPI ON 
+            (APPVER.ID_APLICACION = APPI.ID_APLICACION  AND 
+             APPVER.CORRELATIVO_VERSION = APPI.CORRELATIVO_VERSION)
+		LEFT JOIN CATALOGO.CLUSTER C ON (APPI.ID_CLUSTER = C.ID)
+		LEFT JOIN CATALOGO.CLUSTER_SERVIDOR CS ON (C.ID = CS.ID_CLUSTER)
+		LEFT JOIN CATALOGO.SERVIDOR S ON (S.ID = COALESCE(CS.ID_SERVIDOR, APPI.ID_SERVIDOR)) 
+		
+		LEFT JOIN CATALOGO.APLICACION_VERSION_UN APV ON
+            (APPVER.ID_APLICACION = APV.ID_APLICACION AND 
+             APPVER.CORRELATIVO_VERSION = APV.CORRELATIVO_VERSION)
+		LEFT JOIN CATALOGO.UNIDAD_NEGOCIO UN ON (APV.ID_UNIDAD_NEGOCIO = UN.ID)
+		
+		LEFT JOIN CATALOGO.APLICACION_VERSION_VS_APLICACION_VERSION VSH ON
+            (APPVER.ID_APLICACION = VSH.ID_APLICACION_PADRE AND 
+             APPVER.CORRELATIVO_VERSION = VSH.CORRELATIVO_VERSION_PADRE) 
+        LEFT JOIN CATALOGO.APLICACION_VERSION APPHV ON 
+            (VSH.ID_APLICACION_HIJO = APPHV.ID_APLICACION AND
+			 VSH.CORRELATIVO_VERSION_HIJO = APPHV.CORRELATIVO_VERSION)
+		LEFT JOIN CATALOGO.APLICACION APPH ON (APPHV.ID_APLICACION = APPH.ID) 
+
+        LEFT JOIN CATALOGO.APLICACION_VERSION_VS_APLICACION_VERSION VSP ON
+            (APPVER.ID_APLICACION = VSP.ID_APLICACION_HIJO AND 
+             APPVER.CORRELATIVO_VERSION = VSP.CORRELATIVO_VERSION_HIJO)
+        LEFT JOIN CATALOGO.APLICACION_VERSION APPPV ON 
+            (VSP.ID_APLICACION_PADRE = APPPV.ID_APLICACION AND
+			 VSP.CORRELATIVO_VERSION_PADRE = APPPV.CORRELATIVO_VERSION)
+		LEFT JOIN CATALOGO.APLICACION APPP ON (APPPV.ID_APLICACION = APPP.ID) 
+	</select>
+	
+	<select id="getAplicacionVersionXPKOld" parameterType="aplicacionVersionBean" resultType="aplicacionVersionBean">  
 		SELECT
 		   APPVER.ID_APLICACION AS "id",
 		   APPVER.CORRELATIVO_VERSION AS "corVersion",
@@ -142,21 +307,20 @@
   		   USUARIO_LIDER as "usuarioLider",
   		   FECHA_VERSION as "fechaVersion",
   		   APPVER.ID_SOFTWARE_BASE as "swbaseVersion.id",
-  		   APPVER.CORRELATIVO_VERSION as "swbaseVersion.corVersion",
   		   SW.NOMBRE as "swbaseVersion.nombre",
+  		   SWV.CORRELATIVO_VERSION as "swbaseVersion.corVersion",
   		   SWV.VERSION as "swbaseVersion.version",
   		   SWV.FIX as "swbaseVersion.fix",
-		   APPVER.ESTADO as "estado" ,
+		   APPVER.ESTADO as "estado",
 		   TICKET_PASE as ticketPase
 		FROM CATALOGO.APLICACION_VERSION APPVER
-		INNER JOIN CATALOGO.APLICACION APP
-		ON (APP.ID = APPVER.ID_APLICACION) 		
+		INNER JOIN CATALOGO.APLICACION APP ON (APP.ID = APPVER.ID_APLICACION) 		
 		LEFT OUTER JOIN CATALOGO.SOFTWARE_BASE_VERSION SWV
-		ON (APPVER.ID_SOFTWARE_BASE=SWV.ID_SOFTWARE_BASE AND 
-		    APPVER.CORRELATIVO_VERSION=SWV.CORRELATIVO_VERSION)
+			ON (APPVER.ID_SOFTWARE_BASE=SWV.ID_SOFTWARE_BASE AND 
+		    	APPVER.CORRELATIVO_VERSION=SWV.CORRELATIVO_VERSION)
 		LEFT OUTER JOIN CATALOGO.SOFTWARE_BASE SW
 		ON (SW.ID=APPVER.ID_SOFTWARE_BASE)	
-			WHERE APPVER.ID_APLICACION = #{id} AND APPVER.CORRELATIVO_VERSION=#{corVersion}
+			WHERE APPVER.ID_APLICACION = #{id} AND APPVER.CORRELATIVO_VERSION=#{corVersion}		
 	</select>
 	
 	<resultMap id="result2" type="aplicacionVersionBean">	
@@ -224,15 +388,15 @@
 			WHERE APPV.ID_SOFTWARE_BASE = #{id} AND APPV.CORRELATIVO_SOFTWARE_BASE_VERSION=#{corVer}
 	</select>
 	
-	<resultMap id="result3" type="unidadNegocioAppVersionBean">	
-        <result property="id" column="ID"/>
+	<resultMap id="resultUnidadNegocioAppVersion" type="unidadNegocioAppVersionBean">	
+        <id property="id" column="ID"/>
         <result property="codigo" column="CODIGO"/>
         <result property="nombre" column="NOMBRE"/>
         <result property="ticketActivacion" column="TICKET_ACTIVACION"/>
         <result property="fechaActivacion" column="FECHA_ACTIVACION"/>
     </resultMap>
 		
-	<select id="getAllUnidadNegocioXAppVersion" parameterType="map" resultMap="result3">  
+	<select id="getAllUnidadNegocioXAppVersion" parameterType="map" resultMap="resultUnidadNegocioAppVersion">  
 		SELECT  ID, CODIGO, NOMBRE, TICKET_ACTIVACION,FECHA_ACTIVACION
 		FROM 
 			CATALOGO.APLICACION_VERSION_UN APV
@@ -241,16 +405,17 @@
 		WHERE APV.ID_APLICACION = #{id}  AND APV.CORRELATIVO_VERSION=#{corVer}
 	</select>
 	
-	<resultMap id="result4" type="AppVersionRelacionBean">	
-        <result property="id" column="ID"/>
+	<resultMap id="resultAppVersionRelacion" type="AppVersionRelacionBean">	
+        <id property="id" column="ID"/>
         <result property="nombre" column="NOMBRE"/>
         <result property="corVersion" column="CORRELATIVO_VERSION"/>
         <result property="comentario" column="COMENTARIO"/>
+        <result property="codDatoRelacion" column="CODIGO_DATO_RELACION"/>
         <result property="desRelacion" column="DESCRIPCION_ABREVIADA"/>
     </resultMap>
 		
 	
-	<select id="getAllAppVersionHijo" parameterType="map" resultMap="result4">  
+	<select id="getAllAppVersionHijo" parameterType="map" resultMap="resultAppVersionRelacion">  
 		SELECT APP.ID, 
 			   APP.NOMBRE, 
 			   APPV.CORRELATIVO_VERSION as CORRELATIVO_VERSION,
@@ -269,7 +434,7 @@
 	</select>
 	
 	
-	<select id="getAllAppVersionPadre" parameterType="map" resultMap="result4">  
+	<select id="getAllAppVersionPadre" parameterType="map" resultMap="resultAppVersionRelacion">  
 		SELECT APP.ID, 
 			   APP.NOMBRE, 
 			   APPV.CORRELATIVO_VERSION as CORRELATIVO_VERSION,
@@ -349,16 +514,16 @@
 	</select>
 	
 	<resultMap id="resultBDV" type="BaseDatosVersionBean">	
-        <result property="id" column="ID"/>
-        <result property="corVersion" column="CORVER"/>
+        <id property="id" column="ID"/>
+        <id property="corVersion" column="CORVER"/>
         <result property="nombre" column="NOMBRE"/>
         <result property="datSensibles" column="DAT_S"/>
         <result property="datPersonales" column="DAT_P"/>
-        <result property="idSoftwareBase" column="ID_SB"/>
-        <result property="idCorSoftwareBaseVersion" column="CORSB"/>
-        <result property="swBaseVersion.nombre" column="NOM_SB"/>
-        <result property="swBaseVersion.version" column="VER_SB"/>
-        <result property="swBaseVersion.fix" column="FIX_SB"/>
+        <result property="idSoftwareBase" column="SB_ID"/>
+        <result property="idCorSoftwareBaseVersion" column="SB_COR"/>
+        <result property="swBaseVersion.nombre" column="SB_NOM"/>
+        <result property="swBaseVersion.version" column="SB_VER"/>
+        <result property="swBaseVersion.fix" column="SB_FIX"/>
     </resultMap>	
     
 
@@ -369,11 +534,11 @@
 			APP.CORRELATIVO_VERSION_BD AS CORVER,
 			DATOS_SENSIBLES AS DAT_S, 
 			DATOS_PERSONALES AS DAT_P,
-			BDV.ID_SOFTWARE_BASE AS ID_SB, 
-			BDV.CORRELATIVO_SOFTWARE_BASE_VERSION AS CORSB,
-			SB.NOMBRE AS NOM_SB,
-			VERSION AS VER_SB,
-			FIX AS FIX_SB
+			BDV.ID_SOFTWARE_BASE AS SB_ID, 
+			BDV.CORRELATIVO_SOFTWARE_BASE_VERSION AS SB_COR,
+			SB.NOMBRE AS SB_NOM,
+			VERSION AS SB_VER,
+			FIX AS SB_FIX
 		FROM CATALOGO.APLICACION_BASE_DATOS_VERSION APP
 		INNER JOIN CATALOGO.BASE_DATOS BD
 			ON (APP.ID_BASE_DATOS = BD.ID)
@@ -388,23 +553,24 @@
 	</select>
 	
 	<resultMap id="resultCluster" type="ClusterServidorBean">	
-        <result property="id" column="ID"/>
-        <result property="nombre" column="NOM_C"/>
-        <result property="servidor.id" column="ID_S"/>
-        <result property="servidor.nombre" column="NOMBRE"/>
-        <result property="servidor.desAmbiente" column="AMB"/>
-        <result property="servidor.comentarioInterno" column="COMENTARIO_INTERNO"/>
+        <id property="id" column="C_ID"/>
+        <id property="servidor.id" column="S_ID"/>
+        <result property="nombre" column="C_NOM"/>
+        <result property="servidor.nombre" column="S_NOM"/>
+        <result property="servidor.desAmbiente" column="S_AMB"/>
+        <result property="servidor.codDatoAmbiente" column="S_CODIGO_DATO_AMBIENTE"/>
+        <result property="servidor.comentarioInterno" column="S_COMENTARIO_INTERNO"/>
     </resultMap>	
     
 
 	<select id="getAllClusterServidorXIdAppVersion" parameterType="map" resultMap="resultCluster">  
 		SELECT 
-			C.ID AS ID_C,			
-			CASE WHEN C.ID IS NOT NULL THEN 'Cluster '||C.NOMBRE ELSE 'Servidor' END AS NOM_C,
-			S.ID AS ID_S,
-			S.NOMBRE,
-			TC.DESCRIPCION_ABREVIADA AS AMB,
-			COMENTARIO_INTERNO
+			C.ID AS C_ID,			
+			CASE WHEN C.ID IS NOT NULL THEN 'Cluster '||C.NOMBRE ELSE 'Servidor' END AS C_NOM,
+			S.ID AS S_ID,
+			S.NOMBRE AS S_NOM,
+			TC.DESCRIPCION_ABREVIADA AS S_AMB,
+			COMENTARIO_INTERNO S_COMENTARIO_INTERNO
 		FROM CATALOGO.APLICACION_VERSION_INSTALACION APPI
 		LEFT OUTER JOIN CATALOGO.CLUSTER C
 			ON (C.ID=APPI.ID_CLUSTER)

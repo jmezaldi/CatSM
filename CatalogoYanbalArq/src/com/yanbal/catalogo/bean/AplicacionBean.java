@@ -2,8 +2,11 @@ package com.yanbal.catalogo.bean;
 
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.yanbal.catalogo.util.constantes.ConstantesComunes;
 
+@JsonInclude(Include.NON_NULL)
 public class AplicacionBean {
 	
 		private Integer id;
